@@ -1,0 +1,31 @@
+---
+title: "Triathlon Data Correlation Module"
+author: "Michael Schuckers and Matthew Abel"
+format: html
+---
+
+1.  Watch the [introductory video](http://myslu.stlawu.edu/~msch/SCORE/SarahTrueTriathlonModule.mp4){target="_blank"} for the module.
+
+2.  Open the dataset `LakePlacidTriFinisherData.csv`. As Sarah True mentioned, these data are from female finishers of the Lake Placid Ironman Triathlon from 2002 to 2021. We will be focused on the relationships between swim times, bike times and run times. Each of these times are in minutes.
+
+3.  In words, how strong do you expect the relationships to be between each of these pairs of times?
+
+4.  Make a histogram and describe the distribution for each of these times
+
+    a.  Swim times
+    b.  Bike times
+    c.  Run times
+
+5.  Graph the relationship between swim times and bike times. From this graph, is it appropriate to calculate the correlation from these data? If so, estimate the correlation from the graph, then calculate the correlation and compare it to your estimate. If not, briefly explain why not.
+
+6.  Graph the relationship between bike times and run times. From this graph, is it appropriate to calculate the correlation from these data? If so, estimate the correlation from the graph, then calculate the correlation and compare it to your estimate. If not, briefly explain why not.
+
+7.  Graph the relationship between swim times and run times. From this graph, is it appropriate to calculate the correlation from these data? If so, estimate the correlation from the graph, then calculate the correlation and compare it to your estimate. If not, briefly explain why not.
+
+8.  Which relationship has the strongest correlation? Why might that be?
+
+9.  These data are for finishers of the triathlon. How might these relationships be different for athletes that did not finish or were disqualified?
+
+10. What do you think is the causal mechanism for these correlations?
+
+11. What do these correlations suggest for athletes about what aspects of their race they may want to concentrate on?
