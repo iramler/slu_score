@@ -1,0 +1,15 @@
+---
+title: "SLU SCORE Sports Data Repository"
+---
+
+The St. Lawrence University SCORE Sports Data Repository curates interesting datasets across a variety of sports for use in statistics and data science education. Each dataset has the following properties:
+
+* A _sports question_ of interest, with context motivating why the dataset is relevant and interesting to explore.
+* A _statistics / data science topic_ which the dataset can be used to help teach.
+* _Example questions and worksheets_ that instructors can use or adapt for their own classes.
+
+Datasets are organized by sport along the left, but you can also browse [by statistics and data science topic](by-statsds-topic.qmd).
+
+This repository is localized copy of the [SCORE Sports Data Repository](https://data.scorenetwork.org/).
+
+

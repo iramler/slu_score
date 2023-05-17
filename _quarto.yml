@@ -1,0 +1,31 @@
+project:
+  type: website
+  resources:
+    - "data/*.csv"
+    - "data/*.txt"
+
+website:
+  title: "SLU SCORE Sports Data Repository"
+  page-footer: "Maintained by [Ivan Ramler](https://www.stlawu.edu/people/ivan-ramler)"
+  navbar:
+    left:
+      - href: index.qmd
+        text: Home
+      - by-statsds-topic.qmd
+      - submit-data.qmd
+      - data-sources.qmd
+  sidebar:
+    contents: auto
+    collapse-level: 1
+  repo-url: https://github.com/iramler/slu_score
+  repo-actions: [edit, issue]
+
+format:
+  html:
+    theme:
+      - cosmo
+      - score.scss
+    toc: true
+
+execute:
+  freeze: auto
