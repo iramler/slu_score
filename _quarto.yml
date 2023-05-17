@@ -12,7 +12,6 @@ website:
       - href: index.qmd
         text: Home
       - by-statsds-topic.qmd
-      - submit-data.qmd
       - data-sources.qmd
   sidebar:
     contents: auto
