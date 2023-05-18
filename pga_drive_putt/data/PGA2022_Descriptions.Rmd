@@ -1,0 +1,42 @@
+---
+output: html_document
+---
+
+
+| | |
+| :----------------------------- | -----------------------------------------------------------: |
+| PGA2022                    |Statistics of PGA Tournaments During 2022 Season  |
+
+---
+
+### Description
+
+The data can be found from the [PGA statistics website](https://www.pgatour.com/stats){target="_blank"}. This data shows the statistics from 19 tournaments in the 2022 PGA season.
+
+### Format
+
+A data frame with 1387 observations of the following variables.
+
+| | |
+| :----------------------------- | :----------------------------------------------------------- |
+| `playerName`| Name of the player
+| `country`| The country where the player is from
+| `avgDriveDist`| Average driving distance (in yards)
+| `drivePct`| Percentage of times a tee shot comes to rest in the fairway
+| `driveSG`| Strokes gained off the tee measures player performance off the tee on all par 4s and par 5s of how much better or worse a player’s drive is than the PGA Tour average
+| `avgPuttsPerRound`| Average number of total putts per round
+| `onePuttPct`| Percentage of times it took one putt to get the ball into the hole
+| `puttsSG`| Strokes gained putting measures how many strokes a player gains or loses on the greens compared to the PGA Tour average
+| `avgScore`| The scoring average is the total strokes divided by the total rounds 
+| `Money`| The official money is the prize money award to the Professional members
+| `Points`| FedexCup Regular Season Points are awarded points by finished position for performance in each tournament
+| `Tournament`| The tournament where the PGA Tour is taking place
+
+### Details
+
+The data set has statistics with variables for driving ability, putting ability, and measured success. The variables for measuring driving include Average Driving Distance (`avgDriveDist`), Driving Accuracy Percentage (`drivePct`), and Strokes Gained Off the Tee (`driveSG`). The variables for measuring putting are Average Putts Per Round (`avgPuttsPerRound`), One Putt Percentage (`onePuttPct`), and Strokes Gained Putting (`puttsSG`). The measured success variables are Scoring Average (`avgScore`), Official Money (`Money`), and FedexCup Points (`Points`).
+
+### Source
+
+The data can be found from the [PGA statistics website](https://www.pgatour.com/stats){target="_blank"}.
+
