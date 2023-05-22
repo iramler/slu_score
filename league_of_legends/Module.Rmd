@@ -11,6 +11,7 @@ output:
 ```{r}
 library(tidyverse)
 library(stringr)
+library(readr)
 ```
 
 League of Legends is a multiplayer online battle arena (MOBA) game developed by Riot Games. In the game, players assume the role of a "champion" with unique abilities and battle against a team of other players or computer-controlled champions. The objective is to destroy the enemy team's "Nexus," a structure located in their base. Along the way, players must defeat minions, jungle monsters, and enemy champions to gain gold and experience points, which can be used to purchase items and improve their champion's abilities. 
@@ -57,8 +58,8 @@ A. Indicate the cases of the data set.
 ```
 
 ```{r}
-lol = read_csv("data/LOL_patch_12.23.csv")
-lol22.22 = read_csv("data/LOL_patch_12.22.csv")
+lol <- read_csv("league_of_legends/LOL_patch_12.23.csv")
+lol22.22 <- read_csv("league_of_legends/LOL_patch_12.22.csv")
 ```
 
 B. Within a few sentences, describe the distribution of the Win Rates, given the histogram below. 
