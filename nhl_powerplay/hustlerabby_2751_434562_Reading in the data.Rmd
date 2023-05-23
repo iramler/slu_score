@@ -1,0 +1,40 @@
+---
+title: "Reading data"
+output: html_document
+---
+
+
+```{r}
+library(readr)
+library(here)
+library(mosaic)
+library(dplyr)
+```
+
+```{r}
+data2022=read.csv("https://moneypuck.com/moneypuck/playerData/seasonSummary/2022/regular/teams.csv", header = FALSE)
+data2021=read.csv("https://moneypuck.com/moneypuck/playerData/seasonSummary/2021/regular/teams.csv")
+names(data2022)=names(data2021)
+```
+
+```{r}
+powerplay_data<- data2022|> filter(situation=="5on4")|>
+  mutate(IceTime= iceTime/60)|>
+  mutate(SOG_per_2min= (shotsOnGoalFor/IceTime)*2)|>
+  mutate(hits_per_2min= (hitsFor/IceTime)*2)|>
+  mutate(play_continued_inzone_per2min= (playContinuedInZoneFor/IceTime)*2)|>
+  mutate(takeaways_for_per2min= (takeawaysFor/IceTime)*2)|>
+  mutate(faceoffs_won_per2min= (faceOffsWonFor/IceTime)*2)|>
+  mutate(goal_differential= goalsFor-goalsAgainst)|>
+  mutate(goals_per_2min= (goalsFor/IceTime)*2)|>
+  select(c(1, 108:115))
+```
+
+```{r}
+vec_eastern <- c("BOS","TBL", "NYR", "TOR", "NJD", "CAR", "PIT", 
+                  "NYI", "WSH", "FLA", "OTT", "BUF", "DET", "PHI", "MTL","CBJ")
+
+powerplay_data<- powerplay_data|> mutate(League = if_else(team %in% vec_eastern,
+                                            true = "Eastern",
+                                            false = "Western"))
+```

@@ -1,0 +1,134 @@
+---
+title: "Module_213"
+author: "Trent Meyer"
+date: "2022-11-01"
+output: 
+  prettydoc::html_pretty:
+    theme: tactile
+---
+
+```{r setup, include=FALSE, warning=FALSE, message=FALSE }
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Introduction: The Australian Open is an annual tennis tournament in Melbourne, Australia. 128 players take part in the singles tournament and are matched up in the first round based on their rank at the time. We have data from the men’s tournament in the years 2008-2022, with variables for both the winner and loser of each match, along with information such as what hand they play with and their Association of Tennis Professionals (ATP) rank.
+
+```{r, warning=FALSE, message=FALSE}
+library(tidyverse)
+atp_df <- read_csv("tennis_data.csv")
+
+atp_df_aus <- atp_df %>% filter(Tournament == "Australian Open") %>%
+  mutate(higher_rank_won = if_else(WRank < LRank,
+                                   true = "Yes",
+                                   false = "No"),
+         rank_diff = WRank - LRank,
+         same_handedness = if_else(pl1_hand == pl2_hand,
+                                           true = "Yes",
+                                           false = "No"),
+         rank_diff_cat = as.factor(case_when(
+           rank_diff %in% -30:30 ~ "Low Difference", 
+           rank_diff %in% -75:-31 | rank_diff %in% 31:75 ~ "Medium Difference",
+           rank_diff < -75 | rank_diff > 75 ~ "High Difference")))
+
+atp_df_aus <- atp_df_aus %>% mutate(rank_diff_cat = fct_relevel(rank_diff_cat, c("Low Difference",
+                                                                                 "Medium Difference",
+                                                                                 "High Difference")))
+
+```
+
+
+```{r}
+ggplot(data = atp_df_aus, aes(x = rank_diff_cat)) +
+  geom_bar()
+
+rank_diff_table <- with(atp_df_aus, table(rank_diff_cat, higher_rank_won))
+
+rank_diff_table
+```
+
+## What is the number of times that there was a "High Difference" in the players' ranks?
+
+115 + 452 = 567
+
+## Given the data in the table, is there a relationship between the level of rank difference and whether or not the higher rank won?
+
+## Calculate the expected values:
+
+```{r}
+# Low Difference -- No: 168.654
+((230 + 429)*(115 + 230 + 141))/(115 + 452 + 230 + 429 + 141 + 532) 
+
+# Low Difference -- Yes: 490.346
+((230 + 429)*(429 + 532 + 452))/(115 + 452 + 230 + 429 + 141 + 532)
+
+# Medium Difference -- No: 172.237 
+((141 + 532)*(115 + 230 + 141))/(115 + 452 + 230 + 429 + 141 + 532)
+
+# Medium Difference -- Yes: 500.763 
+((141 + 532)*(429 + 532 + 452))/(115 + 452 + 230 + 429 + 141 + 532) 
+
+# High-Difference -- No: 145.109 
+((115 + 452)*(115 + 230 + 141))/(115 + 452 + 230 + 429 + 141 + 532)  
+
+# High-Difference -- Yes 421.891 
+((115 + 452)*(452 + 429 + 532))/(115 + 452 + 230 + 429 + 141 + 532)
+
+tennis_chisq <- chisq.test(rank_diff_table)
+tennis_chisq$expected
+```
+
+## Determine if there is a relationship between the level of rank difference and whether the higher rank won at:
+
+### 1% level of significance
+
+critical value is 4.605, and 45.999 > 4.605, so we can choose to reject the null hypothesis, and determine that whether or not the higher rank won depends on the level of difference in rank for the whole tournament
+
+###	5% level of significance
+
+critical value is 5.991, and 45.999 > 5.991, so we can choose to reject the null hypothesis, and determine that whether or not the higher rank won depends on the level of difference in rank for the whole tournament
+
+```{r}
+atp_df_aus_later <- atp_df %>% filter(Tournament == "Australian Open") %>%
+  mutate(higher_rank_won = if_else(WRank < LRank,
+                                   true = "Yes",
+                                   false = "No"),
+         rank_diff = WRank - LRank,
+         same_handedness = if_else(pl1_hand == pl2_hand,
+                                           true = "Yes",
+                                           false = "No"),
+         rank_diff_cat = as.factor(case_when(
+           rank_diff %in% -30:30 ~ "Low Difference", 
+           rank_diff %in% -75:-31 | rank_diff %in% 31:75 ~ "Medium Difference",
+           rank_diff < -75 | rank_diff > 75 ~ "High Difference")))
+
+atp_df_aus_later <- atp_df_aus_later %>% mutate(rank_diff_cat = fct_relevel(rank_diff_cat, c("Low Difference",
+                                                                                 "Medium Difference",
+                                                                                 "High Difference"))) %>% select(c(Round, Winner, Loser, WRank, LRank, pl1_flag, pl1_year_pro, pl1_weight, pl1_height, pl1_hand, pl2_flag, pl2_year_pro, pl2_weight, pl2_height, pl2_hand, rank_diff_cat, higher_rank_won, rank_diff)) %>% filter(Round == "Quarterfinals" | Round == "Semifinals" | Round == "The Final")
+```
+
+```{r}
+ggplot(data = atp_df_aus_later, aes(x = rank_diff_cat)) +
+  geom_bar()
+
+rank_diff_table_later <- with(atp_df_aus_later, table(rank_diff_cat, higher_rank_won))
+
+rank_diff_table_later
+```
+
+## Given the data in the table, is there a relationship between the level of rank difference and whether or not the higher rank won?
+
+## Calculate the expected values:
+```{r}
+tennis_chisq_later <- chisq.test(rank_diff_table_later)
+tennis_chisq_later$expected
+```
+
+## Determine if there is a relationship between the level of rank difference and whether the higher rank won at:
+
+### 1% level of significance
+
+critical value is 4.605, and 0.73864 < 4.605, so we choose not to reject the null hypothesis, and determine that whether or not the higher rank won does not depends on the level of difference in rank for the later rounds
+
+###	5% level of significance
+
+critical value is 5.991, and 0.73864 > 5.991, so we choose not to reject the null hypothesis, and determine that whether or not the higher rank won does not depend on the level of difference in rank for the later rounds

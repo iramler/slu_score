@@ -1,0 +1,54 @@
+---
+title: "113 Module"
+author: "Trent Meyer"
+date: "2022-10-26"
+output: 
+  prettydoc::html_pretty:
+    theme: tactile
+  
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Introduction: The Australian Open is an annual tennis tournament in Melbourne, Australia. 128 players take part in the singles tournament and are matched up in the first round based on their rank at the time. We have data from the men’s tournament in the years 2008-2022, with variables for both the winner and loser of each match, along with information such as what hand they play with and their Association of Tennis Professionals (ATP) rank.
+
+```{r, warning=FALSE, message=FALSE}
+library(tidyverse)
+atp_df <- read_csv("tennis_data.csv")
+atp_df_aus <- atp_df %>% filter(Tournament == "Australian Open") %>%
+  mutate(higher_rank_won = if_else(WRank < LRank,
+                                   true = "Yes",
+                                   false = "No"),
+         rank_diff = WRank - LRank,
+         same_handedness = if_else(pl1_hand == pl2_hand,
+                                           true = "Yes",
+                                           false = "No"))
+
+hand_table <- with(atp_df_aus, table(same_handedness, higher_rank_won))
+
+hand_table
+```
+
+```{r}
+ggplot(data = atp_df_aus, aes(x = same_handedness)) +
+  geom_bar()
+```
+
+
+# What is the number of times that the higher rank won?
+
+1385 times
+
+# What is the proportion of times that the higher rank won?
+
+P(higher_rank_won) = (314 + 1071) / (314 + 1071 + 113 + 373) = 0.7402
+
+# What is the number of times the higher rank lost in a matchup where the players had the same handedness?
+
+373 times
+
+# What is the proportion of times that the higher seed lost in a matchup where the players had the same handedness?
+
+P(!higher_rank_won & same_handedness = Yes) = 373 / (373 + 1071)

@@ -1,0 +1,45 @@
+---
+title: "Metadata"
+author: "Trent Meyer"
+date: "2022-11-30"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Details
+
+The Australian Open is an annual tennis tournament in Melbourne, Australia. We have data from the men’s tournament in the years 2008-2022, with variables for both the winner and loser of each match, along with information such as what hand they play with and their Association of Tennis Professionals (ATP) rank.
+
+# Source
+
+Data downloaded from <https://www.kaggle.com/datasets/valentinfiorenza/tennis-data>
+
+# Format
+
+A dataset (atp_df_aus) with 1905 observations on the following 18 variables:
+- Winner: the winner of the match
+- Loser: the loser of the match
+- WRank: the winning player's rank
+- LRank: the losing player's rank
+- pl1_flag: the winning player's country they choose to represent
+- pl1_year_pro: the winning player's first year as a professional
+- pl1_weight: the winning player's weight in kilograms
+- pl1_height: the winning player's height in centimeters
+- pl1_hand: the winning player's handedness that they play with 
+- pl2_flag: the losing player's country they choose to represent
+- pl2_year_pro: the losing player's first year as a professional
+- pl2_weight: the losing player's weight in kilograms
+- pl2_height: the losing player's height in centimeters
+- pl2_hand: the losing player's handedness that they play with 
+- higher_rank_won: did the higher rank win: 1=Yes, 0=No
+- rank_diff: difference in rank between the players
+- rank_diff_cat: difference in rank: 
+-- Low Difference (|rank_diff| <= 30)
+-- Medium Difference (|rank_diff| >= 31 & |rank_diff| <= 75)
+-- High Difference (|rank_diff| > 75)
+- same_handedness: do the players have the same handedness: 1=Yes, 0=No
+
+atp_df_aus_later has 105 observations with the same 18 variables

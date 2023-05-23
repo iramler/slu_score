@@ -1,0 +1,109 @@
+---
+title: '289'
+output: html_document
+date: "2023-02-27"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(
+	echo = TRUE,
+	message = FALSE,
+	warning = FALSE
+)
+```
+
+```{r message=FALSE, warning=FALSE}
+library(tidyverse)
+```
+
+```{r}
+fbref_offense <- read_csv("data/fbref_offense_clean.csv") %>% select(-c(1))
+fbref_defense <- read_csv("data/fbref_defense_clean.csv") %>% select(-c(1))
+fbref_comb <- rbind(fbref_offense, fbref_defense)
+
+fbref_comb <- fbref_comb %>% separate(height, into = c("feet", "inch"), sep = "-") %>%
+  mutate(height = (as.numeric(feet) * 12) + as.numeric(inch)) %>% select(-feet, -inch) %>% select(year, player, position, age, school, height, wt, forty, vertical, bench_reps, broad_jump, three_cone, shuttle, drafted) %>%
+  rename(weight = wt) %>% separate(drafted, into = c("Drafted By", "Round", "Pick", "Year2"), sep = "/") %>%
+  select(-Year2) %>% mutate(Round = parse_number(Round), Pick = parse_number(Pick)) %>%
+  select(position, Round, forty, vertical, bench_reps, broad_jump, three_cone, shuttle)
+```
+
+This code creates a scatter plot using ggplot. The x-axis represents shuttle times and the y-axis represents forty times. The geom_point() function adds the individual data points to the plot.
+```{r}
+ggplot(fbref_comb, aes(x = shuttle, y = forty)) +
+  geom_point() 
+```
+
+To investigate trends of scatter plots it is often good to plot a line of best fit, the geom_smooth() function adds a line of best fit to the plot. In this example we are using the linear line method.
+```{r}
+ggplot(fbref_comb, aes(x = shuttle, y = forty)) +
+  geom_point() +
+  geom_smooth(method = "lm")
+```
+
+Suppose we're interested in observing how the timing data differs across player positions. Here are two distinct approaches to include a color-coded legend that represents the "position" variable in the dataset.
+```{r}
+ggplot(fbref_comb, aes(x = shuttle, y = forty, color = position)) +
+  geom_point() 
+
+ggplot(fbref_comb, aes(x = shuttle, y = forty)) +
+  geom_point() +
+  geom_smooth(se = F, aes(color = position), method = "lm")
+```
+
+__Question:__ Describe the challenges associated with interpreting these plots that illustrate the performance of various positions in terms of the shuttle and forty. 
+
+__Question:__ Suggest an idea to improve the visibility of the trends.
+
+
+Facet graphs allow us to create multiple plots, each displaying a subset of the data, and compare trends and patterns across different groups or categories in a dataset.By breaking the data into smaller subsets, we can more easily observe patterns and relationships between subsets of the data that might not be visible in a single plot. Faceting also allows us to create a series of plots quickly and efficiently, making it easy to explore different aspects of the data without needing to create individual plots for each category or subset of the data.
+
+
+The facet_wrap() function allows us to create a grid of multiple plots based on a categorical variable, in this case "position". This gives us a more detailed view of how different positions perform in terms of shuttle and forty.
+```{r}
+ggplot(fbref_comb, aes(x = shuttle, y = forty)) +
+  geom_point() +
+  geom_smooth(method = "lm") + 
+  facet_wrap(~position)
+```
+
+It is now much easier to see the forty and shuttle trends of each position.
+
+Another feature of the facet graphs is that we can group by two subsets. In this case we create a grid of plots based on the year and draft round, with each plot displaying the forty and shuttle trends for a specific combination of year and round (here we are using years greater than 2018). The ncol parameter is used to specify the number of columns in the grid, with a value of 8 resulting in 8 plots per row.
+```{r}
+ggplot(fbref_comb %>% filter(year > 2018), aes(x = shuttle, y = forty)) +
+  geom_point() +
+  geom_smooth(method = "lm") + 
+  facet_wrap(year ~ Round, ncol = 8)
+```
+
+
+__Task__
+
+
+In this excersise we want to compare players who will likely be matchuped up against each other in a game. We are going to be comparing Wide Recievers vs Defensive Backs. At the same time we want to compare the different forty and vertical scores between a 1st and 7th round pick.
+
+The dataset you have been given gives specific positions for each player. Modify the position variable that generalizes the defensive back position more broadly following this guide:
+
+CB, S --> DB
+
+Create plots based on WR and DB grouped by their draft round (1 & 7) to compare relationships between vertical and broad_jump scores. Make the plot all in one row 
+
+
+#solution:
+```{r}
+excersisesoultion <- fbref_comb %>% 
+  mutate(position = case_when(position == "CB" ~ "DB",
+                              position == "S" ~ "DB",
+                              TRUE ~ position)) %>%
+  filter(position == "WR" | position == "DB" ) %>%
+  filter(Round == 1 | Round == 7) 
+
+ggplot(excersisesoultion, aes(x = forty, y = vertical)) +
+  geom_point() +
+  facet_wrap(position ~ Round, nrow = 1) +
+  geom_smooth(method = "lm")
+  
+```
+
+

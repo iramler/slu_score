@@ -1,0 +1,37 @@
+---
+output: html_document
+---
+
+
+| | |
+| :----------------------------- | -----------------------------------------------------------: |
+| NFL COMBINE                    |Faceting NFL Combine Data|
+
+---
+
+### Description
+
+The data is complied from [Sports Reference StatHead Football](https://stathead.com/football/nfl-combine-results.cgi){target="_blank"}. This data shows the NFL Scouting Combine Event scores from 2004 - 2023.
+
+### Format
+
+A data frame with 6128 observations of the following variables.
+
+| | |
+| :----------------------------- | :----------------------------------------------------------- |
+| `position`| Playing position of the player
+| `Round`| Round player was drafted in
+| `forty`| 40-yard dash time
+| `vertical`| Vertical jump height (inches)
+| `bench_reps`| 225 bench press reps
+| `broad_jump`| Broad jump distances (inches)
+| `shuttle`| 20-yard shuttle time
+
+### Details
+
+The data set has statistics with variables for player draft information and how they performed in events at the NFL Scouting Combine. The variables for draft information are `position` and `Round`. The variables for the NFL Scouting Combine events are `forty`, `vertical`, `bench_reps`, `broad_jump`, and `shuttle`.
+
+### Source
+
+The data is complied from [Sports Reference StatHead Football](https://stathead.com/football/nfl-combine-results.cgi){target="_blank"}.
+
