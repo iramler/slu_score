@@ -10,14 +10,14 @@ categories:
 
 ## Motivation
 
-The data were obtained from the [PGA statistics website](https://www.pgatour.com/stats){target="_blank"}. Cases include all golfers who made the cut in each of 19 PGA tournaments in 2022. The data set variables for driving ability, putting ability, and measuring success in the tournament. The variables for measuring driving include average driving distance (`avgDriveDist`), driving accuracy percentage (`drivePct`), and strokes gained off the tee (`driveSG`). The variables for measuring putting are average putts per round (`avgPuttsPerRound`), one putt percentage (`onePuttPct`), and strokes gained putting (`puttsSG`). The measured success variables are scoring average (`avgScore`), official money won (`Money`), and Fedex Cup points (`Points`).
+A common expression among golfers is "Drive for show, putt for dough." This implies that the long initial tee shots (drives) on each hole are impressive, but the real key to success is the final strokes rolling the ball along the green into the hole (putts). Do data support this adage? The dataset for this activity was obtained from the [PGA statistics website](https://www.pgatour.com/stats){target="_blank"}. Cases include all golfers who made the cut in each of 19 PGA tournaments in 2022. The dataset includes variables for driving ability, putting ability, and measuring success in the tournament. The "driving" variables include average driving distance (`avgDriveDist`), driving accuracy percentage (`drivePct`), and strokes gained off the tee (`driveSG`). The "putting" variables are average putts per round (`avgPuttsPerRound`), one putt percentage (`onePuttPct`), and strokes gained putting (`puttsSG`). The variables to measure success are scoring average (`avgScore`), official money won (`Money`), and Fedex Cup points (`Points`).
 
 ## Data
 
 Each row of data gives the measures for one golfer in one tournament. The dataset covers 19 PGA tournaments from the 2022 season with 1387 cases in all. Each tournament consists of four rounds of golf. Some golfers are eliminated after the first two (or sometimes three) rounds. Only players who competed in all four rounds (i.e. those that made the "cut") are included in this dataset.
 
 | Variable           | Description                                                                                                                                                           |
-|--------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+|--------------|----------------------------------------------------------|
 | `playerName`       | Name of the player                                                                                                                                                    |
 | `country`          | The country where the player is from                                                                                                                                  |
 | `avgDriveDist`     | Average driving distance (in yards)                                                                                                                                   |
