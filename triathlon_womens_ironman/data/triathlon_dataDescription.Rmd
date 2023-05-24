@@ -46,7 +46,10 @@ participated in the Ironman between the years 2018-2019.
 
 ## Questions
 
-
+With the different times and rank variables, you can explore the relationships 
+between them through things like correlation coefficients. Other things like 
+finding the best variables at predicting a runner's overall rank in a race and 
+then even a division rank would be easy to model using this data set. 
 
 ## References
 
