@@ -107,18 +107,23 @@ The data and worksheet associated with this module are available for download th
         * <a href="https://github.com/iramler/slu_score/blob/main/triathlon_womens_ironman/IronmanCorrelationWorksheet.docx"  target="_blank">MS Word worksheet</a>
     </div>
 
+<div>
+Through the use of correlations, you were able to recognize that running and biking have the strongest linear relationship while swimming and biking were the lowest. These results are likely due to biking and running both requiring leg strength while swimming requires additional arm strength. Additionally, given that all three events are cardio based, it is not surpringing that all three pairs of correlations were positive.
+</div>
+
+
     <div>
-    * Sample Solutions to the worksheet will be available soon.    
+    * Sample Solutions to the worksheet are [available here](https://github.com/iramler/slu_score/blob/main/triathlon_womens_ironman/IronmanCorrelationWorksheet_Key.docx).
     </div>
 
 
     <div>
-Created by Michael Schuckers (St. Lawrence University), Matt Abell (St. Lawrence University), AJ Dykstra (St. Lawrence University), Robin Lock (St. Lawrence University), Ivan Ramler (St. Lawrence University)
+Created by Michael Schuckers (St. Lawrence University), Matt Abell (St. Lawrence University), AJ Dykstra (St. Lawrence University), Sarah Weaver (St. Lawrence University),Ivan Ramler (St. Lawrence University), Robin Lock (St. Lawrence University), 
 
 Corresponding Author: <a href="mailto:schuckers@stlawu.edu?subject=SCORE: Ironman Module">Michael Schuckers</a>
 
 To cite this module in publications please use:
-    Schuckers, M., Abell, M., Dykstra, A., Weaver, S., Ramler, I. (2023) SCORE Module Analyzing Female Participants in the Lake Placid Ironman Triathlon. doi: xx.abcd
+    Schuckers, M., Abell, M., Dykstra, A., Weaver, S., Ramler, I., and Lock, R. (2023) SCORE Module Analyzing Female Participants in the Lake Placid Ironman Triathlon. doi: xx.abcd
     </div>
 
 </Accordion>
