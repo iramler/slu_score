@@ -50,6 +50,8 @@ For additional information, please watch this introductory video by <a href="htt
 <div>
 The data set has 1105 rows with 17 columns. Each row represents a female who has  participated in the Ironman between the years 2018-2019.
 
+Link to data: 
+
 | Variable | Description |
 |----|-------------|
 | Bib | registration number of each runner used for identification |
@@ -88,21 +90,6 @@ The learning goals associated with this module are:
 This module requires students to construct **scatterplots** and calculate **correlations**.
 
 Technology requirement: Any software capable of creating plots and calculating correlations. 
-<!--
- **Correlation** is a statistical measure that quantifies the strength and direction of the _linear_ relationship between two _quantitative_ variables. It indicates how closely the values of one variable are associated with the values of another variable. 
-  
-A few useful properties of correlation are:
-
-* Correlation ranges from -1 to +1.
-
-* A positive correlation (trending towards +1) indicates that as one variable increases, the other variable also tends to increase. 
-
-* A negative correlation (trending towards -1) means that as one variable increases, the other variable tends to decrease.
-
-* A correlation coefficient close to zero (near 0) indicates a weak or no linear relationship between the variables. The variables are said to be uncorrelated. 
-
-* _However,_ it is important to note that lack of correlation does not necessarily imply lack of relationship or dependence between the variables. A strong non-linear relationship between a pair of variables can still results in a correlation close to zero.
--->
 </div>
 
 
