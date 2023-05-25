@@ -1,63 +1,41 @@
 ---
-title: A descriptive dataset title
-author: Your Name
-date: Today's Date (e.g., April 17, 2023)
-description: A one- or two-sentence description of the data. If possible, give a brief summary of the sports problem and statistical situation.
+title: Lacrosse PLL vs. NLL
+author: AJ Dykstra and Jack Cowan
+date: May 17, 2023
+description: The data set looks at both lacrosse leagues, their respective teams, and their shot and goal amounts. 
 categories:
-  - list the relevant
-  - statistical methods
-  - that can be used
-  - with this dataset
-  - one per line
-  - with two spaces and a hyphen in front
+  - Two-sample T Test
+  - Confidence Intervals
 ---
 
 ## Motivation
 
-The categories above determine how this dataset is listed on the [datasets by
-methods](https://data.scorenetwork.org/by-statsds-topic.html) page.
-Consult that page for a list of statistical categories already used by other
-datasets.
-
-In this first section, describe the source of the dataset and what it's about.
-Give any necessary background about it and the sports research question of interest. See other
-datasets on the website for examples.
-
-This file is Markdown, so you *can* use formatting; [here is a guide to the
-basics](https://quarto.org/docs/authoring/markdown-basics.html).
+This data set examines the goals and shots in two prominent lacrosse leagues: the Premier Lacrosse League (PLL) and the National Lacrosse League (NLL). The PLL and NLL are highly regarded professional lacrosse leagues that feature top-tier athletes from around the world. The PLL is played in an indoor, smaller field while the NLL plays on an outdoor field with traditional dimensions. This data set allows for an analysis of goal-scoring within these leagues.
 
 ## Data
 
-Describe the data. What does each row represent? How many rows are there? If
-there is missingness, say how it is coded and why it is present.
+The data set has 162 rows with 9 columns. Each row represents a single lacrosse match either in the Premier Lacrosse League or the National Lacrosse League.
 
-| Variable | Description |
-|----|-------------|
-| Column name | A description of this variable, including units when possible |
-| Column name 2 | A description of this variable, including units when possible |
+| Variable       | Description                                                    |
+|----------------|----------------------------------------------------------------|
+| League         | The Premier Lacrosse league and the National Lacrosse League   |
+| Away_team      | The traveling team                                             |
+| Home_team      | The hosting team                                               |
+| Away_shots     | How many shots the `Away_team` had on net                      |
+| Home_shots     | How many shots the `Home_team` had on net                      |
+| Away_goals     | How many goals the `Away_team` had on net                      |
+| Home_goals     | How many goals the `Home_team` had on net                      |
+| goals_per_game | The total amount of goals scored each game                     |
+| goals_per_48   | The average amount of goals for the first 48 minutes of a game |
 
-: [filename.csv](../data/filename.csv)
-
-For the link above, change filename.csv to the name of the data file. Leave the
-`../data/` part in the link; this is where the data will live in the system.
-
-If there are multiple data files, repeat the table, including the line starting
-with `:`, for each data file.
+: [lacrosse.csv](../data/lacrosse.csv)
 
 ## Questions
 
-If possible, list some analyses or research questions that could be answered
-with this dataset, or the types of questions you'd ask students. This is mainly
-meant to give other instructors ideas for how they could use the data.
+Performing calculations like standard deviations and t-tests can help us compare the two different lacrosse leagues. Using or creating variables like `goals_per_game` or `goals_per_48` can help when seeing if there is any statistically significant differences between leagues.
 
 ## References
 
-Give references to the original source here, such as by pasting the package
-citation:
+Premier Lacrosse League stats. Premier Lacrosse League Stats. (n.d.). <https://stats.premierlacrosseleague.com/>
 
-Petti B, Gilani S (2022). _baseballr: Acquiring and Analyzing Baseball
-  Data_. R package version 1.3.0,
-  <https://CRAN.R-project.org/package=baseballr>.
-
-If the dataset has a particular license, mention the license here. For example,
-"Data available under the Creative Commons Attribution license."
+Player stats. NLL. (2023, January 26). <https://www.nll.com/stats/all-player-stats/>
