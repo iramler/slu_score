@@ -87,9 +87,9 @@ The learning goals associated with this module are:
 METHODS
 -->
 <div>
-This module requires students use a two-sample t-test and confidence interval to compare the means of two groups. 
+This module requires students use a two-sample test and confidence interval (t-test or randomization) to compare the means of two groups. 
 
-Technology requirement: The activity handout assume that students can use technology to perform a two-sample t-test and find a confidence interval for a difference in means between two groups, using raw data from the datafile.  
+Technology requirement: The activity handout assume that students can use technology to perform a two-sample test and find a confidence interval for a difference in means between two groups, using raw data from the datafile.  
 </div>
 
  <!--
@@ -98,7 +98,7 @@ MATERIALS
     <div>
 The data and worksheet associated with this module are available for download through the following links. To download any file, click the link and then the download raw file button on the resulting GitHub page.
 
-        * [lacrosse_pll_nll_2021-2022.csv](https://github.com/iramler/slu_score/raw/main/lacrosse_pll_vs_nll/data/lacrosse_pll_nll_2021-2022.csv): Dataset with game-by-game shots and goals scored for both leagues in the 2021-2022 season. 
+        * [lacrosse_pll_nll_2021-2022.csv](https://github.com/iramler/slu_score/blob/main/lacrosse_pll_vs_nll/data/lacrosse_pll_nll_2021-2022.csv): Dataset with game-by-game shots and goals scored for both leagues in the 2021-2022 season. 
         * [lacrosse_pll_vs_nll_worksheet.docx](https://github.com/iramler/slu_score/raw/main/lacrosse_pll_vs_nll/lacrosse_pll_vs_nll_worksheet.docx): Actvity worksheet to compare scoring and shots between indoor and outdoor leagues.  
   </div>
 
@@ -106,7 +106,7 @@ The data and worksheet associated with this module are available for download th
 Wrap-up
 --> 
 <div>
-Students should find evidence to support the claim that. in general, putting statistics tend to be better predictors of tournament success than driving statistics.  So golfers really do "drive for show, but putt for dough". 
+Students should that while no discernable difference between average goals per game was discovered, after adjusting for the length of the game, PLL (i.e., the 48-minute indoor league) has the higher rate per 48-minutes. 
 </div>
 
 <!--
