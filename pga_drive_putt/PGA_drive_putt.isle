@@ -38,10 +38,11 @@ style: |
     active={0}
     headers={[ 'Introduction','Data Description','Learning Goals', 'Methods','Materials', 'Conclusions','Supplementary Materials','Author Information']} 
 >
-<div>
 <!--
 INTRODUCTION
 -->
+
+<div>
 A common expression among golfers is "Drive for show, putt for dough." This implies that the long initial tee shots (drives) on each hole are impressive, but the real key to success is the final strokes rolling the ball along the green into the hole (putts). Do data support this adage? The dataset for this activity was obtained from the [PGA statistics website](https://www.pgatour.com/stats). Cases include all golfers who made the cut in each of 19 PGA tournaments in 2022. The dataset includes variables for driving ability, putting ability, and measuring success in the tournament. The "driving" variables include average driving distance (`avgDriveDist`), driving accuracy percentage (`drivePct`), and strokes gained off the tee (`driveSG`). The "putting" variables are average putts per round (`avgPuttsPerRound`), one putt percentage (`onePuttPct`), and strokes gained putting (`puttsSG`). The variables to measure "success" are scoring average (`avgScore`), official money won (`Money`), and Fedex Cup points (`Points`).
 </div>
 
@@ -68,51 +69,35 @@ Each row of data gives the measures for one golfer in one tournament. The datase
 The data were obtained from the [PGA statistics website](https://www.pgatour.com/stats).
 </div>
 
-<div>
 <!--
 LEARNING GOALS
 -->
+<div>
 The learning goals associated with this module are:
 
 * Students will be able to use correlation to measure the strength association between quantitative variables. 
 * Students will be able to compare correlations to assess which variables may be more strongly related.
 </div>
 
-
-<div>
 <!--
 METHODS
 -->
+<div>
 This module requires students compare **correlations** between pairs of variables.
 
 Technology requirement: Two handout activities accommodate different levels of available technology.  The "No Tech version" provides a correlation matrix for students to use to find the required correlations to compare. The "With Tech" version provides the dataset and asks students to use technology to compute the needed correlations. 
-<!--
- **Correlation** is a statistical measure that quantifies the strength and direction of the _linear_ relationship between two _quantitative_ variables. It indicates how closely the values of one variable are associated with the values of another variable. 
-  
-A few useful properties of correlation are:
-
-* Correlation ranges from -1 to +1.
-
-* A positive correlation (trending towards +1) indicates that as one variable increases, the other variable also tends to increase. 
-
-* A negative correlation (trending towards -1) means that as one variable increases, the other variable tends to decrease.
-
-* A correlation coefficient close to zero (near 0) indicates a weak or no linear relationship between the variables. The variables are said to be uncorrelated. 
-
-* _However,_ it is important to note that lack of correlation does not necessarily imply lack of relationship or dependence between the variables. A strong non-linear relationship between a pair of variables can still results in a correlation close to zero.
--->
 </div>
 
-
-    <div>
-  <!--
+ <!--
 MATERIALS
 -->  
-The data and worksheet associated with this module are available for download through the following links. To download any file, click the link and then the download raw file button on the resulting GitHub page.
+
+  <div>
+The data and worksheet associated with this module are available for download through the following links. To download any data file, click the link and then the download raw file button on the resulting GitHub page. MS Word files are automatically downloaded.
 
         * <a href="https://github.com/iramler/slu_score/blob/main/pga_drive_putt/data/PGA2022.csv"  target="_blank"> PGA2022.csv</a>: Dataset with driving, putting, and success measures for indivudal golfer in 19 PGA tournaments in 2022. 
-        * <a href="https://github.com/iramler/slu_score/raw/pga_drive_putt/PGACorrelationNoTech.docx"  target="_blank">PGACorrelationNoTech.docx</a>: "No Tech" version of the acitivy worksheet provides a correlation matrix for students to use in ansering the questions. 
-                * <a href="https://github.com/iramler/slu_score/raw/pga_drive_putt/PGACorrelationWithTech.docx"  target="_blank">PGACorrelationWithTech.docx</a>: "With Tech" version of the acitivy worksheet assumes stunets have technology to compute any needed correlations from the proidided dataset. 
+        * <a href="https://github.com/iramler/slu_score/raw/main/pga_drive_putt/PGACorrelationsNoTech.docx"  target="_blank">PGACorrelationsNoTech.docx</a>: "No Tech" version of the acitivy worksheet provides a correlation matrix for students to use in ansering the questions. 
+                * <a href="https://github.com/iramler/slu_score/raw/main/pga_drive_putt/PGACorrelationsWithTech.docx"  target="_blank">PGACorrelationsWithTech.docx</a>: "With Tech" version of the acitivy worksheet assumes stunets have technology to compute any needed correlations from the proidided dataset. 
     </div>
 
 <div>
@@ -121,9 +106,9 @@ Students should find evidence to support the claim that. in general, putting sta
 
 
     <div>
-    Sample solutions to the worksheets. To download any file, click the link and then the download raw file button on the resulting GitHub page.
+    Sample solutions to the worksheets. To download any data file, click the link and the file will be automatically downloaded.
 
-    * [PGACorrelationsWiNoTech-Ans.docx](https://github.com/iramler/slu_score/raw/main/pag_drive_putt/IPGACorrelationsNoTech-Ans.docx): Sample Solutions to the "No Tech" activity worksheet. 
+    * [PGACorrelationsWithNoTech-Ans.docx](https://github.com/iramler/slu_score/raw/main/pga_drive_putt/PGACorrelationsNoTech-Ans.docx): Sample Solutions to the "No Tech" activity worksheet. 
        * [PGACorrelationsWithTech-Ans.docx](https://github.com/iramler/slu_score/raw/main/pga_drive_putt/PGACorrelationsWithTech-Ans.docx): Sample Solutions to the "With Tech" activity worksheet. 
     </div>
 
