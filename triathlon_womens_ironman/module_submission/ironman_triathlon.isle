@@ -39,7 +39,7 @@ style: |
     headers={[ 'Introduction','Data Description','Learning Goals', 'Methods','Materials', 'Conclusions','Supplementary Materials','Author Information']} 
 >
 <div>
-The dataset <a href="https://github.com/iramler/slu_score/blob/main/triathlon_womens_ironman/data/ironman_lake_placid_female.csv" target="_blank">`ironman1819.csv`</a> contains data on female finishers of the [Lake Placid Ironman Triathlon](https://www.ironman.com/im-lake-placid) from 2002 to 2021. The motivation for this data analysis is to explore the relationships between `swim times`, `bike times`, and `run times` (in minutes) in order to gain insights into the performance patterns of the athletes. By analyzing these relationships, we can understand the interplay between different segments of the race and potentially identify areas of improvement for athletes.  For this activity, we will specifically focus on times from finishers in the years 2018 and 2019.
+The dataset <a href="https://github.com/iramler/slu_score/blob/main/triathlon_womens_ironman/data/Ironman1819.csv" target="_blank">`ironman1819.csv`</a> contains data on female finishers of the [Lake Placid Ironman Triathlon](https://www.ironman.com/im-lake-placid) from 2002 to 2021. The motivation for this data analysis is to explore the relationships between `swim times`, `bike times`, and `run times` (in minutes) in order to gain insights into the performance patterns of the athletes. By analyzing these relationships, we can understand the interplay between different segments of the race and potentially identify areas of improvement for athletes.  For this activity, we will specifically focus on times from finishers in the years 2018 and 2019.
 
 For additional information, please watch this introductory video by <a href="https://en.wikipedia.org/wiki/Sarah_True"  target="_blank">Sarah True</a>
 
@@ -108,8 +108,8 @@ A few useful properties of correlation are:
 
     <div>
 The data and worksheet associated with this module are available for download through the following links.
-        * <a href="https://github.com/iramler/slu_score/blob/main/triathlon_womens_ironman/data/ironman_lake_placid_female.csv"  target="_blank"> ironman1819.csv</a>: Contains the Female Lake Placid Ironman times for 2018 and 2019.  To download the data, click the link and then the download raw file button on the resulting GitHub page.
-        * <a href="https://github.com/iramler/slu_score/blob/main/triathlon_womens_ironman/IronmanCorrelationWorksheet.docx"  target="_blank">IronmanCorrelationWorksheet.docx</a>: Contains the questions associated with analyzing the Lake Placid Ironman data. To download the file, click the link and then the download raw file button on the resulting GitHub page.
+        * <a href="https://github.com/iramler/slu_score/blob/main/triathlon_womens_ironman/data/Ironman1819.csv" download> ironman1819.csv</a>: Contains the Female Lake Placid Ironman times for 2018 and 2019.  To download the data, click the link and then the download raw file button on the resulting GitHub page.
+        * <a href="https://github.com/iramler/slu_score/raw/main/triathlon_womens_ironman/IronmanCorrelationWorksheet.docx"  download>IronmanCorrelationWorksheet.docx</a>: Contains the questions associated with analyzing the Lake Placid Ironman data.
     </div>
 
 <div>
@@ -122,7 +122,10 @@ Congratulations! You should now
 
 
     <div>
-    * [IronmanCorrelationWorksheet_Key.docx](https://github.com/iramler/slu_score/blob/main/triathlon_womens_ironman/IronmanCorrelationWorksheet_Key.docx): Sample Solutions to the worksheet. To download the file, click the link and then the download raw file button on the resulting GitHub page.
+    * [IronmanCorrelationWorksheet_Key.docx](https://github.com/iramler/slu_score/raw/main/triathlon_womens_ironman/IronmanCorrelationWorksheet_Key.docx): Sample Solutions to the worksheet.
+
+    * [ironman_lake_placid_female.csv](https://github.com/iramler/slu_score/blob/main/triathlon_womens_ironman/data/ironman_lake_placid_female.csv): Ironman data for 2002 to 2021. (Not needed for this module.)
+
     </div>
 
 
