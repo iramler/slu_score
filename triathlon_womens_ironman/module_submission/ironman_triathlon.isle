@@ -36,25 +36,16 @@ style: |
 
 <Accordion 
     active={0}
-    headers={[ 'Introduction','Learning Goals','Data Description', 'Methods','Materials', 'Conclusions','Supplementary Materials','Author Information']} 
+    headers={[ 'Introduction','Data Description','Learning Goals', 'Methods','Materials', 'Conclusions','Supplementary Materials','Author Information']} 
 >
 <div>
-The dataset <a href="https://github.com/iramler/slu_score/blob/main/triathlon_womens_ironman/data/ironman_lake_placid_female.csv" target="_blank">`ironman1819.csv`</a> contains data on female finishers of the [Lake Placid Ironman Triathlon](https://www.ironman.com/im-lake-placid) from 2002 to 2021. The motivation for this data analysis is to explore the relationships between `swim times`, `bike times`, and `run times` (in minutes) in order to gain insights into the performance patterns of the athletes. By analyzing these relationships, we can understand the interplay between different segments of the race and potentially identify areas of improvement for athletes.  For this activity, we will specifically focus on times from finishers in the years 2018 and 2019.
+The dataset <a href="https://github.com/iramler/slu_score/blob/main/triathlon_womens_ironman/data/Ironman1819.csv" target="_blank">`ironman1819.csv`</a> contains data on female finishers of the [Lake Placid Ironman Triathlon](https://www.ironman.com/im-lake-placid) from 2002 to 2021. The motivation for this data analysis is to explore the relationships between `swim times`, `bike times`, and `run times` (in minutes) in order to gain insights into the performance patterns of the athletes. By analyzing these relationships, we can understand the interplay between different segments of the race and potentially identify areas of improvement for athletes.  For this activity, we will specifically focus on times from finishers in the years 2018 and 2019.
 
 For additional information, please watch this introductory video by <a href="https://en.wikipedia.org/wiki/Sarah_True"  target="_blank">Sarah True</a>
 
         <VideoPlayer url="https://www.youtube.com/watch?v=zYG2qdJRolM"/> 
   
 </div>
-
-<div>
-The learning goals associated with this module are:
-
-* Students will be able to generate a scatterplot for two quantitative variables
-* Students will be able to estimate the correlation from a scatterplot with a linear association and calculate it using technology
-* Students will gain experience linking a casual mechanism to an observed correlation
-</div>
-
 
 <div>
 The data set has 1105 rows with 17 columns. Each row represents a female who has  participated in the Ironman between the years 2018-2019.
@@ -85,6 +76,19 @@ Ironman Lake Placid Results and articles. CoachCox. (n.d.). <https://www.coachco
 </div>
 
 <div>
+The learning goals associated with this module are:
+
+* Students will be able to generate a scatterplot for two quantitative variables
+* Students will be able to estimate the correlation from a scatterplot with a linear association and calculate it using technology
+* Students will gain experience linking a casual mechanism to an observed correlation
+</div>
+
+
+<div>
+This module requires students to construct **scatterplots** and calculate **correlations**.
+
+Technology requirement: Any software capable of creating plots and calculating correlations. 
+<!--
  **Correlation** is a statistical measure that quantifies the strength and direction of the _linear_ relationship between two _quantitative_ variables. It indicates how closely the values of one variable are associated with the values of another variable. 
   
 A few useful properties of correlation are:
@@ -98,22 +102,30 @@ A few useful properties of correlation are:
 * A correlation coefficient close to zero (near 0) indicates a weak or no linear relationship between the variables. The variables are said to be uncorrelated. 
 
 * _However,_ it is important to note that lack of correlation does not necessarily imply lack of relationship or dependence between the variables. A strong non-linear relationship between a pair of variables can still results in a correlation close to zero.
+-->
 </div>
 
 
     <div>
 The data and worksheet associated with this module are available for download through the following links.
-        * <a href="https://github.com/iramler/slu_score/blob/main/triathlon_womens_ironman/data/ironman_lake_placid_female.csv"  target="_blank">Data (`ironman1819.csv`)</a>
-        * <a href="https://github.com/iramler/slu_score/blob/main/triathlon_womens_ironman/IronmanCorrelationWorksheet.docx"  target="_blank">MS Word worksheet</a>
+        * <a href="https://github.com/iramler/slu_score/blob/main/triathlon_womens_ironman/data/Ironman1819.csv" download> ironman1819.csv</a>: Contains the Female Lake Placid Ironman times for 2018 and 2019.  To download the data, click the link and then the download raw file button on the resulting GitHub page.
+        * <a href="https://github.com/iramler/slu_score/raw/main/triathlon_womens_ironman/IronmanCorrelationWorksheet.docx"  download>IronmanCorrelationWorksheet.docx</a>: Contains the questions associated with analyzing the Lake Placid Ironman data.
     </div>
 
 <div>
-Through the use of correlations, you were able to recognize that running and biking have the strongest linear relationship while swimming and biking were the lowest. These results are likely due to biking and running both requiring leg strength while swimming requires additional arm strength. Additionally, given that all three events are cardio based, it is not surpringing that all three pairs of correlations were positive.
+Congratulations! You should now
+
+* be able to generate a scatterplot for two quantitative variables
+* be able to estimate the correlation from a scatterplot with a linear association and calculate it using technology
+* have gained experience linking a casual mechanism to an observed correlation
 </div>
 
 
     <div>
-    * Sample Solutions to the worksheet are [available here](https://github.com/iramler/slu_score/blob/main/triathlon_womens_ironman/IronmanCorrelationWorksheet_Key.docx).
+    * [IronmanCorrelationWorksheet_Key.docx](https://github.com/iramler/slu_score/raw/main/triathlon_womens_ironman/IronmanCorrelationWorksheet_Key.docx): Sample Solutions to the worksheet.
+
+    * [ironman_lake_placid_female.csv](https://github.com/iramler/slu_score/blob/main/triathlon_womens_ironman/data/ironman_lake_placid_female.csv): Ironman data for 2002 to 2021. (Not needed for this module.)
+
     </div>
 
 
