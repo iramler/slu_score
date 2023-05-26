@@ -50,7 +50,7 @@ For additional information, please watch this introductory video by <a href="htt
 <div>
 The data set has 1105 rows with 17 columns. Each row represents a female who has  participated in the Ironman between the years 2018-2019.
 
-Link to data: 
+Link to data: <a href="https://github.com/iramler/slu_score/blob/main/triathlon_womens_ironman/data/Ironman1819.csv" download> ironman1819.csv</a>
 
 | Variable | Description |
 |----|-------------|
