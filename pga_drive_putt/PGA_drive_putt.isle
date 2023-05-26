@@ -1,7 +1,7 @@
 ---
 title: PGA - Drive for Show and Putt for Dough? 
 author: Robin Lock, Alyssa Bignesss, Michael Schuckers, Ivan Ramler
-description: ISLE module that teaches students about correlations between driving, putting, and success measuresin PGA tournaments
+description: ISLE module that teaches students about correlations between driving, putting, and success measures in PGA tournaments
 keywords:
 language: en-US
 state:
@@ -48,6 +48,8 @@ A common expression among golfers is "Drive for show, putt for dough." This impl
 
 <div>
 Each row of data gives the measures for one golfer in one tournament. The dataset covers 19 PGA tournaments from the 2022 season with 1387 cases in all. Each tournament consists of four rounds of golf. Some golfers are eliminated after the first two (or sometimes three) rounds. Only players who competed in all four rounds (i.e. those that made the "cut") are included in this dataset.
+
+Link to data: [PGA2022.csv](https://github.com/iramler/slu_score/raw/main/pga_drive_putt/data/PGA2022.csv) 
 
 | Variable           | Description                                                                                                                                                           |
 |--------------|----------------------------------------------------------|
