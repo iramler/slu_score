@@ -101,7 +101,7 @@ The data and worksheet associated with this module are available for download th
         * [LOL_patch_12.22.csv](https://github.com/iramler/slu_score/raw/main/league_of_legends/data/LOL_patch_12.22.csv): Dataset for champions in the 12.22 patch. 
        * [LOL_patch_12.23.csv](https://github.com/iramler/slu_score/raw/main/league_of_legends/data/LOL_patch_12.23.csv): Dataset for champions in the 12.23 patch. 
   
-        * [league_of_legends_worksheet.docx](https://github.com/iramler/slu_score/raw/main/league_of_legends/league_of_legends_worksheet.docx): Actvity worksheet looking at possible outliers for win rates in 12.22 and 12,23 League of Legends patches.  
+        * [LoL_Worksheet.docx](https://github.com/iramler/slu_score/raw/main/league_of_legends/LoL_Worksheet.docx): Actvity worksheet looking at possible outliers for win rates in 12.22 and 12,23 League of Legends patches.  
   </div>
 
 <!--
@@ -115,7 +115,7 @@ Students should identify one low outlier (Scion) in the win rates for the 12.22 
 Supplementary Materials
 --> 
     <div>
-   [league_of_legends_worksheet_key.docx](https://github.com/iramler/slu_score/raw/main/league_of_legends/lleague_of_legends_worksheet_key.docx): Activity worksheet with sample solutions. 
+   [LoL_Worksheet_Key.docx](https://github.com/iramler/slu_score/raw/main/league_of_legends/LoL_Worksheet_Key.docx): Activity worksheet with sample solutions. 
     </div>
 
 <!--
