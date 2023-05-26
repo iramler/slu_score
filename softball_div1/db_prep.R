@@ -24,8 +24,3 @@ dbWriteTable(con2, "batting2022_subset", batting2022_subset)
 dbListTables(con2)
 dbDisconnect(con2)
 
-
-
-
-
-
