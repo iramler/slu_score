@@ -36,7 +36,7 @@ style: |
 
 <Accordion 
     active={0}
-    headers={[ 'Introduction','Data Description','Learning Goals', 'Methods','Materials', 'Wrap-Up','Supplementary Materials','Author Information']} 
+    headers={['Learning Goals', 'Introduction','Data Description', 'Methods','Materials', 'Wrap-Up','Supplementary Materials','Author Information']} 
 >
 
 <!--
@@ -65,72 +65,51 @@ This module looks at some simple batting stats over two seasons through the use 
 DATA Description
 -->
 <div>
+Link to data: [batting statistics](https://github.com/iramler/slu_score/tree/main/softball_div1/data)
 
-Link to data: [lacrosse_pll_nll_2021-2022.csv](https://github.com/iramler/slu_score/raw/main/lacrosse_pll_vs_nll/data/lacrosse_pll_nll_2021-2022.csv)
+There are four data tables associated with this module.
 
-batting2021 with 2131 observations of the following variables. 
-batting2022 with 2275 observations of the following variables.
-Each row represents a Division 1 Softball player who played in the
-2022 and/or 2023 season.
+Two of them, `batting2021` and `batting2022`, contain statistics for all Division 1 Softball player who played in the 2021 and/or 2022 season. 
 
+The other two, `batting2021_subset` and `batting2022_subset`, represent non-random samples taken the full data. R is the number of runs scored by the player, H is the number of hits. These are displayed below.
+
+
+|batting2021_subset|batting2022_subset|
+|--|--|
+|<table> <tr><th>Player</th><th>Team</th><th>R</th><th>H</th></tr><tr><td>Aaliyah Swan</td><td>Cal State Northridge</td><td>8</td><td>20</td></tr><tr><td>Abbey Latham</td><td>Ole Miss</td><td>25</td><td>53</td></tr><tr><td>Bella Rocco</td><td>Boise State</td><td>16</td><td>42</td></tr><tr><td>Carson Fischer</td><td>Northern Colorado</td><td>11</td><td>15</td></tr><tr><td>Drew Dudley</td><td>Austin Peay</td><td>10</td><td>29</td></tr><tr><td>Emily Gant</td><td>Boston University</td><td>31</td><td>36</td></tr></table>| <table> <tr><th>Player</th><th>Team</th><th>R</th><th>H</th></tr><tr><td>Aaliyah Swan</td><td>Cal State Northridge</td><td>16</td><td>23</td></tr><tr><td>Abbey Latham</td><td>Ole Miss</td><td>36</td><td>45</td></tr><tr><td>Bella Rocco</td><td>Boise State</td><td>10</td><td>29</td></tr><tr><td>Emily Gant</td><td>Boston University</td><td>40</td><td>55</td></tr><tr><td>Lexi Osowski</td><td>Austin Peay</td><td>42</td><td>64</td></tr><tr><td>Mikayla Allee</td><td>Ole Miss</td><td>36</td><td>28</td></tr></table>|
+
+---------------
+#### Additional details for the full data (batting2021 and batting2022)
+
+The 2021 data set has 2131 rows with 22 columns. The 2022 data set has 2275 rows with the same 22 columns. Each row represents a Division 1 Softball player who played in the
+2021 and/or 2022 season. 
 
 | Variable | Description |
 |----|-------------|
 | Player | Name of the softball player |
-| team | Name of the team for each player |
-| BA | Batting average |
-| R | Number of runs scored |
-| H | Number of hits |
-| OBP | On-base percentage |
-| SLG |  |
-| OPS |  |
-| GP |  |
-| PA |  |
-| AB |  |
-| 2B |  |
-| 3B |  |
-| HR |  |
-| RBI |  |
-| HBP |  |
-| BB |  |
-| K |  |
-| SB |  |
-| CS |  |
-
-
-: [batting2021.csv](../data/batting2021.csv)
-: [batting2022.csv](../data/batting2022.csv)
-
-## Questions
-
- 
-
-## References
-
-Statistics. D1Softball. (2019, October 24). <https://d1softball.com/statistics/> 
-
-
-The data set has 162 rows with 9 columns. Each row represents a single lacrosse match either in the Premier Lacrosse League or the National Lacrosse League.
-
-
-
-| Variable       | Description                                                    |
-|------------------|------------------------------------------------------|
-| League         | The Premier Lacrosse league and the National Lacrosse League   |
-| Away_team      | The traveling team                                             |
-| Home_team      | The hosting team                                               |
-| Away_shots     | How many shots the `Away_team` had on net                      |
-| Home_shots     | How many shots the `Home_team` had on net                      |
-| Away_goals     | How many goals the `Away_team` had on net                      |
-| Home_goals     | How many goals the `Home_team` had on net                      |
-| goals_per_game | The total amount of goals scored each game                     |
-| goals_per_48   | The average amount of goals for the first 48 minutes of a game |
+| Team | Name of the team (school) for each player |
+| BA           | Batting Average - The ratio of a player's total base hits to their total number of at-bats, indicating their ability to make successful hits. |
+| OBP          | On-Base Percentage - The percentage of times a player reaches base, either through a hit, walk, or hit-by-pitch, out of their total plate appearances. |
+| SLG          | Slugging Percentage - The measure of a player's power by calculating the total number of bases they accumulate per at-bat. |
+| OPS          | On-Base Plus Slugging - The sum of a player's on-base percentage and slugging percentage, providing a comprehensive measure of their offensive contribution. |
+| GP           | Games Played - The total number of games in which a player has participated. |
+| PA           | Plate Appearances - The total number of times a player has come up to bat, including at-bats, walks, and hit-by-pitches. |
+| AB           | At-Bats - The number of times a player has officially faced a pitcher and had an opportunity to hit. |
+| R            | Runs Scored - The number of times a player has crossed home plate and scored a run. |
+| H            | Hits - The total number of successful hits made by a player. |
+| 2B           | Doubles - The number of hits resulting in the batter reaching second base. |
+| 3B           | Triples - The number of hits resulting in the batter reaching third base. |
+| HR           | Home Runs - The number of hits resulting in the batter scoring a run by hitting the ball out of the park. |
+| RBI          | Runs Batted In - The number of runs a player has driven in with a hit or sacrifice. |
+| HBP          | Hit by Pitch - The number of times a player has been struck by a pitched ball and awarded first base. |
+| BB           | Walks - The number of times a player has received a base on balls (four balls) and been awarded first base. |
+| K            | Strikeouts - The number of times a player has been called out after accumulating three strikes. |
+| SB           | Stolen Bases - The number of times a player successfully advances to the next base without a hit, during a pitch while the ball is in play. |
+| CS           | Caught Stealing - The number of times a player is thrown out while attempting to steal a base. |
 
 #### Data Source
+Statistics. D1Softball. (2019, October 24). <https://d1softball.com/statistics/> 
 
-Premier Lacrosse League stats. Premier Lacrosse League Stats. (n.d.). <https://stats.premierlacrosseleague.com/>
-
-Player stats. NLL. (2023, January 26). <https://www.nll.com/stats/all-player-stats/>
 </div>
 
 
@@ -153,14 +132,14 @@ MATERIALS
 The data and worksheet associated with this module are available for download through the following links. To download any data file, click the link and then the download raw file button on the resulting GitHub page.
 
 **CSV format data files**
-        * [batting2021.csv](): Subset of full dataset with 2021 hits and runs for a non-random sample of six players.
-        * [batting2022.csv](): Subset of full dataset with 2022 hits and runs for a non-random sample of six players.
-        * [batting2021_all.csv](): Dataset with with 2021 batting statistics for ZZZ Division 1 softball players.
-        * [batting2022_all.csv](): Dataset with with 2022 batting statistics for ZZZ Division 1 softball players.
+        * [batting2021_subset.csv](): Subset of full dataset containing the season total hits and runs for a non-random sample of six players from 2021
+        * [batting2022_subset.csv](): Subset of full dataset containing the season total hits and runs for a non-random sample of six players from 2022
+        * [batting2021.csv](): Dataset with the 2021 batting statistics for all 2131 Division 1 softball players
+        * [batting2022.csv](): Dataset with the 2022 batting statistics for all 2275 Division 1 softball players
     
 **Database (SQL) style**
-        * [softball_batting.duckdb](https://github.com/iramler/slu_score/blob/main/softball_div1/softball_batting.duckdb): DuckDB database containing four table: the full set of players for each season (batting2021_all and batting2022_all) and the two subsets (batting2021 and batting2022).
-        * [softball_batting.sqlite](https://github.com/iramler/slu_score/blob/main/softball_div1/softball_batting.sqlite): SQLite database containing four table: the full set of players for each season (batting2021_all and batting2022_all) and the two subsets (batting2021 and batting2022).
+        * [softball_batting.duckdb](): DuckDB database containing four table: the full set of players for each season (batting2021 and batting2022) and the two subsets (batting2021_subset and batting2022_subset).
+        * [softball_batting.sqlite](e): SQLite database containing four table: the full set of players for each season (batting2021 and batting2022) and the two subsets (batting2021_subset and batting2022_subset).
 
 **Worksheet**
         * [softball_d1_worksheet.docx](https://github.com/iramler/slu_score/raw/main/softball_div1/softball_d1_worksheet.docx): Actvity worksheet to investigate merging data tables.  Automatically downloaded upon clicking link.
@@ -177,7 +156,7 @@ By working through the different scenarios, students will become aware of how th
 Supplementary Materials
 --> 
     <div>
-   [lacrosse_pll_vs_nll_worksheet_key.docx](https://github.com/iramler/slu_score/raw/main/lacrosse_pll_vs_nll/lacrosse_pll_vs_nll_worksheet_key.docx): Activity worksheet with sample solutions. 
+   [softball_d1_worksheet_key.docx](https://github.com/iramler/slu_score/raw/main/lacrosse_pll_vs_nll/lacrosse_pll_vs_nll_worksheet_key.docx): Activity worksheet with sample solutions. 
     </div>
 
 <!--
