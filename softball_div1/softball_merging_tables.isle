@@ -71,7 +71,7 @@ There are four data tables associated with this module.
 
 Two of them, `batting2021` and `batting2022`, contain statistics for all Division 1 Softball player who played in the 2021 and/or 2022 season. 
 
-The other two, `batting2021_subset` and `batting2022_subset`, represent non-random samples taken the full data. R is the number of runs scored by the player, H is the number of hits. These are displayed below.
+The other two, `batting2021_subset` and `batting2022_subset`, represent non-random samples taken the full data. These are displayed below. R is the number of runs scored by the player, H is the number of hits. 
 
 
 |batting2021_subset|batting2022_subset|
