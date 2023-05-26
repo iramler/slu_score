@@ -30,7 +30,7 @@ style: |
 <div className="banner-container center" >
     <img className="banner-img" width="100%" height="auto" src="https://isle.stat.cmu.edu/SCORE_score_banner_unsplash.jpg" alt="SCORE Banner" />
     <div className="banner-heading">
-        <h1>Lacrosse PLL vs. NLL</h1>
+        <h1>Merging Multiple Seasons of NCAA Softball Data</h1>
     </div>
 </div>
 
