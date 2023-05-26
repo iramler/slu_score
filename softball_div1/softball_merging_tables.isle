@@ -132,14 +132,14 @@ MATERIALS
 The data and worksheet associated with this module are available for download through the following links. To download any data file, click the link and then the download raw file button on the resulting GitHub page.
 
 **CSV format data files**
-        * [batting2021_subset.csv](): Subset of full dataset containing the season total hits and runs for a non-random sample of six players from 2021
-        * [batting2022_subset.csv](): Subset of full dataset containing the season total hits and runs for a non-random sample of six players from 2022
-        * [batting2021.csv](): Dataset with the 2021 batting statistics for all 2131 Division 1 softball players
-        * [batting2022.csv](): Dataset with the 2022 batting statistics for all 2275 Division 1 softball players
+        * [batting2021_subset.csv](https://github.com/iramler/slu_score/blob/main/softball_div1/data/batting2021_subset.csv): Subset of full dataset containing the season total hits and runs for a non-random sample of six players from 2021
+        * [batting2022_subset.csv](https://github.com/iramler/slu_score/blob/main/softball_div1/data/batting2022_subset.csv): Subset of full dataset containing the season total hits and runs for a non-random sample of six players from 2022
+        * [batting2021.csv](https://github.com/iramler/slu_score/blob/main/softball_div1/data/batting2021.csv): Dataset with the 2021 batting statistics for all 2131 Division 1 softball players
+        * [batting2022.csv](https://github.com/iramler/slu_score/blob/main/softball_div1/data/batting2022.csv): Dataset with the 2022 batting statistics for all 2275 Division 1 softball players
     
 **Database (SQL) style**
-        * [softball_batting.duckdb](): DuckDB database containing four table: the full set of players for each season (batting2021 and batting2022) and the two subsets (batting2021_subset and batting2022_subset).
-        * [softball_batting.sqlite](e): SQLite database containing four table: the full set of players for each season (batting2021 and batting2022) and the two subsets (batting2021_subset and batting2022_subset).
+        * [softball_batting.duckdb](https://github.com/iramler/slu_score/blob/main/softball_div1/data/softball_batting.duckdb): DuckDB database containing four table: the full set of players for each season (batting2021 and batting2022) and the two subsets (batting2021_subset and batting2022_subset).
+        * [softball_batting.sqlite](https://github.com/iramler/slu_score/blob/main/softball_div1/data/softball_batting.sqlite): SQLite database containing four table: the full set of players for each season (batting2021 and batting2022) and the two subsets (batting2021_subset and batting2022_subset).
 
 **Worksheet**
         * [softball_d1_worksheet.docx](https://github.com/iramler/slu_score/raw/main/softball_div1/softball_d1_worksheet.docx): Actvity worksheet to investigate merging data tables.  Automatically downloaded upon clicking link.
@@ -156,19 +156,19 @@ By working through the different scenarios, students will become aware of how th
 Supplementary Materials
 --> 
     <div>
-   [softball_d1_worksheet_key.docx](https://github.com/iramler/slu_score/raw/main/lacrosse_pll_vs_nll/lacrosse_pll_vs_nll_worksheet_key.docx): Activity worksheet with sample solutions. 
+   [softball_d1_worksheet_key.docx](https://github.com/iramler/slu_score/raw/main/softball_div1/softball_d1_worksheet_key.docx): Activity worksheet with sample solutions. 
     </div>
 
 <!--
 Author Information
 --> 
     <div>
-Created by Jack Cowan (St. Lawrence University), A.J. Dykstra (St. Lawrence University), Ivan Ramler (St. Lawrence University)
+Created by Sarah Weaver (St. Lawrence University) and Ivan Ramler (St. Lawrence University)
 
-Corresponding Author: <a href="mailto:iramler@stlawu.edu?subject=SCORE: Lacrosse PLL vs. NLL module">Ivan Ramler</a>
+Corresponding Author: <a href="mailto:iramler@stlawu.edu?subject=SCORE: Softball merging module">Ivan Ramler</a>
 
 To cite this module in publications please use:
-   Cowan J., Dykstra, A., Ramler I. (2023) SCORE Module Lacrosse PLL vs. NLL. doi: xx.abcd
+   Weaver, S. and Ramler I. (2023) SCORE Module Merging Multiple Seasons of NCAA Div 1 Softball Statistics . doi: xx.abcd
     </div>
 
 </Accordion>
