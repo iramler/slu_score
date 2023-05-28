@@ -4,8 +4,10 @@ author: George Charalambous
 date: May 23, 2023
 description: Data for patches 12.22 and 12.23 of the online game League of Legends 
 categories:
-  - X
-  - X
+  - Histogram
+  - Z-Score
+  - Outliers
+  - Interquartile Ranges
 ---
 ## Motivation
 
@@ -13,16 +15,18 @@ categories:
 
 ## Data
 
-A data frame for 162 champions of the following variables. 
+A data frame for 162 champions of the following variables. Each row represents a
+Champion that you can choose when playing League of Legends. 
 
 | Variable | Description |
 |----|-------------|
-| Name | X |
-| Role | X |
-| WRate | X |
-| PickRate | X |
+| Name | name of the champion |
+| Role | role of the champion in a game |
+| KDA | Average kills, deaths and assists associated with each champion |
+| WRate | win rates of each champion |
+| PickRate | pick rates of each champion |
 | RolePerc | X |
-| BanPerc | X |
+| BanPerc | ban percentages associated with each champion |
 
 : [LOL_patch_12.22.csv](../data/LOL_patch_12.22.csv)
 : [LOL_patch_12.23.csv](../data/LOL_patch_12.23.csv)
