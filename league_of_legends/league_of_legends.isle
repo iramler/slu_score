@@ -55,15 +55,15 @@ The data set has 162 rows with 9 columns. Each row represents a single lacrosse 
 
 Link to data: [LOL_patch_12.22.csv](https://github.com/iramler/slu_score/raw/main/league_of_legends/data/LOL_patch_12.22.csv) and [LOL_patch_12.23.csv](https://github.com/iramler/slu_score/raw/main/league_of_legends/data/LOL_patch_12.23.csv)
 
-| Variable | Description                                                     |
-|-------------------|-----------------------------------------------------|
-| Name     | Name of the champion                                            |
-| Role     | Role of the champion in a game                                  |
-| KDA      | Average kills, deaths and assists associated with each champion |
-| WRate    | Win rates of each champion                                      |
-| PickRate | Pick rates of each champion                                     |
-| RolePerc | Percent of time the champion is used in the expected role       |
-| BanPerc  | Ban percentages associated with each champion                   |
+Variable    | Description
+------------|-------------
+Name        | The unique name given to a champion in League of Legends that represents their character and abilities.
+Role        | The position or role that a champion typically fulfills within a game, such as top lane, jungle, mid lane, bot lane (ADC), or support.
+KDA         | The statistical measure of a champion's performance in terms of kills, deaths, and assists. It represents the average number of kills + assists, divided by deaths, a champion achieves in each game they participate in.
+WRate       | The win rate of a champion, expressed as a percentage. It indicates the proportion of games won by a champion compared to the total number of games they have been played in.
+PickRate    | The pick rate of a champion, expressed as a percentage. It represents the frequency at which a champion is selected by players in a given period, indicating their popularity or prevalence in the game.
+RolePerc    | The percentage of time a champion is played in their expected or intended role. It signifies how often a champion is chosen for the position they are traditionally associated with, such as a top laner, jungler, mid laner, ADC, or support.
+BanPerc     | The ban percentage associated with each champion, expressed as a percentage. It indicates the frequency at which a champion is banned by players in the game.
 
 #### Data Source
 
@@ -108,7 +108,7 @@ The data and worksheet associated with this module are available for download th
 Wrap-up
 --> 
 <div>
-Students should identify one low outlier (Scion) in the win rates for the 12.22 patch.  In the 12.23 patch Scion's win rate is improved to not be unusal and no outliers are detected.  This indicates that Scion may have been buffed for patch 12.23. 
+Students should identify one low outlier (Scion) in the win rates for the 12.22 patch.  In the 12.23 patch Scion's win rate is improved to not be unusual and no outliers are detected.  This indicates that Scion may have been buffed for patch 12.23. 
 </div>
 
 <!--
