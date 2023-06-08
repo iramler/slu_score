@@ -34,6 +34,8 @@ victorious in our pursuit of greatness.
 
 The data set is from the 2019 Boston Marathon and contains observations for all finishers of the race.
 The 'boston' data set contains 26651 total observations with each row representing a runner. 
+The 'bostom_Men' data set contains 14670 observations.
+The 'boston_Women data set contains 11981 obersvations. 
 
 
 Variables:
