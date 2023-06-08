@@ -10,6 +10,11 @@ knitr::opts_chunk$set(echo = TRUE)
 library(tidyverse)
 ```
 
+Motivation:
+
+The Boston Marathon goes beyond a mere race; it embodies the spirit of endurance and unwavering determination. Taking place on a historic track spanning 26.2 miles, this marathon signifies the triumph of pushing physical and mental limits. It celebrates the human capacity to overcome boundaries and inspire greatness within oneself and others. Through dedicated training, sacrifices, and personal growth, participants converge at the starting line, epitomizing resilience. The Boston Marathon encapsulates the unwavering spirit that propels individuals to conquer the challenging distance, weaving together a remarkable tapestry of strength and inspiration.
+
+
 The data set is from the 2019 Boston Marathon and contains observations for all finishers of the race.
 
 Variables:
