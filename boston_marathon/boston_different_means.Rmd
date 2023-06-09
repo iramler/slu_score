@@ -81,7 +81,39 @@ with(t.test(Result_sec ~ gender))
 # yes, the difference in means is statistically significant 
 ```
 
+# Is age related to finishing time for Men or women?
 
+## Scatterplot of Age vs Result_sec for men
+```{r}
+ggplot(data = boston_Men, 
+       aes(x = Age, Result_sec))+
+geom_point()+
+  geom_smooth(method = loess, se = FALSE)
+
+
+# Make a guess at the correlation
+
+# Appears to be low
+# younger runners running faster but curvature suggests that times become faster from age 20-30
+```
+
+
+```{r}
+ggplot(data = boston_Women, 
+       aes(x = Age, Result_sec))+
+geom_point()+
+  geom_smooth(method = loess, se = FALSE)
+
+# Make another guess and compare which seems greater
+# see a similar trend but bigger dip in times from 20 to roughly 35 before becoming more linear
+```
+
+```{r}
+cor(boston_Men$Age, boston_Men$Result_sec)
+cor(boston_Women$Age, boston_Women$Result_sec)
+
+# Despite low correlation in both cases, it is higher for men than women
+```
 
 
 
