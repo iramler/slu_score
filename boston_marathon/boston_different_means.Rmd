@@ -51,7 +51,16 @@ Variables:
 # boston <- read_csv("~/Downloads/Dataset-Boston-2019.csv")
 # write_csv(x = boston, file = "data/Dataset-Boston-2019.csv")
 
-boston <- read_csv("boston_marathon/data/Dataset-Boston-2019.csv")
+#boston_Men<-boston%>%
+#  filter(gender == "M")
+#write_csv(x = boston_Men, file = "data/boston_men.csv")
+#boston_Women <- boston%>%
+#  filter(gender == "F")
+#write_csv(x = boston_Women, file = "data/boston_women.csv")
+
+boston <- read_csv("data/Dataset-Boston-2019.csv")
+bostonMen <- read_csv("data/boston_men.csv")
+bostonWomen <- read_csv("data/boston_women.csv")
 ```
 
 ```{r}
@@ -59,6 +68,17 @@ boston<-boston%>%
   mutate(gender = factor(Gender))%>%
   select(-Gender)%>%
   na.omit()
+
+library(forcats)
+boston<-boston%>%
+  mutate(age_group = fct_collapse(factor(Age),
+                                  under_25 = 18:25,
+                                  '26-33' = 26:33,
+                                  '34-41' = 32:41,
+                                  '42-49' = 42:49,
+                                  '50-57' = 50:57,
+                                  '58-65' = 58:65,
+                                  '66+' = 66:83))
 
 head(boston)
 ```
@@ -86,7 +106,7 @@ with(t.test(Result_sec ~ gender))
 ## Scatterplot of Age vs Result_sec for men
 ```{r}
 ggplot(data = boston_Men, 
-       aes(x = Age, Result_sec))+
+       aes(x = Age, Result_sec, color = age_group))+
 geom_point()+
   geom_smooth(method = loess, se = FALSE)
 
@@ -100,7 +120,7 @@ geom_point()+
 
 ```{r}
 ggplot(data = boston_Women, 
-       aes(x = Age, Result_sec))+
+       aes(x = Age, Result_sec, color = age_group))+
 geom_point()+
   geom_smooth(method = loess, se = FALSE)
 
@@ -115,8 +135,62 @@ cor(boston_Women$Age, boston_Women$Result_sec)
 # Despite low correlation in both cases, it is higher for men than women
 ```
 
+```{r}
+ggplot(data = boston,
+       aes(x = age_group, y = Result_sec, fill = age_group))+
+  geom_boxplot()
+```
 
 
+# Calculating z-scores for top Male and Female finishers to see which was more remarkable in comaprison to the field
+
+## Histograms of the results respectively for male and female
+
+```{r}
+hist(boston_Men$Result_sec)
+hist(boston_Women$Result_sec)
+```
+
+# Finding mean and standard deviation for male runners and calculating z-score
+
+```{r}
+# find mean and standard deviation of MENS results in seconds
+boston_Men%>%
+  summarise(mean_result_sec = mean(Result_sec),
+            sd_result_sec = sd(Result_sec))
+
+# mean = 13377.54
+#sd = 2737.843
+
+# 1st place male runner
+boston_Men%>%
+  slice_min(Result_sec)
+
+zscore <- (7677 - 13377.54) / 2737.843
+zscore
+#z-score of -2.082128
+```
+
+# Finding mean and standard deviation for female runners and calculating z-score
+```{r}
+boston_Women%>%
+  summarise(mean_result_sec = mean(Result_sec),
+            sd_result_sec = sd(Result_sec))
+
+# mean = 14717.8
+#sd = 2454.376
+
+# 1st place female runner
+boston_Women%>%
+  slice_min(Result_sec)
+
+zscore <- (8611 - 14717.8) / 2454.376
+zscore
+# z-score of -2.488127
+```
+
+# In conclusion, the top female finishers result was more remarkable for that day in relation to the female field
+# than the top male finisher because the score was further from zero.
 
 
 
