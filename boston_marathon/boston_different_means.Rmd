@@ -48,9 +48,10 @@ Variables:
 *gender - gender of the runner (male or female)
 
 ```{r}
-boston <- read_csv("~/Downloads/Dataset-Boston-2019.csv")
+# boston <- read_csv("~/Downloads/Dataset-Boston-2019.csv")
+# write_csv(x = boston, file = "data/Dataset-Boston-2019.csv")
 
-write_csv(x = boston, file = "data/Dataset-Boston-2019.csv")
+boston <- read_csv("boston_marathon/data/Dataset-Boston-2019.csv")
 ```
 
 ```{r}
