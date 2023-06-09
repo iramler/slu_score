@@ -17,3 +17,6 @@ _site/
 .Rdata
 .httr-oauth
 .DS_Store
+
+# Temporary files
+~$*
