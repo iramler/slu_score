@@ -42,5 +42,13 @@ dive_list<-dive_list%>%
 ```{r}
 dive_list%>%
 with(t.test(avg_score_year, avg_score_overall, paired = TRUE))
+
+
+predict_mod <- lm(avg_score_overall ~ DD , data = dive_list)
+predict_mod2 <- lm(avg_score_overall ~ DD + high_score_year, data = dive_list)
+predict_mod3 <- lm(avg_score_overall ~ DD + high_score_year + high_score_overall, data = dive_list)
+summary(predict_mod)
+summary(predict_mod2)
+summary(predict_mod3)
 ```
 
