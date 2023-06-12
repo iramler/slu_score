@@ -38,14 +38,16 @@ The 'bostom_Men' data set contains 14670 observations.
 The 'boston_Women data set contains 11981 obersvations. 
 
 
-Variables:
-*Rank_Tot - overall ranking in the race
-*Age - age of the runner 
-*Country - nationality of the runner 
-*Result_hr - finishing time of the runner in hours minutes seconds format
-*Result_sec - finishing time of the runner in seconds 
-*Country_code - country abbreviation 
-*gender - gender of the runner (male or female)
+| Variable | Description |
+|----|-------------|
+| Rank_Tot | finishing rank in the race |
+| Age | age of the runner |
+| Country | nationality of the runner |
+| Result_hr | finishing time of the runner in hours minutes seconds |
+| Result_sec | finishing time of the runner in seconds |
+| Country_code | country abbreviation |
+| gender | gender of the runner (male or female) |
+| age_group | age groups which each span 7 years (7 levels) |
 
 ```{r}
 # boston <- read_csv("~/Downloads/Dataset-Boston-2019.csv")
@@ -199,6 +201,9 @@ zscore
 bostonMen%>%
   with(t.test(Result_sec, level = .95)) # (13333.23, 13421.85) dif = 88.62
 
+# With 95% confidence, the true mean result time in seconds for men is between 
+# (13333.23, 13421.85) seconds
+
 bostonWomen%>%
   with(t.test(Result_sec, level = .95)) # (14673.85, 14761.76) dif = 87.91
 ```
@@ -208,11 +213,41 @@ bostonWomen%>%
 ```{r}
 menAge<- lm(Result_sec ~ Age, data = bostonMen)
 confint(menAge, level = .95)
+# On average, and with 95% confidence, a one year increase in age for men is associated with an increased result time of between 84.89027 and 91.92592 seconds. 
 
 womenAge <- lm(Result_sec ~ Age, data = bostonWomen)
 confint(womenAge, level = .95)
 
 
-# subset data to age group 
+# On average, and with 95% confidence, a one year increase in age for men is associated with an increased result time of between 49.00482 56.79667 seconds. 
 ```
+
+# ANOVA with age groups 
+
+```{r}
+modaov = aov(Result_sec ~ age_group,data=boston)
+summary(modaov)
+model.tables(modaov, type = "means")
+model.tables(modaov, type = "effects")
+
+# Yes significant, with 26-33 year olds being significantly faster. Followed by 34-41 year olds. 
+
+```
+
+# comparing Rank for gender and  for males and females 50+
+```{r}
+bostonMen%>%
+  filter(Age>49)%>%
+  with(t.test(Rank_Gender, level = .95))
+
+boston_Women%>%
+  filter(Age > 49)%>%
+  with(t.test(Rank_Gender, level = .95))
+
+
+# seems like women over 50 place better in their field on average than the men over 50 
+```
+
+```{r}
+
 
