@@ -12,7 +12,7 @@ library(tidyverse)
 
 ## Introduction Motivation
 
-The Boston Marathon is an annual race in Massachusetts that attracts thouasands of runners of varying skill and experience. Year after year, participants from around the world gather to compete for world records, divisional records, and personal bests. In 2019, Kenyan runner Lawrence Cherono won the race by a matter of seconds, while Worknesh earned the win in the women's division.
+The Boston Marathon is an annual road race that takes place in the city of Boston Massachusetts that attracts thousands of runners of varying skill and experience. Year after year, participants from around the world gather to compete for world records, divisional records, and personal bests. In 2019, Kenyan runner Lawrence Cherono won the race by a matter of seconds, while Worknesh earned the win in the women's division in this prestigious event.
 
 ## Data description
 
@@ -73,7 +73,7 @@ bostonWomen <- read_csv("data/bostonwomen.csv")
 head(boston)
 ```
 
-## Is there a statistical difference in means for race results for males and females?
+## Is there a statistical difference in means for finishing times for males and females?
 
 
 ## Side-by-side boxplot displaying gender vs result in seconds 
@@ -82,6 +82,14 @@ ggplot(data = boston,
         aes(x = gender, Result_sec, fill = gender))+
   geom_boxplot()
 ```
+## Density 
+
+```{r}
+ggplot(data = boston, 
+       aes(x = Result_hr, fill = gender))+
+  geom_density()
+```
+
 
 ## Two Sample t-test to determine whether there is a difference in means
 ```{r}
@@ -255,9 +263,15 @@ boston_reduced<-
 
 
 ```{r}
-ggplot(data = boston,
+histogram_results<- ggplot(data = boston,
        aes(x = Result_sec))+
-  geom_histogram(bins = 16)
+  geom_histogram(bins = 18, fill = "white", color = "black")+
+  labs(x = "Result (seconds)")
+
+ggsave(filename = "Results_histogram.jpg",
+       plot = histogram_results,
+       width = 7,
+       height = 4)
 
 hist(boston$Result_sec)
 # currently, this histogram has 16 bins. How would it change if we had 5 bins?
@@ -307,21 +321,31 @@ sqrt(variance)
 # (Mean is higher because right-skewed, yet not by much because approximately symmetric)
 
 # Is the mean or median a more representative statistic for the center here?
-# Answer: mean because no extereme skewness or extreme outliers
+# Answer: mean because no extreme skewness or extreme outlines
 
 # Is IQR or standard deviation a better assessment or spread?
 # Answer: Standard deviation for same reasoning 
 
 
-# Using standard deviation or IQR
 ```
 
 
 ```{r}
-ggplot(data = boston,
+results_boxplot<- ggplot(data = boston,
        aes(x = Result_sec))+
          geom_boxplot()+
-  coord_flip()
+  coord_flip()+
+  labs(x = "Result (seconds)")
+
+ggsave(filename = "Results_boxplot.jpg",
+       plot = results_boxplot,
+       width = 7,
+       height = 4)
 ```
+
+
+
+
+
 
 
