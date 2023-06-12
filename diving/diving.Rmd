@@ -1,0 +1,46 @@
+---
+title: "Diving"
+output: html_document
+date: "2023-06-12"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(rvest)
+library(tidyverse)
+```
+
+# Importing and cleaning 
+
+```{r}
+url <- "https://secure.meetcontrol.com/divemeets/system/divelist.php"
+objs <- read_html(url)%>%
+html_nodes("table")%>%
+html_table()
+
+write_csv(x = objs[[1]], file = "dive_list.csv")
+
+
+
+dive_list <- read_csv("dive_list.csv", skip = 3)
+
+dive_list<-dive_list%>%
+  slice(-1)%>%
+  rename(avg_score_year = AvgScore...5 , high_score_year = HighScore...6, number_times_year = `# of Times...7`, avg_score_overall = AvgScore...8, high_score_overall = HighScore...9, number_times_overall = `# of Times...10`)%>%
+  mutate(DD = parse_number(DD),
+         avg_score_year = parse_number(avg_score_year),
+         high_score_year = parse_number(high_score_year),
+         number_times_year = parse_number(number_times_year),
+         avg_score_overall = parse_number(avg_score_overall),
+         high_score_overall = parse_number(high_score_overall),
+         number_times_overall = parse_number(number_times_overall))
+
+```
+
+# 
+
+```{r}
+dive_list%>%
+with(t.test(avg_score_year, avg_score_overall, paired = TRUE))
+```
+
