@@ -10,27 +10,11 @@ knitr::opts_chunk$set(echo = TRUE)
 library(tidyverse)
 ```
 
-## Motivation
+## Introduction Motivation
 
-The Boston Marathon, a legendary event etched in the hearts of runners and 
-spectators alike,represents the epitome of resilience, perseverance, and 
-triumph. Year after year, participants from around the world gather, united by
-a shared passion for testing their limits and embracing the relentless pursuit 
-of greatness. In 2019, this storied race witnessed the rise of two extraordinary
-champions who left an indelible mark on history. On the men's side, 
-Lawrence Cherono, a powerhouse of determination, unleashed his formidable 
-strength, pushing his body to its limits to claim victory with unparalleled 
-resolve. Meanwhile, in the women's division, Worknesh Degefa demonstrated a 
-relentless spirit, blazing through the course with unwavering determination, 
-leaving her competitors in awe as she crossed the finish line triumphantly. 
-Both Lawrence Cherono and Worknesh Degefa exemplify the very essence of the 
-Boston Marathon, where dreams are transformed into reality through perseverance,
-grit, and unwavering belief. Their triumphs serve as a powerful reminder that
-with unwavering dedication and unyielding determination, we too can overcome any
-obstacle that stands in our way, and cross our own personal finish lines, 
-victorious in our pursuit of greatness.
+The Boston Marathon is an annual race in Massachusetts that attracts thouasands of runners of varying skill and experience. Year after year, participants from around the world gather to compete for world records, divisional records, and personal bests. In 2019, Kenyan runner Lawrence Cherono won the race by a matter of seconds, while Worknesh earned the win in the women's division.
 
-## Data
+## Data description
 
 The data set is from the 2019 Boston Marathon and contains observations for all finishers of the race.
 The 'boston' data set contains 26651 total observations with each row representing a runner. 
@@ -49,20 +33,15 @@ The 'boston_Women data set contains 11981 obersvations.
 | gender | gender of the runner (male or female) |
 | age_group | age groups which each span 7 years (7 levels) |
 
+# Data Prep
 ```{r}
 # boston <- read_csv("~/Downloads/Dataset-Boston-2019.csv")
 # write_csv(x = boston, file = "data/Dataset-Boston-2019.csv")
 
-#boston_Men<-boston%>%
-#  filter(gender == "M")
-#write_csv(x = boston_Men, file = "data/boston_men.csv")
-#boston_Women <- boston%>%
-#  filter(gender == "F")
-#write_csv(x = boston_Women, file = "data/boston_women.csv")
+
 
 boston <- read_csv("data/Dataset-Boston-2019.csv")
-bostonMen <- read_csv("data/boston_men.csv")
-bostonWomen <- read_csv("data/boston_women.csv")
+
 ```
 
 ```{r}
@@ -81,6 +60,15 @@ boston<-boston%>%
                                   '50-57' = 50:57,
                                   '58-65' = 58:65,
                                   '66+' = 66:83))
+bostonMen<-boston%>%
+  filter(gender == "M")
+write_csv(x = bostonMen, file = "data/bostonmen.csv")
+bostonWomen <- boston%>%
+  filter(gender == "F")
+write_csv(x = bostonWomen, file = "data/bostonwomen.csv")
+
+bostonMen <- read_csv("data/bostonmen.csv")
+bostonWomen <- read_csv("data/bostonwomen.csv")
 
 head(boston)
 ```
@@ -110,7 +98,7 @@ with(t.test(Result_sec ~ gender))
 ggplot(data = bostonMen, 
        aes(x = Age, Result_sec, color = age_group))+
 geom_point()+
-  geom_smooth(method = loess, se = FALSE)
+  geom_smooth(method = loess, se = FALSE, color = "black")
 
 
 # Make a guess at the correlation
@@ -124,7 +112,7 @@ geom_point()+
 ggplot(data = bostonWomen, 
        aes(x = Age, Result_sec, color = age_group))+
 geom_point()+
-  geom_smooth(method = loess, se = FALSE)
+  geom_smooth(method = loess, se = FALSE, color = "black")
 
 # Make another guess and compare which seems greater
 # see a similar trend but bigger dip in times from 20 to roughly 35 before becoming more linear
@@ -233,6 +221,13 @@ model.tables(modaov, type = "effects")
 # Yes significant, with 26-33 year olds being significantly faster. Followed by 34-41 year olds. 
 
 ```
+```{r}
+library(ggiraphExtra)
+TukeyHSD(modaov) 
+```
+
+
+
 
 # comparing Rank for gender and  for males and females 50+
 ```{r}
@@ -245,9 +240,88 @@ boston_Women%>%
   with(t.test(Rank_Gender, level = .95))
 
 
-# seems like women over 50 place better in their field on average than the men over 50 
+# seems like women over 50 place better on average than the men over 50 in their respective fields 
 ```
 
+# 113 Topics
+
+# Data Exploration
+## Examining a single numerical variable: 
+## Results_sec (finishing time in seconds of the runners)
+
 ```{r}
+boston_reduced<-
+```
+
+
+```{r}
+ggplot(data = boston,
+       aes(x = Result_sec))+
+  geom_histogram(bins = 16)
+
+hist(boston$Result_sec)
+# currently, this histogram has 16 bins. How would it change if we had 5 bins?
+# What about 100 bins?
+
+# How would you describe the shape of the histogram?
+# (Left-Skewed/ Right-Skewed/ Approximately Symmetric)
+# (unimodal / multimodal)
+
+# slightly right skewed but approximately symmetric is best answer
+# unimodal 
+```
+## Summary Statistics
+
+```{r}
+summary(boston$Result_sec)
+
+# have them calculate this if learning r 
+# or identify different metrics using the summary
+
+# eg.
+# Deviation:
+# time of 16000 seconds: 16000 - 13980 = 2020
+
+# Variance: 
+variance <- var(boston$Result_sec)
+# = 7278396
+
+# Standard Deviation:
+sqrt(variance)
+# = 2697.85
+
+# IQR:
+# 15538 - 12026 = 3512
+
+# Outliers (using lower and upper fence as reasonable limits)
+# formulas:
+# upper fence: Q3 + 1.5 * IQR --> 15538 + 1.5 * 3512 = 20806
+# lower fence: Q1 - 1.5 * IQR --> 12026 - 1.5 * 3512 = 6758
+# 
+# Is a time of 21000 seconds an outlier? (YES)
+# Is a time of 7500 seconds an outlier? (NO)
+
+
+# Do you think the mean or median is higher for the distribution.
+# Explain your reasoning.  
+# (Mean is higher because right-skewed, yet not by much because approximately symmetric)
+
+# Is the mean or median a more representative statistic for the center here?
+# Answer: mean because no extereme skewness or extreme outliers
+
+# Is IQR or standard deviation a better assessment or spread?
+# Answer: Standard deviation for same reasoning 
+
+
+# Using standard deviation or IQR
+```
+
+
+```{r}
+ggplot(data = boston,
+       aes(x = Result_sec))+
+         geom_boxplot()+
+  coord_flip()
+```
 
 
