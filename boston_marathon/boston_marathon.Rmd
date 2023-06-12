@@ -105,7 +105,7 @@ with(t.test(Result_sec ~ gender))
 
 ## Scatterplot of Age vs Result_sec for men
 ```{r}
-ggplot(data = boston_Men, 
+ggplot(data = bostonMen, 
        aes(x = Age, Result_sec, color = age_group))+
 geom_point()+
   geom_smooth(method = loess, se = FALSE)
@@ -119,7 +119,7 @@ geom_point()+
 
 
 ```{r}
-ggplot(data = boston_Women, 
+ggplot(data = bostonWomen, 
        aes(x = Age, Result_sec, color = age_group))+
 geom_point()+
   geom_smooth(method = loess, se = FALSE)
@@ -129,8 +129,8 @@ geom_point()+
 ```
 
 ```{r}
-cor(boston_Men$Age, boston_Men$Result_sec)
-cor(boston_Women$Age, boston_Women$Result_sec)
+cor(boston_Men$Age, bostonMen$Result_sec)
+cor(boston_Women$Age, bostonWomen$Result_sec)
 
 # Despite low correlation in both cases, it is higher for men than women
 ```
@@ -147,15 +147,15 @@ ggplot(data = boston,
 ## Histograms of the results respectively for male and female
 
 ```{r}
-hist(boston_Men$Result_sec)
-hist(boston_Women$Result_sec)
+hist(bostonMen$Result_sec)
+hist(bostonWomen$Result_sec)
 ```
 
 # Finding mean and standard deviation for male runners and calculating z-score
 
 ```{r}
 # find mean and standard deviation of MENS results in seconds
-boston_Men%>%
+bostonMen%>%
   summarise(mean_result_sec = mean(Result_sec),
             sd_result_sec = sd(Result_sec))
 
@@ -163,7 +163,7 @@ boston_Men%>%
 #sd = 2737.843
 
 # 1st place male runner
-boston_Men%>%
+bostonMen%>%
   slice_min(Result_sec)
 
 zscore <- (7677 - 13377.54) / 2737.843
@@ -173,7 +173,7 @@ zscore
 
 # Finding mean and standard deviation for female runners and calculating z-score
 ```{r}
-boston_Women%>%
+bostonWomen%>%
   summarise(mean_result_sec = mean(Result_sec),
             sd_result_sec = sd(Result_sec))
 
@@ -181,7 +181,7 @@ boston_Women%>%
 #sd = 2454.376
 
 # 1st place female runner
-boston_Women%>%
+bostonWomen%>%
   slice_min(Result_sec)
 
 zscore <- (8611 - 14717.8) / 2454.376
@@ -193,5 +193,26 @@ zscore
 # than the top male finisher because the score was further from zero.
 
 
+# confidence intervals for results by gender
 
+```{r}
+bostonMen%>%
+  with(t.test(Result_sec, level = .95)) # (13333.23, 13421.85) dif = 88.62
+
+bostonWomen%>%
+  with(t.test(Result_sec, level = .95)) # (14673.85, 14761.76) dif = 87.91
+```
+
+# confidence interval for results by age 
+
+```{r}
+menAge<- lm(Result_sec ~ Age, data = bostonMen)
+confint(menAge, level = .95)
+
+womenAge <- lm(Result_sec ~ Age, data = bostonWomen)
+confint(womenAge, level = .95)
+
+
+# subset data to age group 
+```
 
