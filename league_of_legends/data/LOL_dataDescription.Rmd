@@ -25,7 +25,7 @@ Champion that you can choose when playing League of Legends.
 | KDA | Average kills, deaths and assists associated with each champion |
 | WRate | win rates of each champion |
 | PickRate | pick rates of each champion |
-| RolePerc | X |
+| RolePerc | percentage of time playing as a role |
 | BanPerc | ban percentages associated with each champion |
 
 : [LOL_patch_12.22.csv](../data/LOL_patch_12.22.csv)
