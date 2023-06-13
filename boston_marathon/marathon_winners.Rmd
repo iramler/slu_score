@@ -1,0 +1,55 @@
+---
+title: "Marathon Winners"
+output: html_document
+date: "2023-06-12"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(rvest)
+library(tidyverse)
+```
+
+```{r}
+url <- "https://en.wikipedia.org/wiki/List_of_winners_of_the_Boston_Marathon"
+objs <- read_html(url)%>%
+html_nodes("table")%>%
+html_table()
+
+mens <- objs[[2]]
+mens<-mens%>%
+  mutate(Time = parse_time(Time))
+
+
+womens<- objs[[3]]
+womens<-womens%>%
+  mutate(Time = parse_time(Time))
+
+
+write_csv(x = mens, file = "data/mens_winners.csv")
+write_csv(x = womens, file = "data/womens_winners.csv")
+```
+
+```{r}
+mens_winners <- read_csv("data/mens_winners.csv")
+womens_winners <- read_csv("data/mens_winners.csv")
+
+
+
+ggplot(data = mens_winners,
+       aes( x = Year, y = Time))+
+  geom_point()
+
+t.test(mens_winners$Time, mens_winners$Year, paired = TRUE)
+```
+
+```{r}
+combined <- full_join(mens_winners, womens_winners,
+                      by = "Year")
+
+combined%>%
+  with(t.test(Time.x, Time.y, paired = TRUE, alternative = "two.sided"))
+
+# believe the times still need to be parsed
+```
+

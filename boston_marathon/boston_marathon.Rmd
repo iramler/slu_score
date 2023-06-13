@@ -1,0 +1,351 @@
+---
+title: "Boston Marathon 2019"
+author: "Jack Fay"
+date: "2023-06-07"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+```
+
+## Introduction Motivation
+
+The Boston Marathon is an annual road race that takes place in the city of Boston Massachusetts that attracts thousands of runners of varying skill and experience. Year after year, participants from around the world gather to compete for world records, divisional records, and personal bests. In 2019, Kenyan runner Lawrence Cherono won the race by a matter of seconds, while Worknesh earned the win in the women's division in this prestigious event.
+
+## Data description
+
+The data set is from the 2019 Boston Marathon and contains observations for all finishers of the race.
+The 'boston' data set contains 26651 total observations with each row representing a runner. 
+The 'bostom_Men' data set contains 14670 observations.
+The 'boston_Women data set contains 11981 obersvations. 
+
+
+| Variable | Description |
+|----|-------------|
+| Rank_Tot | finishing rank in the race |
+| Age | age of the runner |
+| Country | nationality of the runner |
+| Result_hr | finishing time of the runner in hours minutes seconds |
+| Result_sec | finishing time of the runner in seconds |
+| Country_code | country abbreviation |
+| gender | gender of the runner (male or female) |
+| age_group | age groups which each span 7 years (7 levels) |
+
+# Data Prep
+```{r}
+# boston <- read_csv("~/Downloads/Dataset-Boston-2019.csv")
+# write_csv(x = boston, file = "data/Dataset-Boston-2019.csv")
+
+
+
+boston <- read_csv("data/Dataset-Boston-2019.csv")
+
+```
+
+```{r}
+boston<-boston%>%
+  mutate(gender = factor(Gender))%>%
+  select(-Gender)%>%
+  na.omit()
+
+library(forcats)
+boston<-boston%>%
+  mutate(age_group = fct_collapse(factor(Age),
+                                  under_25 = 18:25,
+                                  '26-33' = 26:33,
+                                  '34-41' = 32:41,
+                                  '42-49' = 42:49,
+                                  '50-57' = 50:57,
+                                  '58-65' = 58:65,
+                                  '66+' = 66:83))
+bostonMen<-boston%>%
+  filter(gender == "M")
+write_csv(x = bostonMen, file = "data/bostonmen.csv")
+bostonWomen <- boston%>%
+  filter(gender == "F")
+write_csv(x = bostonWomen, file = "data/bostonwomen.csv")
+
+bostonMen <- read_csv("data/bostonmen.csv")
+bostonWomen <- read_csv("data/bostonwomen.csv")
+
+head(boston)
+```
+
+## Is there a statistical difference in means for finishing times for males and females?
+
+
+## Side-by-side boxplot displaying gender vs result in seconds 
+```{r}
+ggplot(data = boston, 
+        aes(x = gender, Result_sec, fill = gender))+
+  geom_boxplot()
+```
+## Density 
+
+```{r}
+ggplot(data = boston, 
+       aes(x = Result_hr, fill = gender))+
+  geom_density()
+```
+
+
+## Two Sample t-test to determine whether there is a difference in means
+```{r}
+boston %>%
+with(t.test(Result_sec ~ gender))
+
+# yes, the difference in means is statistically significant 
+```
+
+# Is age related to finishing time for Men or women?
+
+## Scatterplot of Age vs Result_sec for men
+```{r}
+ggplot(data = bostonMen, 
+       aes(x = Age, Result_sec, color = age_group))+
+geom_point()+
+  geom_smooth(method = loess, se = FALSE, color = "black")
+
+
+# Make a guess at the correlation
+
+# Appears to be low
+# younger runners running faster but curvature suggests that times become faster from age 20-30
+```
+
+
+```{r}
+ggplot(data = bostonWomen, 
+       aes(x = Age, Result_sec, color = age_group))+
+geom_point()+
+  geom_smooth(method = loess, se = FALSE, color = "black")
+
+# Make another guess and compare which seems greater
+# see a similar trend but bigger dip in times from 20 to roughly 35 before becoming more linear
+```
+
+```{r}
+cor(boston_Men$Age, bostonMen$Result_sec)
+cor(boston_Women$Age, bostonWomen$Result_sec)
+
+# Despite low correlation in both cases, it is higher for men than women
+```
+
+```{r}
+ggplot(data = boston,
+       aes(x = age_group, y = Result_sec, fill = age_group))+
+  geom_boxplot()
+```
+
+
+# Calculating z-scores for top Male and Female finishers to see which was more remarkable in comaprison to the field
+
+## Histograms of the results respectively for male and female
+
+```{r}
+hist(bostonMen$Result_sec)
+hist(bostonWomen$Result_sec)
+```
+
+# Finding mean and standard deviation for male runners and calculating z-score
+
+```{r}
+# find mean and standard deviation of MENS results in seconds
+bostonMen%>%
+  summarise(mean_result_sec = mean(Result_sec),
+            sd_result_sec = sd(Result_sec))
+
+# mean = 13377.54
+#sd = 2737.843
+
+# 1st place male runner
+bostonMen%>%
+  slice_min(Result_sec)
+
+zscore <- (7677 - 13377.54) / 2737.843
+zscore
+#z-score of -2.082128
+```
+
+# Finding mean and standard deviation for female runners and calculating z-score
+```{r}
+bostonWomen%>%
+  summarise(mean_result_sec = mean(Result_sec),
+            sd_result_sec = sd(Result_sec))
+
+# mean = 14717.8
+#sd = 2454.376
+
+# 1st place female runner
+bostonWomen%>%
+  slice_min(Result_sec)
+
+zscore <- (8611 - 14717.8) / 2454.376
+zscore
+# z-score of -2.488127
+```
+
+# In conclusion, the top female finishers result was more remarkable for that day in relation to the female field
+# than the top male finisher because the score was further from zero.
+
+
+# confidence intervals for results by gender
+
+```{r}
+bostonMen%>%
+  with(t.test(Result_sec, level = .95)) # (13333.23, 13421.85) dif = 88.62
+
+# With 95% confidence, the true mean result time in seconds for men is between 
+# (13333.23, 13421.85) seconds
+
+bostonWomen%>%
+  with(t.test(Result_sec, level = .95)) # (14673.85, 14761.76) dif = 87.91
+```
+
+# confidence interval for results by age 
+
+```{r}
+menAge<- lm(Result_sec ~ Age, data = bostonMen)
+confint(menAge, level = .95)
+# On average, and with 95% confidence, a one year increase in age for men is associated with an increased result time of between 84.89027 and 91.92592 seconds. 
+
+womenAge <- lm(Result_sec ~ Age, data = bostonWomen)
+confint(womenAge, level = .95)
+
+
+# On average, and with 95% confidence, a one year increase in age for men is associated with an increased result time of between 49.00482 56.79667 seconds. 
+```
+
+# ANOVA with age groups 
+
+```{r}
+modaov = aov(Result_sec ~ age_group,data=boston)
+summary(modaov)
+model.tables(modaov, type = "means")
+model.tables(modaov, type = "effects")
+
+# Yes significant, with 26-33 year olds being significantly faster. Followed by 34-41 year olds. 
+
+```
+```{r}
+library(ggiraphExtra)
+TukeyHSD(modaov) 
+```
+
+
+
+
+# comparing Rank for gender and  for males and females 50+
+```{r}
+bostonMen%>%
+  filter(Age>49)%>%
+  with(t.test(Rank_Gender, level = .95))
+
+boston_Women%>%
+  filter(Age > 49)%>%
+  with(t.test(Rank_Gender, level = .95))
+
+
+# seems like women over 50 place better on average than the men over 50 in their respective fields 
+```
+
+# 113 Topics
+
+# Data Exploration
+## Examining a single numerical variable: 
+## Results_sec (finishing time in seconds of the runners)
+
+```{r}
+boston_reduced<-
+```
+
+
+```{r}
+histogram_results<- ggplot(data = boston,
+       aes(x = Result_sec))+
+  geom_histogram(bins = 18, fill = "white", color = "black")+
+  labs(x = "Result (seconds)")
+
+ggsave(filename = "Results_histogram.jpg",
+       plot = histogram_results,
+       width = 7,
+       height = 4)
+
+hist(boston$Result_sec)
+# currently, this histogram has 16 bins. How would it change if we had 5 bins?
+# What about 100 bins?
+
+# How would you describe the shape of the histogram?
+# (Left-Skewed/ Right-Skewed/ Approximately Symmetric)
+# (unimodal / multimodal)
+
+# slightly right skewed but approximately symmetric is best answer
+# unimodal 
+```
+## Summary Statistics
+
+```{r}
+summary(boston$Result_sec)
+
+# have them calculate this if learning r 
+# or identify different metrics using the summary
+
+# eg.
+# Deviation:
+# time of 16000 seconds: 16000 - 13980 = 2020
+
+# Variance: 
+variance <- var(boston$Result_sec)
+# = 7278396
+
+# Standard Deviation:
+sqrt(variance)
+# = 2697.85
+
+# IQR:
+# 15538 - 12026 = 3512
+
+# Outliers (using lower and upper fence as reasonable limits)
+# formulas:
+# upper fence: Q3 + 1.5 * IQR --> 15538 + 1.5 * 3512 = 20806
+# lower fence: Q1 - 1.5 * IQR --> 12026 - 1.5 * 3512 = 6758
+# 
+# Is a time of 21000 seconds an outlier? (YES)
+# Is a time of 7500 seconds an outlier? (NO)
+
+
+# Do you think the mean or median is higher for the distribution.
+# Explain your reasoning.  
+# (Mean is higher because right-skewed, yet not by much because approximately symmetric)
+
+# Is the mean or median a more representative statistic for the center here?
+# Answer: mean because no extreme skewness or extreme outlines
+
+# Is IQR or standard deviation a better assessment or spread?
+# Answer: Standard deviation for same reasoning 
+
+
+```
+
+
+```{r}
+results_boxplot<- ggplot(data = boston,
+       aes(x = Result_sec))+
+         geom_boxplot()+
+  coord_flip()+
+  labs(x = "Result (seconds)")
+
+ggsave(filename = "Results_boxplot.jpg",
+       plot = results_boxplot,
+       width = 7,
+       height = 4)
+```
+
+
+
+
+
+
+

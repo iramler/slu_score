@@ -1,0 +1,32 @@
+---
+title: "Data Description"
+output: html_document
+date: "2023-06-12"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+# Description
+This data comes from the 2019 Boston Marathon and contains observations for all finishers of the race in the men's and women's divisions. Ages of the runners range from 18 to 83.
+The 'boston' data set contains 26651 total observations with each row representing a runner. 
+The 'bostomMen' data set contains 14670 observations.
+The 'bostonWomen data set contains 11981 obersvations. 
+
+
+| Variable | Description |
+|----|-------------|
+| Rank_Tot | finishing rank in the race |
+| Age | age of the runner |
+| Country | nationality of the runner |
+| Result_hr | finishing time of the runner in hours minutes seconds |
+| Result_sec | finishing time of the runner in seconds |
+| Country_code | country abbreviation |
+| gender | gender of the runner (male or female) |
+| age_group | age group the runner falls under (7 levels) |
+
+
+# References 
+
+https://www.baa.org/races/boston-marathon/results/search-results
+https://www.kaggle.com/datasets/daniboy370/boston-marathon-2019
