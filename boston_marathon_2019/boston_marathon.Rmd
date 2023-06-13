@@ -35,38 +35,36 @@ The 'boston_Women data set contains 11981 obersvations.
 
 # Data Prep
 ```{r}
-# boston <- read_csv("~/Downloads/Dataset-Boston-2019.csv")
-# write_csv(x = boston, file = "data/Dataset-Boston-2019.csv")
-
-
-
-boston <- read_csv("data/Dataset-Boston-2019.csv")
+#boston <- read_csv("~/Downloads/Dataset-Boston-2019.csv")
 
 ```
 
 ```{r}
-boston<-boston%>%
-  mutate(gender = factor(Gender))%>%
-  select(-Gender)%>%
-  na.omit()
+#boston<-boston%>%
+#  mutate(gender = factor(Gender))%>%
+#  select(-Gender)%>%
+#  na.omit()
 
-library(forcats)
-boston<-boston%>%
-  mutate(age_group = fct_collapse(factor(Age),
-                                  under_25 = 18:25,
-                                  '26-33' = 26:33,
-                                  '34-41' = 32:41,
-                                  '42-49' = 42:49,
-                                  '50-57' = 50:57,
-                                  '58-65' = 58:65,
-                                  '66+' = 66:83))
-bostonMen<-boston%>%
-  filter(gender == "M")
-write_csv(x = bostonMen, file = "data/bostonmen.csv")
-bostonWomen <- boston%>%
-  filter(gender == "F")
-write_csv(x = bostonWomen, file = "data/bostonwomen.csv")
+#library(forcats)
+#boston<-boston%>%
+#  mutate(age_group = fct_collapse(factor(Age),
+                                  #under_25 = 18:25,
+                                  #'26-33' = 26:33,
+                                  #'34-41' = 32:41,
+                                  #'42-49' = 42:49,
+                                  #'50-57' = 50:57,
+                                  #'58-65' = 58:65,
+                                  #'66+' = 66:83))
+#write_csv(x = boston, file = "data/boston.csv")
 
+#bostonMen<-boston%>%
+#  filter(gender == "M")
+#write_csv(x = bostonMen, file = "data/bostonmen.csv")
+#bostonWomen <- boston%>%
+#  filter(gender == "F")
+#write_csv(x = bostonWomen, file = "data/bostonwomen.csv")
+
+boston <- read_csv("data/boston.csv")
 bostonMen <- read_csv("data/bostonmen.csv")
 bostonWomen <- read_csv("data/bostonwomen.csv")
 
@@ -154,8 +152,8 @@ hist(bostonWomen$Result_sec)
 ```{r}
 # find mean and standard deviation of MENS results in seconds
 bostonMen%>%
-  summarise(mean_result_sec = mean(Result_sec),
-            sd_result_sec = sd(Result_sec))
+  summarise(Mens_Mean_Result = mean(Result_sec),
+            Mens_Standard_Deviation_Result = sd(Result_sec))
 
 # mean = 13377.54
 #sd = 2737.843
@@ -172,8 +170,8 @@ zscore
 # Finding mean and standard deviation for female runners and calculating z-score
 ```{r}
 bostonWomen%>%
-  summarise(mean_result_sec = mean(Result_sec),
-            sd_result_sec = sd(Result_sec))
+  summarise(Womens_Mean_Result = mean(Result_sec),
+            Womens_Standard_Deviation_Result = sd(Result_sec))
 
 # mean = 14717.8
 #sd = 2454.376
@@ -288,6 +286,9 @@ hist(boston$Result_sec)
 
 ```{r}
 summary(boston$Result_sec)
+summary(bostonMen$Result_sec)
+summary(bostonWomen$Result_sec)
+
 
 # have them calculate this if learning r 
 # or identify different metrics using the summary
