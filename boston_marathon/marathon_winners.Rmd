@@ -44,6 +44,12 @@ t.test(mens_winners$Time, mens_winners$Year, paired = TRUE)
 ```
 
 ```{r}
+combined <- full_join(mens_winners, womens_winners,
+                      by = "Year")
 
+combined%>%
+  with(t.test(Time.x, Time.y, paired = TRUE, alternative = "two.sided"))
+
+# believe the times still need to be parsed
 ```
 
