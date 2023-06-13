@@ -1,0 +1,22 @@
+---
+title: "Boston Marathon 2023"
+output: html_document
+date: "2023-06-13"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+library(rvest)
+
+url <- "https://results.baa.org/2023/?pid=search&pidp=start"
+objs <- read_html(url)%>%
+html_nodes("table")%>%
+html_table()
+
+# link brings you to the page. code works for other links but not this one
+
+```
+
