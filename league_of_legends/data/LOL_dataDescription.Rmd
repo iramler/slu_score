@@ -18,7 +18,7 @@ categories:
 A data frame for 162 champions of the following variables. Each row represents a
 Champion that you can choose when playing League of Legends. 
 
-| Variable | Description |
+| Variable | Description | 
 |----|-------------|
 | Name | name of the champion |
 | Role | role of the champion in a game |
