@@ -11,12 +11,30 @@ knitr::opts_chunk$set(echo = TRUE)
 ```{r}
 library(rvest)
 
-url <- "https://results.baa.org/2023/?pid=search&pidp=start"
+url <- "https://results.baa.org/2023/?page=1&event=R&event_main_group=runner&pid=search&pidp=start"
 objs <- read_html(url)%>%
 html_nodes("table")%>%
 html_table()
 
+write_csv(x = objs[[1]], file = "boston_marathon_2023")
+
 # link brings you to the page. code works for other links but not this one
+
+for(i in 2:100){
+url <- paste0("https://results.baa.org/2023/?page=",i,"&event=R&event_main_group=runner&pid=search&pidp=start")
+objs <- read_html(url)%>%
+html_nodes("table")%>%
+html_table()
+x <- objs[[1]]
+dataset<- bind_rows(dataset, x)
+
+}
+```
+
+```{r}
+
+
+
 
 ```
 
