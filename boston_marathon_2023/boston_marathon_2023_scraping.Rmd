@@ -55,8 +55,23 @@ initial_data<-
 
          
 # to be continued
-
-boston_marathon_women <- boston_marathon_1_page(i = 2:10, sex = "W")
+for(i in 2:5){
+additional_rows <- boston_marathon_1_page(i = 2:10, sex = "W")
+  additional_rows%>%
+    as.data.frame()%>%
+  rename(place_overall = V1, place_gender = V2, place_division = V3, 
+         name = V4, team = V7, bib = V8, half_time = V11, finish_net = V12, 
+         finish_gun = V13)%>%
+  mutate(sex = ("W"),
+         across(c(1,2,3), ~ parse_number(.)))%>%
+  separate(col = bib, into = c("rem","bib"), sep = 5)%>%
+  separate(col = half_time, into = c("no","half_time"), sep = "F" )%>%
+  separate(col = finish_net, into = c("remove","finish_net"), sep = "t")%>%
+  separate(col = finish_gun, into = c("empty","finish_gun"), sep = 12 )%>%
+    select(1,2,3,4,9,13,15,17,18)%>%
+    mutate(half_time = hms(half_time),
+           finish_net = hms(finish_net),
+           finish_gun = hms(finish_gun))
   
   
 
