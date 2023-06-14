@@ -1,0 +1,36 @@
+---
+title: "Data Description"
+output: html_document
+date: "2023-06-14"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+boston <- read_csv("data/boston_marathon_2023.csv")
+boston%>%
+  slice_min(age)
+```
+
+# Description
+The data was scraped from the Boston Athletic Association website that has all results from each Boston Marathon. The `boston_marathon_2023.csv` dataset contains 26598 total observations of all the male and female runners of the 2023 race with each row representing a different runner. Ages of the runners range from 18 to 83.
+The 'boston' data set contains 26651 total observations with each row representing a runner. 
+The 'bostomMen' data set contains 14670 observations.
+The 'bostonWomen data set contains 11981 obersvations. 
+
+
+| Variable | Description |
+|----|-------------|
+| Rank_Tot | finishing rank in the race |
+| Age | age of the runner |
+| Country | nationality of the runner |
+| Result_hr | finishing time of the runner in hours minutes seconds |
+| Result_sec | finishing time of the runner in seconds |
+| Country_code | country abbreviation |
+| gender | gender of the runner (male or female) |
+| age_group | age group the runner falls under (7 levels) |
+
+
+# References 
+
+https://results.baa.org/2023/?pid=start&pidp=start

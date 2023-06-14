@@ -200,6 +200,10 @@ bostonMen%>%
 
 bostonWomen%>%
   with(t.test(Result_sec, level = .95)) # (14673.85, 14761.76) dif = 87.91
+
+
+gender_mod <- lm(Result_sec ~ gender, data = boston)
+confint(gender_mod, level = .95)
 ```
 
 # confidence interval for results by age 
@@ -212,8 +216,11 @@ confint(menAge, level = .95)
 womenAge <- lm(Result_sec ~ Age, data = bostonWomen)
 confint(womenAge, level = .95)
 
+# On average, and with 95% confidence, a one year increase in age for men is associated with an increased result time of between 49.00482 56.79667 seconds.
 
-# On average, and with 95% confidence, a one year increase in age for men is associated with an increased result time of between 49.00482 56.79667 seconds. 
+
+age_mod <- lm(Result_sec ~ age_group, data = boston)
+confint(age_mod, level = .95)
 ```
 
 # ANOVA with age groups 
