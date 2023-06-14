@@ -5,8 +5,9 @@ date: "2023-06-13"
 ---
 
 
-# 11423 total women ran
-# 15175 total men ran
+# 11423 total female runners
+# 15175 total male runners
+# excluded from the total are non-binary, wheelchair, handcycles, and duo teams
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
@@ -17,6 +18,7 @@ knitr::opts_chunk$set(echo = TRUE)
 library(rvest)
 library(tidyverse)
 library(lubridate)
+
 
 boston_marathon_1_page <- function(i, sex = c("W","M")){
   
@@ -136,5 +138,8 @@ boston_marathon_men <- bind_rows(boston_marathon_men, added_rows)
 write_csv(x = boston_marathon_men, file = "data/boston_marathon_men_2023.csv")
 write_csv(x = boston_marathon_women,
           file ="data/boston_marathon_women_2023.csv")
+boston_marathon_2023 <- bind_rows(boston_marathon_men, boston_marathon_women)
+write_csv(boston_marathon_2023,
+          file = "data/boston_marathon_2023.csv")
 ```
 
