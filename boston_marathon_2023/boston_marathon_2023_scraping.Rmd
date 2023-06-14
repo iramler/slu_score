@@ -56,8 +56,8 @@ initial_data<-
          
 # to be continued
 for(i in 2:5){
-additional_rows <- boston_marathon_1_page(i = 2:10, sex = "W")
-  additional_rows%>%
+additional_rows <- boston_marathon_1_page(i, sex = "W")
+final_data<-additional_rows%>%
     as.data.frame()%>%
   rename(place_overall = V1, place_gender = V2, place_division = V3, 
          name = V4, team = V7, bib = V8, half_time = V11, finish_net = V12, 
@@ -71,7 +71,8 @@ additional_rows <- boston_marathon_1_page(i = 2:10, sex = "W")
     select(1,2,3,4,9,13,15,17,18)%>%
     mutate(half_time = hms(half_time),
            finish_net = hms(finish_net),
-           finish_gun = hms(finish_gun))
+           finish_gun = hms(finish_gun))%>%
+bind_rows(.,initial_data)
   
   
 
