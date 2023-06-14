@@ -9,24 +9,60 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 
 ```{r}
+
+
 library(rvest)
+library(tidyverse)
+library(lubridate)
 
-url <- "https://results.baa.org/2023/?page=1&event=R&event_main_group=runner&pid=search&pidp=start"
-objs <- read_html(url)%>%
-html_nodes("table")%>%
-html_table()
+boston_marathon_1_page <- function(i, sex = c("W","M")){
+  
+  base_url <- "https://results.baa.org/2023/?page="
+  middle_url <- "&event=R&event_main_group=runner&num_results=1000&pid=list&pidp=start&search%5Bsex%5D="
+  end_url <- "&search%5Bage_class%5D=%25"
+  
+  url <- paste0(base_url, i, middle_url, sex, end_url)
+  
+  obs <- read_html(url) |> 
+    html_nodes("li.list-group-item")
+  
+  tmp <- obs |> html_text(trim = TRUE)
+  X <- tmp[-(1:2)] |> str_split(pattern = "(\n)+", simplify = TRUE)
 
-write_csv(x = objs[[1]], file = "boston_marathon_2023.csv")
+  return(X)
+}
 
-# link brings you to the page. code works for other links but not this one
 
-for(i in 2:100){
-url <- paste0("https://results.baa.org/2023/?page=",i,"&event=R&event_main_group=runner&pid=search&pidp=start")
-objs <- read_html(url)%>%
-html_nodes("table")%>%
-html_table()
-x <- objs[[1]]
-boston_marathon_2023<- bind_rows(boston_marathon_2023, x)
+# Test run
+initial_data <- boston_marathon_1_page(i = 1, sex = "W")
+
+initial_data<-
+  initial_data%>%
+  as.data.frame()%>%
+  rename(place_overall = V1, place_gender = V2, place_division = V3, 
+         name = V4, team = V7, bib = V8, half_time = V11, finish_net = V12, 
+         finish_gun = V13)%>%
+  mutate(sex = ("W"),
+         across(c(1,2,3), ~ parse_number(.)))%>%
+  separate(col = bib, into = c("rem","bib"), sep = 5)%>%
+  separate(col = half_time, into = c("no","half_time"), sep = "F" )%>%
+  separate(col = finish_net, into = c("remove","finish_net"), sep = "t")%>%
+  separate(col = finish_gun, into = c("empty","finish_gun"), sep = 12 )%>%
+    select(1,2,3,4,9,13,15,17,18)%>%
+    mutate(half_time = hms(half_time),
+           finish_net = hms(finish_net),
+           finish_gun = hms(finish_gun))
+
+         
+# to be continued
+
+boston_marathon_women <- boston_marathon_1_page(i = 2:10, sex = "W")
+  
+  
+
+# will need to clean and add variable names
+
+# within each run of the loop add Sys.sleep(rpois(1, 3)+1)
 
 }
 ```
