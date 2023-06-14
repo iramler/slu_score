@@ -6,7 +6,7 @@ Bib	Name	Country	Gender	Division	Division Rank	Overall Time	Overall Rank	Swim Ti
 24	Justin Metzler	United States	Male	MPRO	4	8:27:28	5	50:32	4	4:26:44	3	3:05:30	9	Finisher
 21	Matt Russell	United States	Male	MPRO	5	8:28:54	6	57:11	45	4:27:51	4	2:57:39	4	Finisher
 42	Kaito Tohara	Japan	Male	MPRO	6	8:45:36	7	58:52	71	4:39:57	12	3:01:16	6	Finisher
-38	Balazs Csoke	Hungary	Male	MPRO	7	8:50:45	8	50:37	7	4:44:53	15	3:09:01	12	Finisher
+38	Balazs Csoke	Hungary	Male	MPRO	7	8:50:45	8	50:37	7	4:44:53	15	3:09:01 12	Finisher
 46	James Capparell	United States	Male	MPRO	8	8:54:37	9	50:29	3	4:43:15	13	3:15:29	17	Finisher
 43	Hunter Lussi	United States	Male	MPRO	9	8:55:09	10	50:39	8	4:38:28	11	3:18:21	20	Finisher
 3	Sarah True	United States	Female	FPRO	1	9:00:22	11	55:36	28	4:55:30	21	3:04:07	7	Finisher
