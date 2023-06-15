@@ -45,9 +45,10 @@ d. Rename Best3BenchKg, Best3SquatKg, and Best3DeadliftKg so that the Best3 part
 
 2. Correlations/Regressions - subset to just a specific age group for females and follow the Ironman style module
 
-3. Stat 213 style regression: May require pivoting the data
+3. Stat 213 style regression: May require pivoting the data and subsetting to have just M and F lifters from the same age group (pick one of the groups in the 24 to 49 categoricies  as they all have decent balance between M & F)
 
 + Goal is to understand/measure differences between male and female powerlifters.
+
 + Build a model of 
 
 Full model:
@@ -57,3 +58,6 @@ WeightLifted ~ Type_of_Lift * Sex * Bodyweight
 (i.e., all the interactions!)
 
 WeightLifted (numerical) and Type_of_Lift (categorical) are new variables constructed after pivoting
+
+Will likely need to work through a series of nested models to measure the difference between males and females. (My suspicion is that, after accounting for bodyweight, there shouldn't be much, if any, difference in weight lifted for Males or Females)
+
