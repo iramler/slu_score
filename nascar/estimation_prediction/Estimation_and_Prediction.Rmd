@@ -35,6 +35,11 @@ summary(rating_mod)
 # Rating = 33.27907 + 1.01381*42 = 75.85909
 # The model predicts drivers with a 42.0 percent quality pass percentage to have a driver rating of 75.86
 ```
+# confidence interval for model predictor of Percent Quality Passes
+```{r}
+confint(rating_mod, level = .95)
+# On average, and with 95% confidence, a one percent increase in percent quality passes is associated with an increase in driver rating between 0.99 and 1.04 points. 
+```
 
 # Compute a 95% confidence interval for the mean rating of all drivers with a percent of quality passes of 42
 ```{r}
