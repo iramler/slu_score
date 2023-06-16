@@ -35,7 +35,6 @@ The `boston_marathon_women_2023.csv` data set contains 11423 observations.
 | finish_gun_sec | gun finish in seconds 
 
 # References 
-
 https://results.baa.org/2023/?pid=start&pidp=start
 
 

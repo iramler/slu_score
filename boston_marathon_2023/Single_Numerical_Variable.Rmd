@@ -12,9 +12,12 @@ knitr::opts_chunk$set(echo = TRUE)
 ```{r}
 boston_marathon<- read_csv("data/boston_marathon_2023.csv")
 
+boston_marathon<- boston_marathon%>%
+  mutate(finish_net_minutes = round(finish_net_sec/60))
+
 boston <- boston_marathon%>%
-  arrange(finish_net_sec)%>%
-  select(name, finish_net_sec)%>%
+  arrange(finish_net_minutes)%>%
+  select(name, finish_net_minutes)%>%
   head()
 
   knitr::kable(boston, digits = 3, caption = "2023 Boston Marathon")
@@ -22,25 +25,25 @@ boston <- boston_marathon%>%
 
 ```{r}
 histogram_marathon<-ggplot(data = boston_marathon,
-       aes(x = finish_net_sec))+
+       aes(x = finish_net_minutes))+
   geom_histogram(bins = 20, color = "white")+
-  labs(x = "Result time (seconds)")
+  labs(x = "Result time (minutes)")
 
-ggsave(filename = "histogram_marathon.jpg",
+ggsave(filename = "histogram_marathon2.jpg",
        plot = histogram_marathon,
        width = 7,
        height = 4)
 
 
-summary(boston_marathon$finish_net_sec)
-var(boston_marathon$finish_net_sec)
+summary(boston_marathon$finish_net_minutes)
+var(boston_marathon$finish_net_minutes)
 ```
 
 ```{r}
 boston_marathon%>%
   filter(gender == "M")%>%
-  summarise(Mean = mean(finish_net_sec),
-            Standard_Deviation = round(sd(finish_net_sec),2))
+  summarise(Mean = round(mean(finish_net_minutes),2),
+            Standard_Deviation = round(sd(finish_net_minutes),2))
   
   
 ```
@@ -48,20 +51,17 @@ boston_marathon%>%
 ```{r}
 boston_marathon%>%
   filter(gender == "M")%>%
-  slice_min(finish_net_sec)
+  slice_min(finish_net_minutes)
 ```
 ```{r}
 boston_marathon%>%
   filter(gender == "W")%>%
-  summarise(Mean = mean(finish_net_sec),
-            Standard_Deviation = round(sd(finish_net_sec),2))
+  summarise(Mean = round(mean(finish_net_minutes),2),
+            Standard_Deviation = round(sd(finish_net_minutes),2))
 
 boston_marathon%>%
   filter(gender == "W")%>%
-  slice_min(finish_net_sec)
-
-boston_marathon%>%
-  summarise( g = sd(finish_net_sec))
+  slice_min(finish_net_minutes)
 ```
 
 
