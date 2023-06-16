@@ -78,5 +78,21 @@ predict(women_40_44, newdata = newx, interval = "conf", level = 0.90) # dif = 26
 
 # 57.52 difference between men and women
 ```
+# 60-64
+```{r}
+men_60_64 <- lm(finish_net_sec ~ age_group, data = bostonMen)
+newx = data.frame(age_group = "60-64")
+predict(men_40_44, newdata = newx, interval = "conf", level = 0.90) # dif = 235.89
+
+women_60_64 <- lm(finish_net_sec ~ age_group, data = bostonWomen)
+newx = data.frame(age_group = "60-64")
+predict(women_40_44, newdata = newx, interval = "conf", level = 0.90) # dif = 330.71
+
+# 94.82 difference between men and women
+```
 # Conclusions so far 
-As age group increases, the spread of the confidence intervals increases consistently more for women than for men. Each time we increase by age group, the gap becomes larger and larger.
+For both men and women, as we go up by age group, the spread of the 90% confidence interval increases consistently.
+
+As age group increases, the spread of the confidence intervals also increases consistently more for women than for men. Each time we increase by age group, the gap becomes larger and larger.
+
+This means that the runner times are separated by more seconds for women than for men at all ages which is somewhat interesting
