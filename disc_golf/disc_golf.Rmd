@@ -3,62 +3,50 @@ title: "Disc Golf League"
 output: html_document
 date: "2023-06-16"
 ---
-
+# Website "StatMando" has wide variety of disc golf data 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 library(rvest)
 ```
-# Tournament: DGPT Elite+ 2023 Portland Open presented by Latitude 64
+
+# Scoring data from 2023 MPO Standard Elite Series & Majors for all players
 ```{r}
-url <- "https://www.pdga.com/tour/event/69022"
+url <- "https://statmando.com/stats/tour-holes-2023-mpo"
 objs <- read_html(url)%>%
 html_nodes("table")%>%
 html_table()
 
-mens<- objs[[2]]
-womens<- objs[[3]]
+#write_csv(x =  objs[[1]], file = "disc_golf_holes.csv")
+#disc <- read_csv("disc_golf_holes.csv", skip = 2)
+#write_csv(x =  disc, file = "disc_golf_holes.csv")
 
-portland_open <- 
+
+disc <- read_csv("disc_golf_holes.csv")
+disc<-disc%>%
+  na.omit()
 ```
+uP = under Par (birdies or better).
+oP = over Par (bogeys or worse). 
+CiRDS = Circle in Regulation Distance per Shot. (distance required per shot to hit circle in regulation)
 
-# 2019 MPO World Rankings - Year End
+Topics to explore: 
+MLR 
+Nested F-tests 
+Expected counts for over-par, par, and under-par out of times played. Should be 1/3*times_played
+# possibly make an indicator variable for Length if it exceed a certain amount. longIND
+
 ```{r}
-url <- "https://www.pdga.com/players/rankings/world?year=2019&division=MPO"
-objs <- read_html(url)%>%
-html_nodes("table")%>%
-html_table()
-
-mens_world_rankings <- objs[[1]]
-
-row_numbers <- 1:nrow(mens_world_rankings)
-
-
-even_rows <- row_numbers %% 2 == 0
-
-mens_world_rankings <- mens_world_rankings[!even_rows, ]
-
-mens_world_rankings<-mens_world_rankings%>%
-  select(-14)%>%
-  as.data.frame()
-
-write_csv(x = mens_world_rankings, file = "mens_rankings.csv")
-
-mens_rankings <- read_csv("mens_rankings.csv", na = c("", "NA", "."))
-
+cor(disc[, 3:15])
 
 ```
 
-WRPR = World Rankings Player Rating
-WRPR is the average of round ratings from B-tier and higher events in the 12 months prior to the World Ranking update.
-RR = Ranking based on WRPR
-Worlds = Ranking based on 2019 Pro Worlds
-USDGC/USWDGC = Ranking based on 2019 USDGC / 2019 USWDGC
-Euro = Ranking basked on 2019 European Open
-NET = Average of a player's best finishes in National Tour and EuroTour events during the past 12 months
-Best four finishes for MPO, best three finishes for FPO
-DGPT = Disc Golf Pro Tour - Average of 4 best finishes during past 12 months
-
 ```{r}
-rank_mod <- lm(Rank ~ NET)
+cor(disc$Length, disc$Avg)
+
+mod1 <- lm(Avg ~ Length, data = disc)
+summary(mod1)
+
+mod2 <- lm(Avg ~ Length, data = disc)
+summary(mod2)
 ```
 
