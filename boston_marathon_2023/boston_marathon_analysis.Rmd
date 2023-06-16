@@ -13,6 +13,10 @@ library(tidyverse)
 bostonMen <- read_csv("data/boston_marathon_men_2023.csv")
 bostonWomen <- read_csv("data/boston_marathon_women_2023.csv")
 
+
+boston<- boston%>%
+  mutate(finish_net_minutes = finish_net_sec/60)
+
 bostonMen<- bostonMen%>%
   mutate(age_group = factor(age_group),
          across(c(8,9,10), ~ hms(.)),
@@ -22,6 +26,11 @@ bostonWomen<- bostonWomen%>%
   mutate(age_group = factor(age_group),
          across(c(8,9,10), ~ hms(.)),
          finish_net_minutes = finish_net_sec/60)
+
+#write_csv(x = boston, file = "data/boston_marathon_2023.csv")
+boston<- read_csv("data/boston_marathon_2023.csv")
+
+
 ```
 # 18-39
 ```{r}
@@ -100,4 +109,33 @@ For both men and women, as we go up by age group, the spread of the 90% confiden
 As age group increases, the spread of the confidence intervals also increases consistently more for women than for men. Each time we increase by age group, the gap becomes larger and larger.
 
 This means that the runner times are separated by more minutes for women than for men at all ages which is somewhat interesting
+
+
+# ANOVA
+# men: age groups 18-39, 40-44, 45-49
+```{r}
+men<- boston %>%
+  filter(factor(age_group) == c("18-39","40-44","45-49"),
+         gender == "M")
+
+modaov = aov(finish_net_minutes ~ age_group,data=men)
+summary(modaov)
+model.tables(modaov, type = "means")
+model.tables(modaov, type = "effects")
+
+TukeyHSD(modaov)
+```
+# women: age groups 18-39, 40-44, 45-49
+```{r}
+women<- boston %>%
+  filter(factor(age_group) == c("18-39","40-44","45-49"),
+         gender == "W")
+
+modaov = aov(finish_net_minutes ~ age_group,data=women)
+summary(modaov)
+model.tables(modaov, type = "means")
+model.tables(modaov, type = "effects")
+
+TukeyHSD(modaov)
+```
 

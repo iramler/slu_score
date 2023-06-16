@@ -38,7 +38,8 @@ even_rows <- row_numbers %% 2 == 0
 mens_world_rankings <- mens_world_rankings[!even_rows, ]
 
 mens_world_rankings<-mens_world_rankings%>%
-  select(-14)
+  select(-14)%>%
+  as.data.frame()
 
 write_csv(x = mens_world_rankings, file = "mens_rankings.csv")
 
