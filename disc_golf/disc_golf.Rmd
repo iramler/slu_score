@@ -30,8 +30,19 @@ html_table()
 
 mens_world_rankings <- objs[[1]]
 
-toDelete <- seq(0, length(mens_world_rankings), 2)
-mens_world_rankings <- mens_world_rankings[-toDelete ,]
+row_numbers <- 1:nrow(mens_world_rankings)
+
+
+even_rows <- row_numbers %% 2 == 0
+
+mens_world_rankings <- mens_world_rankings[!even_rows, ]
+
+mens_world_rankings<-mens_world_rankings%>%
+  select(-14)
+
+write_csv(x = mens_world_rankings, file = "mens_rankings.csv")
+
+mens_rankings <- read_csv("mens_rankings.csv", na = c("", "NA", "."))
 
 
 ```
