@@ -1,0 +1,52 @@
+---
+title: "Disc Golf League"
+output: html_document
+date: "2023-06-16"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(rvest)
+```
+# Tournament: DGPT Elite+ 2023 Portland Open presented by Latitude 64
+```{r}
+url <- "https://www.pdga.com/tour/event/69022"
+objs <- read_html(url)%>%
+html_nodes("table")%>%
+html_table()
+
+mens<- objs[[2]]
+womens<- objs[[3]]
+
+portland_open <- 
+```
+
+# 2019 MPO World Rankings - Year End
+```{r}
+url <- "https://www.pdga.com/players/rankings/world?year=2019&division=MPO"
+objs <- read_html(url)%>%
+html_nodes("table")%>%
+html_table()
+
+mens_world_rankings <- objs[[1]]
+
+toDelete <- seq(0, length(mens_world_rankings), 2)
+mens_world_rankings <- mens_world_rankings[-toDelete ,]
+
+
+```
+
+WRPR = World Rankings Player Rating
+WRPR is the average of round ratings from B-tier and higher events in the 12 months prior to the World Ranking update.
+RR = Ranking based on WRPR
+Worlds = Ranking based on 2019 Pro Worlds
+USDGC/USWDGC = Ranking based on 2019 USDGC / 2019 USWDGC
+Euro = Ranking basked on 2019 European Open
+NET = Average of a player's best finishes in National Tour and EuroTour events during the past 12 months
+Best four finishes for MPO, best three finishes for FPO
+DGPT = Disc Golf Pro Tour - Average of 4 best finishes during past 12 months
+
+```{r}
+rank_mod <- lm(Rank ~ NET)
+```
+
