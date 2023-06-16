@@ -16,7 +16,6 @@ This data was scraped from the Boston Athletic Association website that has all 
 The `boston_marathon_men_2023.csv` data set contains 15175 observations.
 The `boston_marathon_women_2023.csv` data set contains 11423 observations. 
 
-
 | Variable | Description |
 |----|-------------|
 | age_group | age group of the runner |
@@ -38,3 +37,6 @@ The `boston_marathon_women_2023.csv` data set contains 11423 observations.
 # References 
 
 https://results.baa.org/2023/?pid=start&pidp=start
+
+
+

@@ -96,3 +96,5 @@ For both men and women, as we go up by age group, the spread of the 90% confiden
 As age group increases, the spread of the confidence intervals also increases consistently more for women than for men. Each time we increase by age group, the gap becomes larger and larger.
 
 This means that the runner times are separated by more seconds for women than for men at all ages which is somewhat interesting
+
+data 
