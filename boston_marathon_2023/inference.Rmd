@@ -1,7 +1,7 @@
 ---
-title: "Estimation_and_Prediction"
+title: "Inference"
 output: html_document
-date: "2023-06-15"
+date: "2023-06-16"
 ---
 
 ```{r setup, include=FALSE}
@@ -12,13 +12,16 @@ library(lmtest)
 ```
 
 ```{r}
-nascar<- read_csv("bignessalyssa_LATE_1937_225990_nascar_df-1.csv")
+boston <- read_csv("data/boston_marathon_2023.csv")
+boston<-boston%>%
+  mutate(across(c(8,9,10), ~ hms(.)))
+  
 
 ```
 # Confidence Intervals and Prediction Intervals 
 # issues with inference due to non-constant variance 
 ```{r}
-rating_mod <- lm(DriverRating ~ PercentQualityPasses, data = nascar)
+time_mod <- lm(finish_net ~ half_time, data = boston)
 anova(rating_mod)
 # compute R-squared value by hand 
 # SSM/SST = 549242/640259 = 0.8578435 = R-squared
@@ -58,6 +61,3 @@ newx = data.frame(PercentQualityPasses = 42.0)
 predict(rating_mod, newdata = newx, interval = "pred", level = 0.90)
 # The model predicts that 95% of drivers with a 42% quality pass percentage will result in a driver rating between 62.03 and 89.69.
 ```
-
-
-
