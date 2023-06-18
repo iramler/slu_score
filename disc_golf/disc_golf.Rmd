@@ -126,6 +126,13 @@ to make it on the second shot?
 
 
 
+```{r}
+disc%>%
+  summarise(times_played = sum(`Times Played`),
+            under_par = sum(`# uPar`),
+            par = sum(`# Pars`),
+            over_par = sum(`# oPar`))
+```
 
 
 
