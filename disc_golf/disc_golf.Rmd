@@ -1,38 +1,29 @@
 ---
-title: "Disc Golf League"
+title: "Disc Golf"
 output: html_document
-date: "2023-06-16"
+date: "2023-06-20"
 ---
-# Website "StatMando" has wide variety of disc golf data 
+
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
-library(rvest)
+library(tidyverse)
 ```
 
-# Scoring data from 2023 MPO Standard Elite Series & Majors for all players
 ```{r}
-url <- "https://statmando.com/stats/tour-holes-2023-mpo"
-objs <- read_html(url)%>%
-html_nodes("table")%>%
-html_table()
+disc<- read_csv("disc_golf_holes.csv")
 
-#write_csv(x =  objs[[1]], file = "disc_golf_holes.csv")
-#disc <- read_csv("disc_golf_holes.csv", skip = 2)
-#write_csv(x =  disc, file = "disc_golf_holes.csv")
-
-
-disc <- read_csv("disc_golf_holes.csv")
-disc<-disc%>%
+disc<-disc|>
   na.omit()
 ```
-uP = under Par (birdies or better).
-oP = over Par (bogeys or worse). 
-CiRDS = Circle in Regulation Distance per Shot. (distance required per shot to hit circle in regulation)
+
 
 Topics to explore: 
 MLR 
 Nested F-tests 
-Expected counts for over-par, par, and under-par out of times played. Should be 1/3*times_played
+
+
+
+
 # possibly make an indicator variable for Length if it exceed a certain amount. longIND
 
 ```{r}
@@ -43,97 +34,56 @@ cor(disc[, 3:15])
 ```{r}
 cor(disc$Length, disc$Avg)
 
-mod1 <- lm(Avg ~ Length, data = disc)
-summary(mod1)
-
-mod2 <- lm(Avg ~ Length, data = disc)
-summary(mod2)
 ```
-# Hypothesis Testing: One categorical variable 
-```{r}
-disc[1,]
-```
-# Prepare
-Hole #16 at the OTB Open
-- score can be under-par/par/over-par (3 level categorical variable)
-
-If these scores were decided by random chance, approximately how often would there be a par (or under/over)?
-- with random chance each would occur roughly 1/3 of the time 
-(sampling variability makes it non-exact to 1/3)
-
-Ho: hole scores decided by random chance (null value = 1/3)
-Ha: results are not determined by random chance 
-
-
-Ho: P-under = 1/3
-    P-par   = 1/3
-    P-over  = 1/3
-
-# Check for independence 
-All scores from different players 
-
-# Calculate 
-If the null hypothesis were true, what would we expect our counts to be?
-Determine expected counts for dstribution.
-
-- E-under = 329*1/3 = 109.67
-- E-par = 329*1/3 = 109.67
-- E-over = 329*1/3 = 109.67
-
-
-# Sample size condition 
-All expected counts should be larger than 5.
-- Clearly satisfied because 109.67 > 5
-
-
-# Find X^2 value and p-value 
-
-X^2 = (30 - 109.67)^2/109.67 + (155 - 109.67)^2/109.67 + (144 - 109.67)^2/109.67
-
-X^2 = 57.88 + 18.74 + 10.75 = 87.37
-
-Degrees of freedom = (# of levels in variable) - 1
-df = 2
-
-https://www.lock5stat.com/StatKey/theoretical_distribution/theoretical_distribution.html#chi
-
-p-value = 0.000
 
 ```{r}
-pchisq(q=87.37, df=2, lower.tail=FALSE)
+ggplot(data = disc,
+       aes(x = factor(Event), y = Avg, color = Event))+
+  geom_point()
 ```
+# using average to par to predict Avg score for a hole
 
+```{r}
+avg_mod <- lm(Avg ~ `Avg to Par`, data = disc)
+summary(avg_mod)
 
-# Conclude 
-
-- We estimate the proportion of people who have scores under-par, of par,
- and over-par to be 30/329, 155/329, and 144/329 respectively. 
- There is very strong evidence that at least one of the proportions is different than 
- 1/3 (X^2 = 87.37, p-value = .0000)
-
-Which level was the biggest contributor to the chi-square statistic?
-- Under-par
-
-Why do you think that is?
-
-- Because it is seemingly a difficult hole to score under par on. Although, 
-more people make par than over-par
-
-Perhaps it is a par 3 which makes it tricky 
-to make it on the second shot?
-
-
-
-
-
+```
+# Creating an indicator variable for holes with lengths below and above the mean length
 ```{r}
 disc%>%
-  summarise(times_played = sum(`Times Played`),
-            under_par = sum(`# uPar`),
-            par = sum(`# Pars`),
-            over_par = sum(`# oPar`))
+  summarise(mean_length = mean(Length))
+
+disc<-disc%>%
+  mutate(LengthIND = ifelse(Length > 527,1, 0))
 ```
 
+# Indicator variable model for intercept
+```{r}
+avg_mod2 <- lm(Avg ~ LengthIND + `Avg to Par`, data = disc)
+summary(avg_mod2)
 
+# model improves greatly
+```
+# Indicator variable model for intercept and slope
 
+```{r}
+avg_mod3 <- lm(Avg ~ LengthIND + `Avg to Par`*LengthIND, data = disc)
+summary(avg_mod3)
+
+# Doesn't seem to improve the model
+```
+# Nested F-test to determine which model is better
+```{r}
+anova(avg_mod2, avg_mod3)
+
+# avg_mod2 is clearly better 
+```
+# Model with Length as a predictor for Avg score
+
+```{r}
+avg_mod4 <- lm(Avg ~ Length, data = disc)
+summary(avg_mod4)
+
+# best model
+```
 
