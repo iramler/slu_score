@@ -8,7 +8,6 @@ date: "2023-06-20"
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-
 Shows player data from Standard Elite Series and Majors in the Statmando database that include an MPO Division, with players who finished Top-10 once and had at least 5 starts in that calendar year.
 
 ```{r}
@@ -21,10 +20,14 @@ html_table()
 
 #write_csv(x =  objs[[1]], file = "majors_and_elites.csv")
 #disc <- read_csv("majors_and_elites.csv", skip = 2)
-
-write_csv(x =  disc, file = "majors_and_elites.csv")
+#write_csv(x =  disc, file = "majors_and_elites.csv")
 
 disc <- read_csv("majors_and_elites.csv")
+```
 
 
+```{r}
+cor(disc[, 2:17])
+```
 
+# try multicollinearity with top 10s and 20s
