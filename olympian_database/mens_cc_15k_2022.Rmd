@@ -1,0 +1,111 @@
+---
+title: "Mens 15k 2022"
+output: html_document
+date: "2023-06-20"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+If using just the one sport/file, things like
+
+
+c. Analyzing the time differentials in the rankings.
+
+You can also use more than one event and do some comparative analyses.
+
+e.g., Compare Women's Giant Salom to the other events (Downhill, Super-G, Salom, and Giant Salom) using ANOVA or picking just two and using t-test.
+
+** NOTE ON INFERENCE **
+Since inference with data like this is sometimes a bit tricky, be sure to always include questions that have students think through what assumptions they are making about the data (in particular the "random sample" idea) and have them answer things related to the limitations of the analysis.
+
+```{r}
+cross_country <- read_csv("data/mens_15k_beijing_2022.csv")
+```
+
+# scatterplot of rank vs result times in minutes
+```{r}
+ggplot(data = cross_country, 
+       aes(x = Rank, y = Time_min))+
+  geom_point()
+```
+# summary statistics of result times in minutes
+```{r}
+summary(cross_country$Time_min)
+```
+# outlier visualizations
+```{r}
+plot(cross_country$Time_min)
+hist(cross_country$Time_min)
+boxplot(cross_country$Time_min)
+
+```
+# calculating thresholds with mean and std
+```{r}
+mean = mean(cross_country$Time_min)
+std = sd(cross_country$Time_min)
+
+# get threshold values for outliers
+Tmin = mean-(3*std)
+Tmax = mean+(3*std)
+
+# find outlier
+cross_country$Time_min[which(cross_country$Time_min < Tmin | cross_country$Time_min > Tmax)]
+
+# [1] 55.69833 --- corresponds to last place finisher Carlos Andrés Quintana
+```
+
+# calculating mild outlier thresholds with IQR and quartiles
+```{r}
+iqr = IQR(cross_country$Time_min)
+
+
+# get threshold values for mild outliers
+Tmin = 40.66-(1.5*iqr) 
+Tmax = 44.35+(1.5*iqr) 
+
+# find mild outliers
+cross_country$Time_min[which(cross_country$Time_min < Tmin | cross_country$Time_min > Tmax)]
+
+# several: 50.585, 50.610, 51.775, 52.748, 53.500, 55.698
+```
+# calculating extreme outlier thresholds with IQR and quartiles
+```{r}
+iqr = IQR(cross_country$Time_min)
+
+
+# get threshold values for mild outliers
+Tmin = 40.66-(3*iqr) 
+Tmax = 44.35+(3*iqr) 
+
+# find mild outliers
+cross_country$Time_min[which(cross_country$Time_min < Tmin | cross_country$Time_min > Tmax)]
+
+# [1] 55.69833 --- same runner identified again
+```
+# Grubb's Test
+```{r}
+grubbs.test(cross_country$Time_min)
+```
+# calculating z-score of Carlos Andrés Quintana
+```{r}
+# scale(cross_country$Time_min)
+
+z_quintana = (55.69833-43.01) / 3.553
+# 3.571
+# Quite high when put in context.
+# In contrast, the fastest runner who won gold had a z-score of -1.434
+```
+
+
+# Simple linear regression of Time vs. Rank
+```{r}
+rank_mod <- lm(Time_min ~ Rank, data = cross_country)
+summary(rank_mod)
+```
+# Inference of model
+On average, a 1 place increase in rank is associated with a 0.12 minute increase in result time for Men's Olympic 15k cross country runners.
+
+It is important to note that this is not a random sample but instead is taken directly from the 2022 summer Olympics in Beijing. This means it cannot be assumed that this model will be an accurate predictor for all Men's Olympic 15k cross country races, and likely is not due to the fact that runners tend to get faster over time throughout history. 
+
+
