@@ -1,0 +1,30 @@
+---
+title: "Majors and Elites"
+output: html_document
+date: "2023-06-20"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+Shows player data from Standard Elite Series and Majors in the Statmando database that include an MPO Division, with players who finished Top-10 once and had at least 5 starts in that calendar year.
+
+```{r}
+url <- "https://statmando.com/stats/elite-majors-yearly-stats-mpo"
+objs <- read_html(url)%>%
+html_nodes("table")%>%
+html_table()
+
+
+
+#write_csv(x =  objs[[1]], file = "majors_and_elites.csv")
+#disc <- read_csv("majors_and_elites.csv", skip = 2)
+
+write_csv(x =  disc, file = "majors_and_elites.csv")
+
+disc <- read_csv("majors_and_elites.csv")
+
+
+
