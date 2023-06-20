@@ -1,0 +1,38 @@
+---
+title: "Men's Cross Country Ski 2010-2022 Olympics"
+output: html_document
+date: "2023-06-20"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+library(ggiraphExtra)
+```
+
+```{r}
+last_four_cc <- read_csv("olympian_database/cross_country/data/mens_cc_ski_2010-22.csv")
+```
+
+```{r}
+ggplot(data = last_four_cc,
+       aes(x = factor(Year), y = Time_min, fill = factor(Year)))+
+  geom_boxplot()
+```
+
+```{r}
+year_mod = aov(Time_min ~ factor(Year), data = last_four_cc)
+summary(year_mod)
+
+year_mod$coefficients
+model.tables(year_mod, type = "means")
+model.tables(year_mod, type = "effects")
+```
+
+```{r}
+TukeyHSD(year_mod)
+
+ggHSD( TukeyHSD(year_mod) , no = 1)
+```
+# do two sample t tests for most significant
+# find other ways to compare

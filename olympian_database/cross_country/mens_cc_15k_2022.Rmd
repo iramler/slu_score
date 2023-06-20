@@ -7,17 +7,7 @@ date: "2023-06-20"
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
-If using just the one sport/file, things like
 
-
-c. Analyzing the time differentials in the rankings.
-
-You can also use more than one event and do some comparative analyses.
-
-e.g., Compare Women's Giant Salom to the other events (Downhill, Super-G, Salom, and Giant Salom) using ANOVA or picking just two and using t-test.
-
-** NOTE ON INFERENCE **
-Since inference with data like this is sometimes a bit tricky, be sure to always include questions that have students think through what assumptions they are making about the data (in particular the "random sample" idea) and have them answer things related to the limitations of the analysis.
 
 ```{r}
 cross_country <- read_csv("data/mens_15k_beijing_2022.csv")
@@ -104,8 +94,8 @@ rank_mod <- lm(Time_min ~ Rank, data = cross_country)
 summary(rank_mod)
 ```
 # Inference of model
-On average, a 1 place increase in rank is associated with a 0.12 minute increase in result time for Men's Olympic 15k cross country runners.
+On average, a 1 place increase in rank is associated with a 0.12 minute increase in result time for Men's Olympic 15k cross country skiers.
 
-It is important to note that this is not a random sample but instead is taken directly from the 2022 summer Olympics in Beijing. This means it cannot be assumed that this model will be an accurate predictor for all Men's Olympic 15k cross country races, and likely is not due to the fact that runners tend to get faster over time throughout history. 
+It is important to note that this is not a random sample but instead is taken directly from the 2022 summer Olympics in Beijing. This means it cannot be assumed that this model will be an accurate predictor for all Men's Olympic 15k cross country ski races, and likely is not, due to the fact that skiers tend to get faster over time throughout history. 
 
 
