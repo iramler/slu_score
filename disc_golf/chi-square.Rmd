@@ -154,6 +154,7 @@ Ho: no association between event and score on holes
 Ha: association
 
 expected counts:
+#
 
 
 
