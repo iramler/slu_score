@@ -1,0 +1,34 @@
+---
+title: "powerlifting_regression"
+output: html_document
+date: "2023-06-21"
+---
+
+```{r}
+library(readr)
+library(stats)
+library(dplyr)
+
+opl <- read_csv("powerlifting/data/powerliftingregression.csv")
+```
+
+```{r}
+opl_regression <- opl |> mutate(Sex = if_else(Sex == "M",
+                                              true = 1,
+                                              false = 0))
+```
+
+## multiple regression
+```{r}
+opl_reg <- lm(Sex ~ Age + BodyweightKg + BenchKg + 
+                SquatKg + DeadliftKg, data = opl_regression)
+
+summary(opl_reg)
+```
+
+
+
+
+
+
+

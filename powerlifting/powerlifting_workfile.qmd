@@ -34,7 +34,7 @@ a. Keep only SBD: Squat-Bench-Deadlift, also commonly called "Full Power" events
 
 b. Keep only "Raw" equipment
 
-c. Drop the following columns: Event, Equipment, BirthYearClaa, Squat1Kg, Squat2Kg, Squat3Kg, Squat4Kg, Bench1Kg,  Bench2Kg, Bench3Kg, Bench4Kg, Deadlift1Kg, Deadlift2Kg, Deadlift3Kg, Deadlift4Kg, Tested, State, Country, Federation, ParentFederation, MeetState, MeetState, MeetTown, MeetName
+c. Drop the following columns: Event, Equipment, BirthYearClass, Squat1Kg, Squat2Kg, Squat3Kg, Squat4Kg, Bench1Kg,  Bench2Kg, Bench3Kg, Bench4Kg, Deadlift1Kg, Deadlift2Kg, Deadlift3Kg, Deadlift4Kg, Tested, State, Country, Federation, ParentFederation, MeetState, MeetState, MeetTown, MeetName
 
 d. Rename Best3BenchKg, Best3SquatKg, and Best3DeadliftKg so that the Best3 part is not in the name
 
