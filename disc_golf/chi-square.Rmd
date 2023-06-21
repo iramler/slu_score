@@ -39,22 +39,29 @@ Expected counts for over-par, par, and under-par out of times played. Should be 
 disc[1,]
 ```
 # Prepare
+# should null proportions be same as cumulative proportions for the data?
+# or decided by general thought process .25, .5, .25
+```{r}
+disc%>%
+  summarise(prop_uPar = sum(`# uPar`)/sum(`Times Played`),
+            prop_Par = sum(`# Pars`)/sum(`Times Played`),
+            prop_oPar = sum(`# oPar`)/sum(`Times Played`))
+```
+
 Hole #16 at the OTB Open
 - Seeing if there is an equal amount of scores under-par, over-par, and of par
 
 - score can be under-par/par/over-par (3 level categorical variable)
 
 If these scores were decided by random chance, approximately how often would there be a par (or under/over)?
-- with random chance each would occur roughly 1/3 of the time 
-(sampling variability makes it non-exact to 1/3)
-
+- 
 Ho: hole scores decided by random chance (null value = 1/3)
 Ha: results are not determined by random chance 
 
 
-Ho: P-under = 1/3
-    P-par   = 1/3
-    P-over  = 1/3
+Ho: P-under = .25
+    P-par   = .5
+    P-over  = .25
 
 # Check for independence 
 All scores from different players 
@@ -63,21 +70,21 @@ All scores from different players
 If the null hypothesis were true, what would we expect our counts to be?
 Determine expected counts for distribution.
 
-- E-under = 329*1/3 = 109.67
-- E-par = 329*1/3 = 109.67
-- E-over = 329*1/3 = 109.67
+- E-under = 329*.25 = 82.25
+- E-par = 329*.5 = 164.5
+- E-over = 329*.25 = 82.25 
 
 
 # Sample size condition 
 All expected counts should be larger than 5.
-- Clearly satisfied because 109.67 > 5
+- Clearly satisfied 
 
 
 # Find X^2 value and p-value 
 
-X^2 = (30 - 109.67)^2/109.67 + (155 - 109.67)^2/109.67 + (144 - 109.67)^2/109.67
+X^2 = (30 - 82.25)^2/82.25 + (155 - 164.5)^2/164.5 + (144 - 82.25)^2/82.25
 
-X^2 = 57.88 + 18.74 + 10.75 = 87.37
+X^2 = 33.19 + .54 + 46.36 = 80.09
 
 Degrees of freedom = (# of levels in variable) - 1
 df = 2
@@ -87,7 +94,7 @@ https://www.lock5stat.com/StatKey/theoretical_distribution/theoretical_distribut
 p-value = 0.000
 
 ```{r}
-pchisq(q=87.37, df=2, lower.tail=FALSE)
+pchisq(q=80.09, df=2, lower.tail=FALSE)
 ```
 
 
@@ -95,19 +102,16 @@ pchisq(q=87.37, df=2, lower.tail=FALSE)
 
 - We estimate the proportion of people who have scores under-par, of par,
  and over-par to be 30/329, 155/329, and 144/329 respectively. 
- There is very strong evidence that at least one of the proportions is different than 
- 1/3 (X^2 = 87.37, p-value = .0000)
+ There is very strong evidence that at least one of the proportions is different than the average, (X^2 = 87.37, p-value = .0000).
 
 Which level was the biggest contributor to the chi-square statistic?
-- Under-par
+- over-par
 
 Why do you think that is?
 
-- Because it is seemingly a difficult hole to score under par on. Although, 
-more people make par than over-par
+- Because it is seemingly a difficult hole to score under-par on. It is also more difficult than average to make a par.
 
-Perhaps it is a par 3 which makes it tricky 
-to make it on the second shot?
+## It is evident that scores of par are common but following the assumed proportions, the hole is more challenging than average. It causes players to be over par more frequently, and does not allow for normal frequencies of under par scores.
 
 
 
@@ -121,13 +125,13 @@ disc%>%
             over_par = sum(`# oPar`))
 ```
 
-Ho: hole scores decided by random chance (null value = 1/3)
-Ha: results are not determined by random chance 
+Ho: hole scores decided by random chance 
+Ha: results are not determined by random chance (hole is difficult/easy)
 
 
-Ho: P-under = 1/3
-    P-par   = 1/3
-    P-over  = 1/3
+Ho: P-under = .25
+    P-par   = .5
+    P-over  = .25
 
 # Check for independence 
 All scores from different players 
@@ -136,21 +140,21 @@ All scores from different players
 If the null hypothesis were true, what would we expect our counts to be?
 Determine expected counts for distribution.
 
-- E-under = 45410*1/3 = 15136.67
-- E-par = 45410*1/3 = 15136.67
-- E-over = 45410*1/3 = 15136.67
+- E-under = 45410*.25 = 
+- E-par = 45410*.5 = 
+- E-over = 45410*.25 = 
 
 
 # Sample size condition 
 All expected counts should be larger than 5.
-- Clearly satisfied because 15136.67 > 5
+- Clearly satisfied 
 
 
 # Find X^2 value and p-value 
 
-X^2 = (15240 - 15136.67)^2/15136.67 + (22641 - 15136.67)^2/15136.67 + (7529 - 15136.67)^2/15136.67
+X^2 = 
 
-X^2 = .705 + 3720.433 + 3823.605 = 7544.743
+X^2 = 
 
 Degrees of freedom = (# of levels in variable) - 1
 df = 2
@@ -159,35 +163,13 @@ https://www.lock5stat.com/StatKey/theoretical_distribution/theoretical_distribut
 
 p-value = 0.000
 
-## Clearly there is not an equal distribution of scores under-par, of par, and over-par for all players on all holes played in 2023
 
-## It is evident that scores of par are most common and that birdies are to be expected on average for more than bogeys
 
-# Single proportion of pars for a course to determine the amount for the season
-```{r}
-disc_golf_holes <- read_csv("disc_golf_holes.csv")
-disc<- disc_golf_holes%>%
-  na.omit()
-```
 
-```{r}
-disc%>%
-  filter(Event == "Las Vegas Challenge")%>%
-  summarise(pars = sum(`# Pars`),
-            times_played = sum(`Times Played`))
-```
-# Sample Prop 
-prop. of pars per times played = 3583/7254	= 0.49
 
-# Check 
-```{r}
-LVC<- disc%>%
-  filter(Event == "Las Vegas Challenge")
 
-#.49 +- 1.96 sqrt((.49(1-.49)))/7254
 
-#.49 + .01 
-#.49 - .01 
-# We are 95% confident that the true proportion of pars on holes that MPO players compete on is between .48 and .50
-```
+
+
+
 
