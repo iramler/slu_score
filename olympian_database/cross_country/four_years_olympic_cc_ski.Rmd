@@ -91,7 +91,6 @@ last_four_cc%>%
 
 # Change is not too significant 
 ```
-# possibly find way to inccorporate indicator variable
 # Though elements of the courses vary year to year due to factors like elevation change, elevation of the city, conditions of the snow, etc., time is still a decent predictor for rank
 ```{r}
 cor(last_four_cc$Time_min, last_four_cc$Rank)
@@ -99,12 +98,19 @@ cor(last_four_cc$Time_min, last_four_cc$Rank)
 mod1 <- lm(Rank ~ Time_min, data = last_four_cc)
 summary(mod1)
 ```
-
 # Adding the indicator variable of scandinavian
+# not highly effective but improves model
 ```{r}
 mod2 <- lm(Rank ~ scandinavian + Time_min, data = last_four_cc)
 summary(mod2)
 ```
+
+# 2022 course - 1,650 meters above sea level
+# (last comparable course to 2022 was in 2002 in salt lake city)
+
+# 2018 course - 773 meters above sea level
+
+
 
 
 
