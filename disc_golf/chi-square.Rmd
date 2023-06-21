@@ -11,6 +11,8 @@ library(readr)
 ```
 
 # Scoring data by hole from 2023 MPO Standard Elite Series & Majors for all players
+
+Before the Pro Tour, there were limited opportunities for our sport’s top athletes to compete in dedicated events. These players have the greatest potential to pursue a career in professional touring, and as such, our premier events should prioritize them and provide them with greater visibility. The Pro Tour exclusively features two Open divisions: Men’s (MPO) and Women’s (FPO). This ensures that all of the added cash at the event goes directly to these players, providing them with an opportunity to tour full-time. Moreover, the Pro Tour collaborates with players to facilitate local and on-site clinics, generate media exposure, and supply comprehensive season-long statistics through our partnership with UDisc.
 ```{r}
 url <- "https://statmando.com/stats/tour-holes-2023-mpo"
 objs <- read_html(url)%>%

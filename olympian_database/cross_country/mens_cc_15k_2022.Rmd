@@ -96,6 +96,16 @@ summary(rank_mod)
 # Inference of model
 On average, a 1 place increase in rank is associated with a 0.12 minute increase in result time for Men's Olympic 15k cross country skiers.
 
-It is important to note that this is not a random sample but instead is taken directly from the 2022 summer Olympics in Beijing. This means it cannot be assumed that this model will be an accurate predictor for all Men's Olympic 15k cross country ski races, and likely is not, due to the fact that skiers tend to get faster over time throughout history. 
+It is important to note that this is not a random sample but instead is taken directly from the 2022 summer Olympics in Beijing. This means it cannot be assumed that this model will be an accurate predictor for all Men's Olympic 15k cross country ski races, and likely is not, due to the fact that skiers tend to get faster over time throughout history. Conditions of the course also play a singificant role. eg. snow quality, elevation change, altitude etc.
 
+# Z-scores by year 
+```{r}
+mens_cc_ski_2010_22 <- read_csv("data/mens_cc_ski_2010-22.csv")
+
+olympic_2022 <- mens_cc_ski_2010_22%>%
+  filter(Year == "2022")
+
+scale(olympic_2022$Time_min)
+
+```
 
