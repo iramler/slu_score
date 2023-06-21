@@ -30,4 +30,13 @@ disc <- read_csv("majors_and_elites.csv")
 cor(disc[, 2:17])
 ```
 
-# try multicollinearity with top 10s and 20s
+
+
+```{r}
+place_mod <- lm(Wins ~ `Win %`, data = disc)
+summary(place_mod)
+
+place_mod1 <- lm(Wins ~ `Win %` + `$ as Winner`, data = disc)
+summary(place_mod1)
+```
+

@@ -10,7 +10,7 @@ library(rvest)
 library(readr)
 ```
 
-# Scoring data from 2023 MPO Standard Elite Series & Majors for all players
+# Scoring data by hole from 2023 MPO Standard Elite Series & Majors for all players
 ```{r}
 url <- "https://statmando.com/stats/tour-holes-2023-mpo"
 objs <- read_html(url)%>%
@@ -157,8 +157,35 @@ https://www.lock5stat.com/StatKey/theoretical_distribution/theoretical_distribut
 
 p-value = 0.000
 
-# Clearly there is not an equal distribution of scores under-par, of par, and over-par for all players on all holes played in 2023
+## Clearly there is not an equal distribution of scores under-par, of par, and over-par for all players on all holes played in 2023
 
-# It is evident that scores of par are most common and that birdies are to be expected on average for more than bogeys
+## It is evident that scores of par are most common and that birdies are to be expected on average for more than bogeys
 
+# Single proportion of pars for a course to determine the amount for the season
+```{r}
+disc_golf_holes <- read_csv("disc_golf_holes.csv")
+disc<- disc_golf_holes%>%
+  na.omit()
+```
+
+```{r}
+disc%>%
+  filter(Event == "Las Vegas Challenge")%>%
+  summarise(pars = sum(`# Pars`),
+            times_played = sum(`Times Played`))
+```
+# Sample Prop 
+prop. of pars per times played = 3583/7254	= 0.49
+
+# Check 
+```{r}
+LVC<- disc%>%
+  filter(Event == "Las Vegas Challenge")
+
+#.49 +- 1.96 sqrt((.49(1-.49)))/7254
+
+#.49 + .01 
+#.49 - .01 
+# We are 95% confident that the true proportion of pars on holes that MPO players compete on is between .48 and .50
+```
 
