@@ -35,6 +35,11 @@ CiRDS = Circle in Regulation Distance per Shot. (distance required per shot to h
 Expected counts for over-par, par, and under-par out of times played. Should be 1/3*times_played
 
 # Hypothesis Testing: One categorical variable 
+
+
+
+# Chi-square goodness of fit
+
 ```{r}
 disc[1,]
 ```
@@ -114,54 +119,43 @@ Why do you think that is?
 ## It is evident that scores of par are common but following the assumed proportions, the hole is more challenging than average. It causes players to be over par more frequently, and does not allow for normal frequencies of under par scores.
 
 
+# This can be done with lots of different holes so they can be compared 
 
+------------------------------
+# Now 
 
-# Seeing if there is an equal distribution of scores under, over, and of par for all holes combined for the 2023 season
+# Chi-square test of association
+Could be done by comparing:
+-pars 3,4,5
+-Events 
+-by year for same event
+-etc.
 ```{r}
 disc%>%
-  summarise(times_played = sum(`Times Played`),
-            under_par = sum(`# uPar`),
-            par = sum(`# Pars`),
-            over_par = sum(`# oPar`))
+  filter(Event == "OTB Open")%>%
+  summarise(uPar = sum(`# uPar`),
+            Par = sum(`# Pars` ),
+            oPar = sum(`# oPar`),
+            Times_played = sum(`Times Played`))
+
+disc%>%
+  filter(Event == "Las Vegas Challenge")%>%
+  summarise(uPar = sum(`# uPar`),
+            Par = sum(`# Pars` ),
+            oPar = sum(`# oPar`),
+            Times_played = sum(`Times Played`))
 ```
 
-Ho: hole scores decided by random chance 
-Ha: results are not determined by random chance (hole is difficult/easy)
+# Variables of interest 
+Event/Course(one year so same course) - 2 levels
+Score on the holes - 3 levels
+
+Ho: no association between event and score on holes 
+Ha: association
+
+expected counts:
 
 
-Ho: P-under = .25
-    P-par   = .5
-    P-over  = .25
-
-# Check for independence 
-All scores from different players 
-
-# Calculate 
-If the null hypothesis were true, what would we expect our counts to be?
-Determine expected counts for distribution.
-
-- E-under = 45410*.25 = 
-- E-par = 45410*.5 = 
-- E-over = 45410*.25 = 
-
-
-# Sample size condition 
-All expected counts should be larger than 5.
-- Clearly satisfied 
-
-
-# Find X^2 value and p-value 
-
-X^2 = 
-
-X^2 = 
-
-Degrees of freedom = (# of levels in variable) - 1
-df = 2
-
-https://www.lock5stat.com/StatKey/theoretical_distribution/theoretical_distribution.html#chi
-
-p-value = 0.000
 
 
 

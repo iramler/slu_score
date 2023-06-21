@@ -1,0 +1,24 @@
+---
+title: "2022 Hole by Hole"
+output: html_document
+date: "2023-06-21"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+url <- "https://statmando.com/stats/tour-holes-2022-mpo"
+objs <- read_html(url)%>%
+html_nodes("table")%>%
+html_table()
+
+
+write_csv(x =  objs[[1]], file = "disc_golf_holes22.csv")
+disc <- read_csv("disc_golf_holes.csv", skip = 1)
+write_csv(x =  disc, file = "disc_golf_holes22.csv")
+```
+
+# do same thing as done for 2023 but with full season of data for 2022
+# after format is established 
