@@ -32,13 +32,10 @@ uP = under Par (birdies or better).
 oP = over Par (bogeys or worse). 
 CiRDS = Circle in Regulation Distance per Shot. (distance required per shot to hit circle in regulation)
 
-Expected counts for over-par, par, and under-par out of times played. Should be 1/3*times_played
+
 
 # Hypothesis Testing: One categorical variable 
-
-
-
-# Chi-square goodness of fit
+# Chi-square goodness of fit on single hole 
 
 ```{r}
 disc[1,]
@@ -54,14 +51,14 @@ disc%>%
 ```
 
 Hole #16 at the OTB Open
-- Seeing if there is an equal amount of scores under-par, over-par, and of par
+- Seeing if there is an equal distribution of scores under-par, over-par, and of par. .25 below and above with .5 being par.
 
 - score can be under-par/par/over-par (3 level categorical variable)
 
 If these scores were decided by random chance, approximately how often would there be a par (or under/over)?
 - 
-Ho: hole scores decided by random chance (null value = 1/3)
-Ha: results are not determined by random chance 
+Ho: hole scores decided by random chance and hole follows assumed proportions
+Ha: results are not determined by random chance (more/less difficult) 
 
 
 Ho: P-under = .25
