@@ -1,26 +1,14 @@
 ---
 title: Triathlon Ironman Correlation
-author: Michael Schuckers and Matthew Abel
+author: Michael Schuckers, Matthew Abel, and A.J. Dykstra
 date: May 17, 2023
 description: The data set looks at female participatants in the triathlon Ironman.
-categories:
-  - Histograms
-  - Scatter Plots
-  - Correlation
 ---
-
-## Motivation
-
-The motivation for this data analysis is to explore the relationships between 
-swim times, bike times, and run times (in minutes) in order to gain insights 
-into the performance patterns of the athletes. By analyzing these relationships, 
-we can understand the interplay between different segments of the race and 
-potentially identify areas of improvement for athletes.
 
 ## Data
 
-The data set has 1105 rows with 17 columns. Each row represents a female who has 
-participated in the Ironman between the years 2018-2019.
+The data set has 64 rows with 17 columns. Each row represents a female who has 
+participated in the 2022 Lake Placid Ironman 
 
 | Variable | Description |
 |----|-------------|
@@ -42,14 +30,6 @@ participated in the Ironman between the years 2018-2019.
 | Location | Where the Ironman takes place |
 | Year | They year when the mentioned participant ran |
 
-: [Ironman1819.csv](../data/Ironman1819.csv)
-
-## Questions
-
-With the different times and rank variables, you can explore the relationships 
-between them through things like correlation coefficients. Other things like 
-finding the best variables at predicting a runner's overall rank in a race and 
-then even a division rank would be easy to model using this data set. 
 
 ## References
 
