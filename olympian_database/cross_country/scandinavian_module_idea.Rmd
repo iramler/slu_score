@@ -1,0 +1,78 @@
+---
+title: "scandinavian module idea"
+output: html_document
+date: "2023-06-22"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+# data
+```{r}
+last_four_cc <- read_csv("data/mens_cc_ski_2010-22.csv")
+```
+
+# creating 2 level variable for scandinavian vs. not scandinavian
+```{r}
+last_four_cc <- last_four_cc%>%
+  mutate(scandinavian = ifelse(Country == "SWE"|Country == "DEN"|Country == "NOR"|Country == "FIN"| Country == "ISL", 1, 0))
+```
+
+# Density plot
+```{r}
+ggplot(data = last_four_cc, 
+       aes(x = Rank, fill = factor(scandinavian)))+
+  geom_density(alpha = .6)
+
+# 1 = Scandinavian
+# 0 = not Scandinavian
+
+# seems to be a clear difference
+```
+
+# Looking at comparisons of means by year 
+```{r}
+last_four_cc%>%
+  group_by(Year, scandinavian)%>%
+  summarise("Mean Rank" = mean(Rank)) 
+# 2010 difference in means: 20.38 
+# 2014 difference in means: 28.60
+# 2018 difference in means: 38.10
+# 2022 differnce in means: 36.54 
+
+# Large, and has grown each even (with exception to 2022 but still large)
+```
+
+# two sample t-test
+```{r}
+last_four_cc %>%
+with(t.test(Rank ~ factor(scandinavian)))
+
+# highly significant difference in means
+```
+
+# Model predicting Time in minutes by if they are scandinavian or not
+```{r}
+mod1 <- lm(Time_min ~ scandinavian, data = last_four_cc)
+summary(mod1)
+
+# significant, but does this make sense when you take into account the variation of the courses over the years
+```
+
+# comparing times by year to see variation
+```{r}
+ggplot(data = last_four_cc,
+       aes(x = factor(Year), y = Time_min, fill = factor(Year)))+
+  geom_boxplot()
+
+# no clear pattern, with medians changing by olypic year
+```
+
+# would rank make more sense?
+```{r}
+mod2 <- lm(Rank ~ scandinavian, data = last_four_cc)
+summary(mod2)
+```
+
+
+
