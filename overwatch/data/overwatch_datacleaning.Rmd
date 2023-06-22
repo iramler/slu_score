@@ -1,0 +1,94 @@
+---
+title: "overwatch"
+output: html_document
+date: "2023-06-20"
+---
+
+```{r}
+library(tidyverse)
+library(rvest)
+library(dplyr)
+
+
+
+url <- "https://www.overbuff.com/heroes?platform=pc&gameMode=competitive&role=damage&timeWindow=3months"
+h <- read_html(url)
+tab <- h |> html_nodes("table")
+```
+
+```{r}
+overwatch_damage <- tab[[1]] |> html_table()
+```
+
+```{r}
+
+url <- "https://www.overbuff.com/heroes?platform=pc&gameMode=competitive&role=support&timeWindow=3months"
+
+h <- read_html(url)
+
+tab <- h |> html_nodes("table")
+```
+
+```{r}
+overwatch_support <- tab[[1]] |> html_table()
+```
+
+```{r}
+
+url <- "https://www.overbuff.com/heroes?platform=pc&gameMode=competitive&role=tank&timeWindow=3months"
+h <- read_html(url)
+tab <- h |> html_nodes("table")
+```
+
+```{r}
+overwatch_tank <- tab[[1]] |> html_table()
+```
+
+```{r}
+overwatch_damage <- overwatch_damage |> separate(col = Hero,
+                                                 into = c("Hero", "Class"),
+                                                 sep = "D") |>
+  slice(-1) |> mutate(Class = if_else(Class == "amage",
+                                            true = "Damage",
+                                            false = "NA"))
+```
+
+```{r}
+overwatch_support <- overwatch_support |> separate(col = Hero,
+                                                 into = c("Hero", "Class"),
+                                                 sep = "S") |>
+  slice(-1) |> mutate(Class = if_else(Class == "upport",
+                                            true = "Support",
+                                            false = "NA"))
+```
+
+```{r}
+overwatch_tank <- overwatch_tank |> separate(col = Hero,
+                                                 into = c("Hero", "Class"),
+                                                 sep = "T") |>
+  slice(-1) |> mutate(Class = if_else(Class == "ank",
+                                            true = "Tank",
+                                            false = "NA"))
+```
+
+```{r}
+overwatch1 <- bind_rows(overwatch_damage, overwatch_support)
+overwatch <- bind_rows(overwatch1, overwatch_tank)
+```
+
+```{r}
+write.csv(overwatch, "overwatch.csv")
+```
+
+
+
+
+
+
+
+
+
+
+
+
+

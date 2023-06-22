@@ -1,0 +1,37 @@
+---
+title: Overwatch
+author: Sarah Weaver
+date: June 22, 2023
+description: X
+categories:
+  - multiple regression
+---
+
+## Motivation
+
+
+
+## Data
+
+The data set has 295,877 rows with 7 columns. Each row represents a power lifting
+competitor 
+
+| Variable | Description |
+|----|-------------|
+| Hero | X |
+| Class | X |
+| Pick rate | X |
+| Win Rate | X |
+| KDA | X |
+
+
+: [overwatch.csv](../data/overwatch.csv)
+
+## Questions
+
+The data set is designed to help model a multiple linear regression example 
+
+## References
+
+Powerlifting rankings. OpenPowerlifting. (n.d.). 
+<https://www.openpowerlifting.org/> 
