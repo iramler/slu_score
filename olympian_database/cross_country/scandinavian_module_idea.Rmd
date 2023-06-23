@@ -94,3 +94,13 @@ with(t.test(Rank ~ factor(scandinavian)))
 # Highly significant again with clear implications
 ```
 # On average, and with 95% confidence, the ranks of scandinavian 15km cross country athletes are between 22.33 and 37.88 places higher than the rest of the field. 
+
+# Is using rank better for analysis? What do you lose and what do you gain by using rank instead of time?
+# Gain more objective viewing of performance since course median times vary year to year due to course variation.
+# Lose difference in scale of times because rank does not account for how different the times are from rank to rank(eg. 1-2 is same as 12-13)
+
+
+
+
+# Now, would it make more sense to look at z-score results instead?
+

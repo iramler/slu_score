@@ -58,3 +58,43 @@ mens_cc_2010_22 <- rbind(cc_2010,cc_2014,cc_2014_extra,cc_2018,cc_2022)
 
 write_csv(x = mens_cc_2010_22,
           file = "olympian_database/cross_country/data/mens_cc_ski_2010-22.csv")
+
+# ADDING SCANDINAVIAN VARIABLE AND Z-SCORES 
+
+last_four_cc <- read_csv("olympian_database/cross_country/data/mens_cc_ski_2010-22.csv")
+
+last_four_cc <- last_four_cc%>%
+  mutate(scandinavian = ifelse(Country == "SWE"|Country == "DEN"|Country == "NOR"|Country == "FIN"| Country == "ISL", 1, 0))
+
+# 2010
+last_four_cc_2010<-last_four_cc%>%
+  filter(Year == 2010)%>%
+  mutate(z_score = ((Time_min-mean(Time_min))/sd(Time_min)))
+
+
+# 2014
+last_four_cc_2014<-last_four_cc%>%
+  filter(Year == 2014)%>%
+  mutate(z_score = ((Time_min-mean(Time_min))/sd(Time_min)))
+
+# 2018
+last_four_cc_2018<-last_four_cc%>%
+  filter(Year == 2018)%>%
+  mutate(z_score = ((Time_min-mean(Time_min))/sd(Time_min)))
+
+# 2022
+last_four_cc_2022<-last_four_cc%>%
+  filter(Year == 2022)%>%
+  mutate(z_score = ((Time_min-mean(Time_min))/sd(Time_min)))
+
+mens_cc_2010_22 <- rbind(last_four_cc_2010, last_four_cc_2014, last_four_cc_2018,
+                         last_four_cc_2022)
+
+# full data set
+
+write_csv(x = mens_cc_2010_22,
+          file = "olympian_database/cross_country/data/mens_cc_ski_2010-22.csv")
+
+
+
+
