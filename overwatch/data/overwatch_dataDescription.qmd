@@ -18,11 +18,11 @@ competitor
 
 | Variable | Description |
 |----|-------------|
-| Hero | X |
-| Class | X |
-| Pick rate | X |
-| Win Rate | X |
-| KDA | X |
+| Hero | name of each hero |
+| Class | class of each hero (damage, support or tank) |
+| Pick rate | pick rates of each hero |
+| Win Rate | win rates of each hero |
+| KDA | Average kills, deaths and assists associated with each hero |
 
 
 : [overwatch.csv](../data/overwatch.csv)

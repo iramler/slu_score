@@ -8,6 +8,7 @@ date: "2023-06-21"
 library(readr)
 library(stats)
 library(dplyr)
+library(ggplot2)
 
 opl <- read_csv("powerlifting/data/powerliftingregression.csv")
 ```
@@ -24,6 +25,38 @@ opl_reg <- lm(Sex ~ Age + BodyweightKg + BenchKg +
                 SquatKg + DeadliftKg, data = opl_regression)
 
 summary(opl_reg)
+```
+
+## model 1
+```{r}
+mod_1 <- lm(Sex ~ BenchKg, data = opl_regression)
+summary(mod_1)
+
+res_1 <- resid(mod_1)
+```
+
+## model 2
+```{r}
+mod_2 <- lm(Sex ~ SquatKg, data = opl_regression)
+summary(mod_2)
+
+res_2 <- resid(mod_2)
+```
+
+## model 3
+```{r}
+mod_3 <- lm(Sex ~ DeadliftKg, data = opl_regression)
+summary(mod_3)
+
+res_3 <- resid(res_3)
+```
+
+## model 4
+```{r}
+mod_4 <- lm(Sex ~ BenchKg + SquatKg + DeadliftKg, data = opl_regression)
+summary(mod_4)
+
+res_4 <- resid(res_4)
 ```
 
 

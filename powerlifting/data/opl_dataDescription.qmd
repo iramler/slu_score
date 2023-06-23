@@ -2,7 +2,7 @@
 title: Power Lifting Regression
 author: Sarah Weaver
 date: June 21, 2023
-description: X
+description: Data on power lifting competitors spanning many years.
 categories:
   - multiple regression
 ---
@@ -14,7 +14,7 @@ categories:
 ## Data
 
 The data set has 295,877 rows with 7 columns. Each row represents a power lifting
-competitor 
+competitor and their respective personal information.
 
 | Variable | Description |
 |----|-------------|
