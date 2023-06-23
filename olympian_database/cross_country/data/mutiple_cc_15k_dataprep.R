@@ -96,5 +96,16 @@ write_csv(x = mens_cc_2010_22,
           file = "olympian_database/cross_country/data/mens_cc_ski_2010-22.csv")
 
 
+# ELIMINATING EXTRA TIME VARIABLES
+
+mens_cc_2010_22 <- read_csv("olympian_database/cross_country/data/mens_cc_ski_2010-22.csv")
+
+mens_cc_2010_22<- mens_cc_2010_22%>%
+  select(1,2,3,6,7,8,9)
+
+
+# refined data set
+write_csv(x = mens_cc_2010_22,
+          file = "olympian_database/cross_country/data/mens_cc_ski_2010-22.csv")
 
 
