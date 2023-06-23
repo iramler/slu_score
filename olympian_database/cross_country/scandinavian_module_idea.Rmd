@@ -18,16 +18,59 @@ last_four_cc <- last_four_cc%>%
   mutate(scandinavian = ifelse(Country == "SWE"|Country == "DEN"|Country == "NOR"|Country == "FIN"| Country == "ISL", 1, 0))
 ```
 
-# Density plot
+# Density plot of times in minutes
 ```{r}
 ggplot(data = last_four_cc, 
-       aes(x = Rank, fill = factor(scandinavian)))+
-  geom_density(alpha = .6)
+       aes(x = Time_min, fill = factor(scandinavian)))+
+  geom_density(alpha = .6)+
+  facet_wrap(vars(Year))
 
 # 1 = Scandinavian
 # 0 = not Scandinavian
 
-# seems to be a clear difference
+# seems to be fairly notable difference
+```
+
+# two sample t-test and confidence interval
+```{r}
+last_four_cc %>%
+with(t.test(Time_min ~ factor(scandinavian)))
+
+# highly significant difference in means
+```
+
+# Time in minutes by if they are scandinavian or not
+
+95 percent confidence interval:
+-On average, and with 95% confidence, the difference in mean result times for Scandinavians and non-Scandinavians in between 1.98 3.81 minutes
+
+-On average Scandinavian cross country skiers finish the 15km race 1.98 to 3.81 minutes faster than the rest of the field. 
+
+
+# Significant, but does it make sense to interpret times when you take into account that the courses vary considerably from year to year?
+# Snow quality, elevation change, altitude, etc.
+```{r}
+ggplot(data = last_four_cc,
+       aes(x = factor(Year), y = Time_min, fill = factor(Year)))+
+  geom_boxplot()
+
+# no clear pattern, with medians changing by Olympic year
+```
+
+# Would it make more sense to look at rank results instead?
+# comparing times by year to see variation
+
+# Density plot of difference in ranks
+```{r}
+ggplot(data = last_four_cc, 
+       aes(x = Rank, fill = factor(scandinavian)))+
+  geom_density(alpha = .6)+
+  facet_wrap(vars(Year))
+
+# 1 = Scandinavian
+# 0 = not Scandinavian
+
+# seems to be a more clear difference
 ```
 
 # Looking at comparisons of means by year 
@@ -42,37 +85,12 @@ last_four_cc%>%
 
 # Large, and has grown each even (with exception to 2022 but still large)
 ```
+# two-sample t-test and confidence interval
 
-# two sample t-test
 ```{r}
 last_four_cc %>%
 with(t.test(Rank ~ factor(scandinavian)))
 
-# highly significant difference in means
+# Highly significant again with clear implications
 ```
-
-# Model predicting Time in minutes by if they are scandinavian or not
-```{r}
-mod1 <- lm(Time_min ~ scandinavian, data = last_four_cc)
-summary(mod1)
-
-# significant, but does this make sense when you take into account the variation of the courses over the years
-```
-
-# comparing times by year to see variation
-```{r}
-ggplot(data = last_four_cc,
-       aes(x = factor(Year), y = Time_min, fill = factor(Year)))+
-  geom_boxplot()
-
-# no clear pattern, with medians changing by olypic year
-```
-
-# would rank make more sense?
-```{r}
-mod2 <- lm(Rank ~ scandinavian, data = last_four_cc)
-summary(mod2)
-```
-
-
-
+# On average, and with 95% confidence, the ranks of scandinavian 15km cross country athletes are between 22.33 and 37.88 places higher than the rest of the field. 
