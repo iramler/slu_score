@@ -35,7 +35,7 @@ The data set has 393 rows with 7 columns. Each row represents a Male competitor 
 
 \| z-score \| The number of standard deviations the athlete's time is from the mean time of the particular event \|
 
-: \[mens_cc_ski_2010-22.csv\](../data/mens_cc_ski_2010-22.csv)
+:   \[mens_cc_ski_2010-22.csv\](../data/mens_cc_ski_2010-22.csv)
 
 ## Questions
 
