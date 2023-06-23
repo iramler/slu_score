@@ -104,3 +104,28 @@ with(t.test(Rank ~ factor(scandinavian)))
 
 # Now, would it make more sense to look at z-score results instead?
 
+# Density plot of difference in z-scores
+```{r}
+ggplot(data = last_four_cc, 
+       aes(x = z_score, fill = factor(scandinavian)))+
+  geom_density(alpha = .6)+
+  facet_wrap(vars(Year))
+
+# 1 = Scandinavian
+# 0 = not Scandinavian
+
+# seems to be a more clear difference
+```
+# two sample
+
+
+```{r}
+last_four_cc %>%
+with(t.test(z_score ~ factor(scandinavian)))
+
+# Highly significant again with clear implications
+
+# 95% confidence, difference is between 0.64 and  0.94
+```
+
+
