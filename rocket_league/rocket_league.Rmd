@@ -1,0 +1,61 @@
+---
+title: "Rocket League"
+output: html_document
+date: "2023-06-26"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+library(tidyverse)
+library(bestglm)
+matches_by_teams <- read_csv("data/matches_by_teams.csv")
+
+matches_by_teams <- matches_by_teams%>%
+  mutate(winIND = ifelse(winner == TRUE, 1, 0))
+```
+
+# Logistic Regression Module
+
+
+
+## Use a simple linear regresssion model to predict a win or loss based
+## on a team's shooting percentage for the game (core_shooting_percentage)
+
+
+```{r}
+ggplot(data = matches_by_teams, 
+       aes(x = core_shooting_percentage, y = winIND))+
+  geom_point()+
+  geom_smooth(method = lm, se = FALSE)
+
+# why may this approach be wrong 
+```
+
+## Fit a general linear model for to predict win/loss based on a team's shooting
+## percentage, and write it below 
+
+```{r}
+mod1 = glm(winIND ~ core_shooting_percentage, data = matches_by_teams, 
+           family = "binomial")
+summary(mod1)
+```
+
+```{r}
+ggplot(data = matches_by_teams, aes(x = core_shooting_percentage, y = winIND) ) + 
+  geom_point() + 
+  geom_smooth(method="glm", 
+              method.args=list(family="binomial"), 
+              se=FALSE)
+```
+
+```{r}
+newx = data.frame(core_shooting_percentage = c(5, 95))
+predict.glm(mod1,newx,type="response")
+
+# With a shooting percentage of 5, there is an 8% chance that they win
+# With a shooting percentage of 95, there is a 99% chance that they win the game 
+```
+
