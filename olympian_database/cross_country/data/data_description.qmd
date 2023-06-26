@@ -4,7 +4,6 @@ author: visual
 date: 06/23/2023
 description: The data set looks at Men's 15 km cross-country ski results from the 2010, 2014, 2018, and 2022 Winter Olympics.
 categories: 
-- Density plots
 - Side-by-Side Boxplots
 - z-scores
 ---
