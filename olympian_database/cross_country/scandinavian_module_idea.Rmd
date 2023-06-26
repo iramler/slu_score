@@ -52,7 +52,9 @@ with(t.test(Time_min ~ factor(scandinavian)))
 ```{r}
 ggplot(data = last_four_cc,
        aes(x = factor(Year), y = Time_min, fill = factor(Year)))+
-  geom_boxplot()
+  geom_boxplot()+
+  labs(x = "Year", y = "Time (minutes)", title = "Olympic Cross Country Ski Results by Year") +
+  theme(legend.position = "none")
 
 # no clear pattern, with medians changing by Olympic year
 ```
@@ -65,7 +67,8 @@ ggplot(data = last_four_cc,
 ggplot(data = last_four_cc, 
        aes(x = Rank, fill = factor(scandinavian)))+
   geom_density(alpha = .6)+
-  facet_wrap(vars(Year))
+  facet_wrap(vars(Year))+
+  labs(title = "Olympic Cross Country Ski Results Comparison")
 
 # 1 = Scandinavian
 # 0 = not Scandinavian
@@ -109,7 +112,8 @@ with(t.test(Rank ~ factor(scandinavian)))
 ggplot(data = last_four_cc, 
        aes(x = z_score, fill = factor(scandinavian)))+
   geom_density(alpha = .6)+
-  facet_wrap(vars(Year))
+  facet_wrap(vars(Year))+
+  labs(x = "z-score", title = "Olympic Cross Country Ski Results (z-score by year)")
 
 # 1 = Scandinavian
 # 0 = not Scandinavian

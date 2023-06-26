@@ -101,10 +101,12 @@ with(t.test(Result_sec ~ gender))
 
 ## Scatterplot of Age vs Result_sec for men
 ```{r}
-ggplot(data = bostonMen, 
-       aes(x = Age, Result_sec, color = age_group))+
+ggplot(data = boston, 
+       aes(x = Age, (Result_sec/60), color = age_group))+
 geom_point()+
-  geom_smooth(method = loess, se = FALSE, color = "black")
+  geom_smooth(method = loess, se = FALSE, color = "black")+
+  facet_wrap(vars(gender))+
+  labs(y = "Result time (minutes)", title = "Boston Marathon Results")
 
 
 # Make a guess at the correlation
