@@ -16,36 +16,7 @@ https://en.wikipedia.org/wiki/Glossary_of_sumo_terms
 
 -Official professional sumo tournament, called a honbasho, held six times a year since 1958, where the results affect the wrestlers' rankings.
 
--This data is from the 2023 Haru
 ```{r}
-url <- "https://sumodb.sumogames.de/Banzuke.aspx?b=202303&heya=-1&shusshin=-1&h=on&sh=on&bd=on&hd=on&su=on&w=on&hr=on&ch=on&cs=on&cr=on&spr=on&sps=on&snr=on&sns=on&hl=on&simple=on"
-objs <- read_html(url)%>%
-html_nodes("table")%>%
-html_table()
 
-sumo <- objs[[1]]
-
-sumo<-sumo%>%
-  as.data.frame()%>%
-  select(1:37)%>%
-  slice(17:430)
-
-#write_csv(x = sumo, file = "haru_2023.csv")
-
-#haru <- read_csv("haru_2023.csv", skip = 1)
-
-#write_csv(x = haru, file = "haru_2023.csv")
-
-haru <- read_csv("haru_2023.csv")
-
-haru<-haru%>%
-  slice(-305)
-
-haru<-haru%>%
-  separate(col = `Height/Weight...9`, into = c("height_cm", "weight_kg"), sep = "cm")%>%
-  separate(col = weight_kg, into = "weight_kg", sep = 4)%>%
-  mutate(height_cm = parse_number(height_cm),
-         weight_kg = parse_number(weight_kg))
 ```
 
-W	L	East	Heya	Shusshin	Birth Date	Hatsu	University	Height/Weight	High	Career	Career Record	Prev	Prev W	Prev L	Next	Next W	Next L	Rank	West	Heya	Shusshin	Birth Date	Hatsu	University	Height/Weight	High	Career	Career Record	Prev	Prev W	Prev L	W	L	Next	Next W	Next L
