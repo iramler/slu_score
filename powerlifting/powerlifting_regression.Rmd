@@ -9,14 +9,17 @@ library(readr)
 library(stats)
 library(dplyr)
 library(ggplot2)
+library(here)
 
-opl <- read_csv("powerlifting/data/powerliftingregression.csv")
+opl <- read_csv(here("powerlifting/data/powerliftingregression.csv"))
 ```
 
 ```{r}
+set.seed(1713)
 opl_regression <- opl |> mutate(Sex = if_else(Sex == "M",
                                               true = 1,
-                                              false = 0))
+                                              false = 0)) 
+opl_regression <- opl_regression[sample(nrow(opl_regression), 300), ]
 ```
 
 ## multiple regression
@@ -45,6 +48,8 @@ mod_2 <- lm(Sex ~ SquatKg, data = opl_regression)
 summary(mod_2)
 
 res_2 <- resid(mod_2)
+
+qqnorm(res_2)
 ```
 
 ## model 3
