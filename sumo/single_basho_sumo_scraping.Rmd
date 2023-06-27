@@ -1,0 +1,82 @@
+---
+title: "tennis"
+output: html_document
+date: "2023-06-23"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(rvest)
+```
+# Sumo wrestling terms:
+https://en.wikipedia.org/wiki/Glossary_of_sumo_terms
+
+-Data is from Sumo Reference and has a Banzuke for each event.
+
+
+
+-Banzuke | a document listing the rankings of professional sumo wrestlers published before each official tournament (honbasho).
+
+-Torikumi |  A bout during a tournament
+
+-Yusho | A tournament championship in any division, awarded to the wrestler who wins the most bouts.
+
+-Sansho | 'Three prizes'. Special prizes awarded to makuuchi wrestlers for exceptional performance.
+
+-Rikishi | The most common term for a professional sumo wrestler,
+
+-Shikona is name
+
+-Official professional sumo tournament, called a honbasho, held six times a year since 1958, where the results affect the wrestlers' rankings.
+
+
+
+# Natsu 2023 
+# Makuuchi Banzuke 
+
+#  Website has section where data is accessible for each major tournament of every year for all divisions:
+#  data includes, wins, losses, weight, height, birth date
+
+
+# Cleaning one 
+```{r}
+url <- "https://sumodb.sumogames.de/Banzuke.aspx?b=202305&heya=-1&shusshin=-1&bd=on&w=on&hl=on#legend"
+objs <- read_html(url)%>%
+html_nodes("table")%>%
+html_table()
+
+
+write_csv(x = objs[[6]], file = "data/natsu_2023.csv")
+natsu_east <- read_csv("data/natsu_2023.csv", col_select = 1:5)
+natsu_west <- read_csv("data/natsu_2023.csv", col_select = 5:9)
+
+natsu_west<-natsu_west%>%
+  relocate( 5, .before = 1)%>%
+  relocate(2, .after = 5)%>%
+  rename(East = West)
+
+natsu <- bind_rows(natsu_east, natsu_west)
+
+natsu<- natsu %>%
+  na.omit()%>%
+  rename(name = East)%>%
+  separate(col = Result, sep = "-", into = c("wins", "losses"))%>%
+  mutate(wins = parse_number(wins),
+      losses = parse_number(losses))%>%
+  separate(col = `Height/Weight`, sep = "cm", into = c("height_cm", "weight_kg"))%>%
+  mutate(height_cm = parse_number(height_cm),
+         weight_kg = parse_number(weight_kg))
+
+write_csv(x = natsu, file = "data/natsu_2023.csv")
+```
+
+
+# Next step:
+# Write function that scrapes all the data: will need to change the year 
+# Link has number that goes year then goes up by 2 for each tournament
+# eg link: "blahblah202201" next: "blahblah202203"
+
+issue is there are 6 a year 
+
+so link goes from 01, 03, 05, ... to 11, 
+
