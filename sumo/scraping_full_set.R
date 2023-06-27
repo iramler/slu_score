@@ -7,37 +7,40 @@ library(rvest)
 
 # currently best idea is to have one function for the first 5 then one for the last because it changes to 11
 
-sumo_function <- function(i, year = 2019:2023, basho = 01:11){
+
+# 01-09
+
+sumo_function <- function(i, year = 2019:2023){
   
   base_url <- "https://sumodb.sumogames.de/Banzuke.aspx?b="
   
-  end_url <- "&search%5Bage_class%5D="
+  end_url <- "05&heya=-1&shusshin=-1&bd=on&w=on&hl=on"
   
   
-  url <- paste0(base_url, i, middle_url, sex, end_url, age)
+  url <- paste0(base_url, i, end_url)
   
-  obs <- read_html(url) |> 
-    html_nodes("li.list-group-item")
+  objs <- read_html(url)%>%
+  html_nodes("table")%>%
+  html_table()
   
-  tmp <- obs |> html_text(trim = TRUE)
-  X <- tmp[-(1:2)] |> str_split(pattern = "(\n)+", simplify = TRUE)
+X <- objs[[6]]
   
   return(X)
 }
 
 # 2023
-sumo_2023 <- sumo_function(i = 1, sex = "W", age = 1)
+sumo_2023 <- sumo_function(i)
 sumo_2023<-
   sumo_2023%>%
   as.data.frame()
 
 
-for(i in seq(from=1, to=78, by=2)){
+for(i in 2019:2022){
   Sys.sleep(rpois(1, 3)+1)
-  additional_rows <- sumo_function(i, sex = "W", age = 1)
+  additional_rows <- sumo_function(i)
   
   additional_rows<- additional_rows%>%
     as.data.frame()
   
-  sumo_2023 <- bind_rows("2023" = sumo_2023, "2022" = additional_rows, .id = "age_group")
+  natsu_2023 <- bind_rows("2023" = natsu_2023, "2022" = additional_rows, .id = "year")
 }
