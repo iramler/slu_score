@@ -28,7 +28,7 @@ X <- objs[[6]]
   return(X)
 }
 
-# 2023
+
 sumo_2023 <- sumo_function(i)
 sumo_2023<-
   sumo_2023%>%
