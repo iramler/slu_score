@@ -13,7 +13,7 @@ knitr::opts_chunk$set(echo = TRUE)
 boston_marathon<- read_csv("data/boston_marathon_2023.csv")
 
 boston_marathon<- boston_marathon%>%
-  mutate(finish_net_minutes = round(finish_net_sec/60))
+  mutate(finish_net_minutes = finish_net_sec/60)
 
 boston <- boston_marathon%>%
   arrange(finish_net_minutes)%>%
