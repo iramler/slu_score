@@ -59,3 +59,5 @@ predict.glm(mod1,newx,type="response")
 # With a shooting percentage of 95, there is a 99% chance that they win the game 
 ```
 
+
+
