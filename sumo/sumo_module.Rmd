@@ -17,12 +17,9 @@ sumo <- read_csv("data/sumo_since_1957.csv")
 
 # Module worksheet on dplyr 
 ```
-# Select
 ```{r}
-# Rikishi is the ring name of the wrestler 
-# Subset the data to contain only the variables Rikishi, weight_kg, and height_cm
-sumo%>%
-  select(Rikishi, weight_kg, height_cm)
+head(sumo)%>%
+  knitr::kable(., digits = 3, caption = "Sumo Wrestling 1957-2023")
 ```
 
 
@@ -37,13 +34,13 @@ sumo%>%
 # How many rows
 ```
 ```{r}
-# Using one line, subset the data to contain only wrestlers from Mongolia or Tokyo 
+# Using one line of code, subset the data to contain only wrestlers from Mongolia or Tokyo 
 sumo%>%
   filter(Shusshin == "Mongolia" | Shusshin == "Tokyo")
 ```
 ```{r}
 # Heya is the establishment where a wrestler trains, and also lives while he is in the lower divisions
-# Using one line, subset the data to contain only wrestlers from Mongolia who train at the heya called Kataonami
+# Using one line of code, subset the data to contain only wrestlers from Mongolia who train at the heya called Kataonami
 
 sumo%>%
   filter(Shusshin == "Mongolia" & Heya == "Kataonami")
@@ -92,7 +89,7 @@ sumo%>%
 ```
 
 ```{r}
-# calculate total losses for each wrestler and order the resulting data from most to least
+# calculate total losses for each wrestler and order the resulting data from least to most
 sumo%>%
   group_by(Rikishi)%>%
   summarise(total_losses = sum(losses))%>%
@@ -125,9 +122,7 @@ sumo%>%
 
 
 
-```{r}
-s
-```
+
 
 
 
