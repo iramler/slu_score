@@ -1,0 +1,133 @@
+---
+title: "sumo module dplyr"
+output: html_document
+date: "2023-06-29"
+categories: dplyr
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+sumo <- read_csv("data/sumo_since_1957.csv")
+
+# Data contains sumo wrestling results from all bashos from 1957 to 2023
+# It shows the resulting record of all competitors in the top division (Makuuchi Banzuke)
+
+# Module worksheet on dplyr 
+```
+# Select
+```{r}
+# Rikishi is the ring name of the wrestler 
+# Subset the data to contain only the variables Rikishi, weight_kg, and height_cm
+sumo%>%
+  select(Rikishi, weight_kg, height_cm)
+```
+
+
+# Filtering Rows
+```{r}
+# Shusshin is the term for birthplace, or place of origin of a wrestler 
+# Subset the data to contain only wrestlers from Mongolia
+
+sumo%>%
+  filter(Shusshin == "Mongolia")
+
+# How many rows
+```
+```{r}
+# Using one line, subset the data to contain only wrestlers from Mongolia or Tokyo 
+sumo%>%
+  filter(Shusshin == "Mongolia" | Shusshin == "Tokyo")
+```
+```{r}
+# Heya is the establishment where a wrestler trains, and also lives while he is in the lower divisions
+# Using one line, subset the data to contain only wrestlers from Mongolia who train at the heya called Kataonami
+
+sumo%>%
+  filter(Shusshin == "Mongolia" & Heya == "Kataonami")
+
+# How many rows?
+```
+
+# Slicing 
+```{r}
+# Extract rows 25 to 85 from the data set
+sumo%>%
+  slice(25:85)
+```
+```{r}
+# Identify the single wrestler highest and lowest recorded weights (in kg). Show only the top results. 
+sumo%>%
+  slice_max(weight_kg, with_ties = FALSE)
+
+sumo%>%
+slice_min(weight_kg, with_ties = FALSE)
+```
+
+# Mutate
+```{r}
+# create a new variable that displays each wrestlers' win percentage for each appearance
+sumo%>%
+  mutate(win_percentage = (wins/(wins+losses+ties))*100)
+```
+
+
+
+
+# Summarise and Group By
+```{r}
+# calculate how many times each wrestler appears in the data set
+sumo%>%
+  group_by(Rikishi)%>%
+  summarise(total_appearances = n())
+```
+
+```{r}
+# calculate the mean weight for each wrestler 
+sumo%>%
+  group_by(Rikishi)%>%
+  summarise("mean weight" = mean(weight_kg))
+```
+
+```{r}
+# calculate total losses for each wrestler and order the resulting data from most to least
+sumo%>%
+  group_by(Rikishi)%>%
+  summarise(total_losses = sum(losses))%>%
+  arrange(total_losses)
+```
+```{r}
+# calculate total wins for each wrestler and order the resulting data from most to least
+sumo%>%
+  group_by(Rikishi)%>%
+  summarise(total_wins = sum(wins))%>%
+  arrange(desc(total_wins))
+```
+```{r}
+# calculate the overall win percentage of each wrestler and arrange from highest to lowest
+sumo%>%
+  group_by(Rikishi)%>%
+  summarise(total_win_percetage = mean(wins/(wins+losses+ties))*100)%>%
+  arrange(desc(total_win_percentage))
+
+
+# or 
+
+sumo%>%
+  mutate(win_percentage = (wins/(wins+losses+ties))*100)%>%
+  group_by(Rikishi)%>%
+  summarise(total_win_percentage = mean(win_percentage))%>%
+  arrange(desc(total_win_percentage))
+```
+
+
+
+
+```{r}
+s
+```
+
+
+

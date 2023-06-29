@@ -3,7 +3,7 @@
 # In the data set there are 6 bashos (tournaments) per year 
 # It shows the resulting record of all competitors in the top division (Makuuchi Banzuke)
 # Data goes from 1957 to 2023 (only 4 have occurred so far in 2023 thus far)
-# certain years, certain bashos were not recorded, but rare
+# certain years, certain bashos did not occur, but rare
 
 # change number after year in link for different bashos
 
@@ -67,7 +67,6 @@ write_csv(x = kyushu, file = "sumo/data/kyushu.csv")
 
 
 sumo_since_1957 <- rbind(hatsu, haru, natsu, nagoya, aki, kyushu)
-write_csv(x = sumo_since_1957, file = "sumo/data/sumo_since_1957.csv")
 
 sumo_since_1957 <-sumo_since_1957%>%
   separate(col = Result, sep = "-", into = c("wins", "losses", "ties"))%>%
@@ -78,6 +77,11 @@ sumo_since_1957 <-sumo_since_1957%>%
   mutate(height_cm = parse_number(height_cm),
          weight_kg = parse_number(weight_kg))
 
-# add column for total wins and mean weight with group by then left join
+# write_csv(x = sumo_since_1957, file = "sumo/data/sumo_since_1957.csv")
 
-# for additional data, we can go back to the last time the format was the same
+
+
+
+sumo$ties[is.na(sumo$ties)] <- 0
+
+write_csv(x = sumo, file = "sumo/data/sumo_since_1957.csv")
