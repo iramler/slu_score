@@ -1,0 +1,40 @@
+---
+title: "Data Description"
+author: visual
+date: 06/29/2023
+description: Sumo wrestling data 1957-2023.
+categories: 
+- dplyr
+---
+
+## Motivation
+
+## Data
+
+The data set has 15760 rows with 10 columns. Each row represents an appearance of a sumo wrestler in the Makuuchi Banzuke, Japan's most elite sumo wrestling division. The data dates from 1957 through mid 2023 and is comprised of multiple Bashos (tournaments) each year.
+
+\| Variable \| Description \|
+
+\|\-\-\--\|\-\-\-\-\-\-\-\-\-\-\-\--\|
+
+\| Rank \| Rank of the wrestler in the Basho \|
+
+\| Rikishi \| The ring name of a the sumo wrestler \|
+
+\| Heya \| The establishment where a wrestler trains \|
+
+\| Shusshin \| The birthplace, or place of origin of the wrestler \|
+
+\| Birth Date \| The birth date of the wrestler \|
+
+\| height_cm \| The height of the wrestler at the time of the event in centimeters \|
+
+\| weight_kg \| The weight of the wrestler at the time of the even in kilograms \|
+
+\| wins \| Amount of wins in the specific Basho \|
+
+\| losses \| Amount of losses in the specific Basho \|
+
+\| ties \| Amount of ties in the specific Basho \|
+
+:   \[mens_cc_ski_2010-22.csv\](../data/mens_cc_ski_2010-22.csv)
