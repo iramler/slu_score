@@ -60,4 +60,11 @@ predict.glm(mod1,newx,type="response")
 ```
 
 
+```{r}
+ggplot(data = matches_by_teams, aes(x = score, y = winIND) ) + 
+  geom_point() + 
+  geom_smooth(method="glm", 
+              method.args=list(family="binomial"), 
+              se=FALSE)
+```
 
