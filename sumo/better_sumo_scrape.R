@@ -85,3 +85,12 @@ sumo_since_1957 <-sumo_since_1957%>%
 sumo$ties[is.na(sumo$ties)] <- 0
 
 write_csv(x = sumo, file = "sumo/data/sumo_since_1957.csv")
+
+
+
+
+
+# future goal with data: 
+# get more data from even further back in history 
+# transform data to be grouped by wrestler and have total wins that are tracked by each year 
+# can show how many total wins they have in their career and the path they took to get there
