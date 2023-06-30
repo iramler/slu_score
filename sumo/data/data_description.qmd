@@ -9,9 +9,11 @@ categories:
 
 ## Motivation
 
+The Banzuke is a ranking system used in Japanese sumo wrestling to determine the order and matchups for tournaments. In the Makuuchi Banzuke division, which is the top division, the history can be traced back to the 18th century. The Banzuke lists the wrestlers' ranks, names, stables, and more in a hierarchical order based on their performance and records in previous tournaments. Over the years, the Makuuchi Banzuke has evolved, incorporating changes in the number of ranks and divisions. Today, it plays a crucial role in organizing and structuring sumo tournaments, reflecting the wrestlers' skill, rank, and accomplishments in the sport.
+
 ## Data
 
-The data set has 15760 rows with 10 columns. Each row represents an appearance of a sumo wrestler in the Makuuchi Banzuke, Japan's most elite sumo wrestling division. The data dates from 1957 through mid 2023 and is comprised of multiple Bashos (tournaments) each year.
+The data set has 15760 rows with 10 columns. Each row represents an appearance of a sumo wrestler in the Makuuchi Banzuke, Japan's most elite sumo wrestling division. The data dates from 1957 through mid 2023 and is comprised of multiple Bashos (tournaments) each year. An addition to the standard columns of wrestler names and records, the data contains many other metrics pertaining to each wrestlers birth place and physical stature.
 
 \| Variable \| Description \|
 
@@ -37,4 +39,14 @@ The data set has 15760 rows with 10 columns. Each row represents an appearance o
 
 \| ties \| Amount of ties in the specific Basho \|
 
-:   \[mens_cc_ski_2010-22.csv\](../data/mens_cc_ski_2010-22.csv)
+:   \[sumo_since_1957.csv\](../data/sumo_since_1957.csv)
+
+## Questions
+
+How can we transform sumo wrestling data to find the most relevant cases? What variables can be created from existing data in the data set? Which wrestlers the most successful careers since 1957?
+
+## References
+
+Sumo Reference - Alexander Nitschke
+
+\<https://sumodb.sumogames.de\>

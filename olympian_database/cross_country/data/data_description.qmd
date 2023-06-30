@@ -30,7 +30,7 @@ The data set has 393 rows with 7 columns. Each row represents a Male competitor 
 
 \| Year \| The year of the event \|
 
-\| scandinavian \| whether or not the athlete is from a Scandinavian country ( 1 = yes, 0 = no) \|
+\| scandinavian \| Whether or not the athlete is from a Scandinavian country ( 1 = yes, 0 = no) \|
 
 \| z-score \| The number of standard deviations the athlete's time is from the mean time of the particular event \|
 
