@@ -46,7 +46,7 @@ Answer: DriverRating and AvgFinish has a strong significant negative relationshi
 ```{r, message=FALSE, echo=FALSE}
 plot(lm_AvgFinish)
 ```
-Check the assumptions for the linear model. Do they seem reasonably met?
+Check linearity assumption for the linear model. Does it seem reasonably met?
 What issues can be identified? 
 
 Answer: Curvature in the residual vs. fitted plot. Linearity assumption does not hold. 
@@ -65,7 +65,9 @@ ggplot(data = nascar, aes(x = logDriverRating, y = AvgFinish))+
   geom_point()+
   geom_smooth(se = FALSE)
 ```
-Linearity vastly improved. Looks like linearity assumption holds now.
+Does the linearity assumption seem to be met now? 
+
+Answer: Linearity vastly improved. Looks like linearity assumption holds now.
 
 ## Now let's look the new linear regression model formula
 ```{r, message=FALSE, echo=FALSE}
@@ -73,8 +75,9 @@ Linearity vastly improved. Looks like linearity assumption holds now.
 lm_AvgFinish2 <- lm(AvgFinish ~ logDriverRating, data = nascar)
 summary(lm_AvgFinish2)
 ```
-Write down new equation and compare the adjusted R-squared values.
-Adjusted R-squared:  0.8755 
+Write down new equation and compare the adjusted R-squared values. Is this model better?
+
+Answer: Adjusted R-squared: 0.8755. Model is clearly improved.
 
 # Finally, lets look at the residuals vs. fitted plot of the new model
 ```{r}
@@ -84,7 +87,7 @@ Looks great. All assumptions hold (except independence)
 
 
 
-# Prediction (despite lack of indpendence) of Avg Finish for a log driver rating of 4.5
+# Prediction (despite lack of indpendence) of Averageg Finish for a log driver rating of 4.5
 ```{r}
 Avg_finish_prediction = 104.6116-20.0017*4.5
 Avg_finish_prediction
