@@ -10,6 +10,11 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ```{r}
 nascar <- read_csv("bignessalyssa_LATE_1937_225990_nascar_df-1.csv")
+
+nascar <- nascar %>% 
+  select(-1)
+
+head(nascar)
 ```
 
 
@@ -40,13 +45,13 @@ ggplot(data = nascar, aes(x = DriverRating, y = AvgFinish))+
   geom_point()+
   geom_smooth(se = FALSE)
 ```
-Answer: DriverRating and AvgFinish has a strong significant negative relationship. The scatterplot also seems to have a little curve at the top.
+Answer: DriverRating and AvgFinish have a strong significant negative relationship. The scatterplot also seems to have a little curve at the top.
 
 ## Here is a plot of the residual vs fitted model
 ```{r, message=FALSE, echo=FALSE}
 plot(lm_AvgFinish)
 ```
-Check linearity assumption for the linear model. Does it seem reasonably met?
+Check the linearity assumption for the linear model. Does it seem reasonably met?
 What issues can be identified? 
 
 Answer: Curvature in the residual vs. fitted plot. Linearity assumption does not hold. 
@@ -54,9 +59,11 @@ Answer: Curvature in the residual vs. fitted plot. Linearity assumption does not
 
 ## How can we fix this issue?
 What does the code do below? Write a description.
+
 ```{r}
 nascar$logDriverRating = log(nascar$DriverRating)
 ```
+
 Answer: Taking the natural log of all the DriverRating values.
 
 ## Produce a scatterplot using the transformed Driver Rating variable
@@ -93,4 +100,18 @@ Avg_finish_prediction = 104.6116-20.0017*4.5
 Avg_finish_prediction
 # 14.604
 ```
+
+# Do you think there is any issues with the prediction we just made?
+Because the data is from multiple consecutive seasons, many drivers appear more than once. This violates the model assumption of independence and increases the chance of inaccuracy with inference.
+
+# Subset it to one year 
+```{r}
+nascar_2022<- nascar%>%
+  filter(Year == 2022)
+
+
+
+```
+
+
 
