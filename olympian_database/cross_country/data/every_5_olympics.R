@@ -72,3 +72,8 @@ innsbruck_1964 <- rbind(innsbruck_1964_1, innsbruck_1964_2)
 
 every5_cc <- rbind(cc_2022, salt_lake_2002, sarajevo_1984, innsbruck_1964)
 
+
+write_csv(x = every5_cc, file = "olympian_database/cross_country/data/every5_cc.csv")
+
+  
+
