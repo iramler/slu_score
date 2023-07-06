@@ -1,0 +1,36 @@
+---
+title: "Module 2 code"
+output: html_document
+date: "2023-07-06"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+sumo_since_1957 <- read_csv("data/sumo_since_1957.csv")
+```
+
+```{r}
+sumo_combined <- sumo_since_1957%>%
+  group_by(Rikishi)%>%
+  summarise(total_wins = sum(wins),
+            total_losses = sum(losses),
+            total_ties = sum(ties),
+            avg_height_cm = mean(height_cm),
+            avg_weight_kg = mean(weight_kg),
+            total_matches = (sum(wins)+sum(losses)+sum(ties)),
+            win_percentage = (sum(wins)/total_matches))
+
+write_csv(x = sumo_combined, file = "data/comined_by_wrestler.csv")
+```
+
+```{r}
+sumo_combined <- read_csv("data/comined_by_wrestler.csv")
+
+
+
+hist(sumo_combined$total_wins)
+```
+
