@@ -1,0 +1,58 @@
+---
+title: "Scandinavian"
+output: html_document
+date: "2023-07-06"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+# Data from 4 different olympics. No repeat athletes.
+# 15km Mens cross country ski
+```{r}
+every5_cc <- read_csv("data/every5_cc.csv")
+
+every5_cc <- every5_cc%>%
+  mutate(scandinavian = ifelse(Country == "SWE"|Country == "DEN"|Country == "NOR"|Country == "FIN"| Country == "ISL", 1, 0))
+
+# 2022
+every5_cc_2022<-every5_cc%>%
+  filter(Year == 2022)%>%
+  mutate(z_score = (Time_min - mean(Time_min))/sd(Time_min))
+
+# 2002
+every5_cc_2002<-every5_cc%>%
+  filter(Year == 2002)%>%
+  mutate(z_score = (Time_min - mean(Time_min))/sd(Time_min))
+
+# 1984
+every5_cc_1984<-every5_cc%>%
+  filter(Year == 1984)%>%
+  mutate(z_score = (Time_min - mean(Time_min))/sd(Time_min))
+
+# 1964
+every5_cc_1964 <-every5_cc%>%
+  filter(Year == 1964)%>%
+  mutate(z_score = (Time_min - mean(Time_min))/sd(Time_min))
+
+
+
+
+every5_cc <- rbind(every5_cc_2022, every5_cc_2002, every5_cc_1984, every5_cc_1964)
+```
+
+# Density plot of times in minutes
+```{r}
+ggplot(data = every5_cc, 
+       aes(x = z_score, fill = factor(scandinavian)))+
+  geom_density(alpha = .6)+
+  facet_wrap(vars(Year))
+```
+
+```{r}
+every5_cc %>%
+with(t.test(z_score ~ factor(scandinavian)))
+```
+
