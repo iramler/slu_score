@@ -1,0 +1,66 @@
+---
+title: "NRL"
+output: html_document
+date: "2023-07-07"
+possible topics: MLR, estimation and prediction, correlation and visualizations
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+url <- "https://www.foxsports.com.au/nrl/nrl-premiership/stats/teams"
+objs <- read_html(url)%>%
+html_nodes("table")%>%
+html_table()
+
+
+write_csv(x = objs[[8]], file = "rugby.csv")
+nrl <- read_csv("rugby.csv")
+```
+
+# 2023 STANDINGS THUS FAR 
+
+```{r}
+nrl <- nrl%>%
+  mutate(`FG%` = parse_number(`FG%`))
+nrl1<-
+  nrl%>%
+  select(-1)
+cor(nrl1)
+
+# PTS correlations: T, RM, LB, GLS, GA, 1PH, TA, 
+```
+
+```{r}
+mod1 <- lm(PTS ~ RM, data = nrl)
+summary(mod1)
+```
+
+```{r}
+mod2 <- lm(PTS ~ LB, data = nrl)
+summary(mod2)
+```
+
+```{r}
+mod3 <- lm(PTS ~ GLS, data = nrl)
+summary(mod3)
+```
+
+```{r}
+mod4 <- lm(PTS ~ GA, data = nrl)
+summary(mod4)
+```
+
+```{r}
+mod5 <- lm(PTS ~ `1PH`, data = nrl)
+summary(mod5)
+```
+
+```{r}
+mod6 <- lm(PTS ~ TA, data = nrl)
+summary(mod6)
+```
+
+
