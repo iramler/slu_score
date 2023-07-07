@@ -1,8 +1,8 @@
 ---
-title: "NRL"
+title: "NRL Teams"
 output: html_document
 date: "2023-07-07"
-possible topics: MLR, estimation and prediction, correlation and visualizations
+possible topics: SLR, estimation and prediction, correlation and visualizations
 ---
 
 ```{r setup, include=FALSE}
@@ -16,8 +16,8 @@ html_nodes("table")%>%
 html_table()
 
 
-write_csv(x = objs[[8]], file = "rugby.csv")
-nrl <- read_csv("rugby.csv")
+write_csv(x = objs[[8]], file = "rugby_teams.csv")
+nrl <- read_csv("rugby_teams.csv")
 ```
 
 # 2023 STANDINGS THUS FAR 
@@ -63,4 +63,10 @@ mod6 <- lm(PTS ~ TA, data = nrl)
 summary(mod6)
 ```
 
+```{r}
+ggplot(data = nrl,
+       aes(x = GA, y = PTS))+
+  geom_point()+
+  geom_smooth()
+```
 
