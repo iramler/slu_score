@@ -1,0 +1,16 @@
+{
+  "hash": "eeefb6cf3e270670c694c239aad053d4",
+  "result": {
+    "markdown": "---\ntitle: \"SoccerModule\"\nformat: docx\n---\n\n::: {.cell}\n\n:::\n\n::: {.cell}\n\n:::\n\n::: {.cell}\n\n:::\n\n\nA researcher wants to investigate whether there are differences among the mean height for different positions (Goalkeeper, Defender, Midfield, or Attack) of soccer players. Goalkeepers are typically thought to be taller than other positions to make up in wingspan to cover the goal better. The ‘players_df’ dataset contains information on each player including their name, current club, position, and height. For this analysis, only the position and height of the player will be used. A sample of 20 players was taken from each position and will be used for this analysis.\n\n\n\n\n\n\n::: {.cell-output-display}\n![](mpofurodrick_LATE_2917_442481_SoccerModule_files/figure-docx/unnamed-chunk-2-1.png)\n:::\n\n\n\n#### Question 1.\n\na. Calculate the mean height for each position.\n\nb. Are there any issues with the data that could affect the results?\n\nc. Write of the null and alternative hypotheses that would be consistent with the research question.\n\n\nd. Complete the ANOVA F-test.\n\n\n::: {.cell}\n::: {.cell-output .cell-output-stdout}\n```\n            Df Sum Sq Mean Sq F value   Pr(>F)    \nposition     4   1540   385.1   13.26 1.27e-08 ***\nResiduals   95   2758    29.0                     \n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n```\n:::\n:::\n\n\ne. Appropriately interpret results of analysis of variance F-test. \n\n#### Question 2. \n\nWe will now perform a follow-up analysis to determine which pairs of positions have significantly different height means.\n\n\n::: {.cell}\n::: {.cell-output .cell-output-stdout}\n```\n  Tukey multiple comparisons of means\n    95% family-wise confidence level\n\nFit: aov(formula = height_in_cm ~ position, data = height_sample_df)\n\n$position\n              diff        lwr       upr     p adj\nDef-Att       1.45  -3.288606  6.188606 0.9137637\nGK-Att        7.40   2.661394 12.138606 0.0003340\nMid-Att      -4.45  -9.188606  0.288606 0.0763027\nMissing-Att  -1.45  -6.188606  3.288606 0.9137637\nGK-Def        5.95   1.211394 10.688606 0.0064112\nMid-Def      -5.90 -10.638606 -1.161394 0.0070357\nMissing-Def  -2.90  -7.638606  1.838606 0.4377532\nMid-GK      -11.85 -16.588606 -7.111394 0.0000000\nMissing-GK   -8.85 -13.588606 -4.111394 0.0000115\nMissing-Mid   3.00  -1.738606  7.738606 0.4026003\n```\n:::\n:::\n\n\n\n#### Tukey Pair-wise comparison Plot\n\n\n\n::: {.cell}\n::: {.cell-output .cell-output-stderr}\n```\nWarning: The `<scale>` argument of `guides()` cannot be `FALSE`. Use \"none\" instead as\nof ggplot2 3.3.4.\nℹ The deprecated feature was likely used in the ggiraphExtra package.\n  Please report the issue to the authors.\n```\n:::\n\n::: {.cell-output-display}\n![](mpofurodrick_LATE_2917_442481_SoccerModule_files/figure-docx/unnamed-chunk-5-1.png)\n:::\n:::\n\n\na.\tWrite a few sentences summarizing the interesting findings between the groups\n\n\n",
+    "supporting": [
+      "mpofurodrick_LATE_2917_442481_SoccerModule_files"
+    ],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": null,
+    "postProcess": false
+  }
+}
