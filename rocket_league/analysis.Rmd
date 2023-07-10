@@ -1,0 +1,55 @@
+---
+title: "Analysis"
+output: html_document
+date: "2023-07-10"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+rl_team <- read_csv("data/games_by_teams.csv")
+```
+
+#  time per match going supersonic speed vs. total distance driver in match
+```{r}
+rl_team<-rl_team%>%
+  na.omit()
+cor(rl_team$movement_time_supersonic_speed, rl_team$movement_total_distance)
+
+
+mod1 <- lm(movement_total_distance ~ movement_time_supersonic_speed, data = rl_team)
+summary(mod1)
+
+
+ggplot(data = rl_team,
+       aes(x = movement_time_supersonic_speed, y = movement_total_distance))+
+  geom_point()
+```
+# time per match spent on the ground vs. total distance 
+```{r}
+mod2 <- lm(movement_total_distance ~ movement_time_ground, data = rl_team)
+summary(mod2)
+
+
+ggplot(data = rl_team,
+       aes(x = movement_time_ground, y = movement_total_distance))+
+  geom_point()
+```
+# MLR with both 
+```{r}
+mod3 <- lm(movement_total_distance ~ movement_time_supersonic_speed + movement_time_ground, data = rl_team)
+summary(mod2)
+
+ggplot(data = rl_team,
+       aes(x = movement_time_ground + movement_time_supersonic_speed, y = movement_total_distance))+
+  geom_point()
+```
+
+
+
+
+
+
+
