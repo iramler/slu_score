@@ -24,13 +24,14 @@ The data set contains each drivers' statistics from the 2022 season.
 ggplot(data = nascar_2022, 
        aes(x = AvgStart, y = DriverRating ))+
   geom_point()+
-  geom_smooth(se = FALSE)
+  geom_smooth(se = FALSE)+
+  labs(x = "Driver Rating", y = "Average Start", title = "Nascar Driver Comparisons")
 ```
 
 Above is scatterplot displaying the relationship between Average Start and Driver Rating. 
 
 
-1. What is the explanatory variable in this situation and what is the response? What are the units of both variables respectively?
+1. In the scatterplot above what is the explanatory variable? What is the response? What are the units of both variables respectively?
 
 2. What does each point on the scatter plot represent?
 
@@ -60,5 +61,14 @@ summary(mod1)
 
 13. What are the model assumptions for simple linear regression? Examine the plots below to check the assumptions for the linear model. Which assumptions are met? Are there any issues?
 
+```{r}
+plot(mod1)
+```
+
+
 # Should confince intervals and prediction intervals be added or should it be a separate module?
+
+```{r}
+cor(nascar_2022$AvgStart, nascar_2022$DriverRating)
+```
 
