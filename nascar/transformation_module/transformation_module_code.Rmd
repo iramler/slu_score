@@ -30,7 +30,6 @@ Answer: The correlation is -0.926 which shows a strong significant negative rela
 
 ## Now let's look at the linear regression model formula
 ```{r, message=FALSE, echo=FALSE}
-# Look at the model formula
 lm_AvgFinish <- lm(AvgFinish ~ DriverRating, data = nascar)
 summary(lm_AvgFinish)
 ```
@@ -78,7 +77,6 @@ Answer: Linearity vastly improved. Looks like linearity assumption holds now.
 
 ## Now let's look the new linear regression model formula
 ```{r, message=FALSE, echo=FALSE}
-# Look at the model formula
 lm_AvgFinish2 <- lm(AvgFinish ~ logDriverRating, data = nascar)
 summary(lm_AvgFinish2)
 ```
@@ -108,7 +106,6 @@ Because the data is from multiple consecutive seasons, many drivers appear more 
 ```{r}
 nascar$sqrtDriverRating = sqrt(nascar$DriverRating)
 ```
-
 ```{r}
 ggplot(data = nascar, aes(x = sqrtDriverRating, y = AvgFinish))+
   geom_point()+
