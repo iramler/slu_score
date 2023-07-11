@@ -104,14 +104,23 @@ Avg_finish_prediction
 # Do you think there is any issues with the prediction we just made?
 Because the data is from multiple consecutive seasons, many drivers appear more than once. This violates the model assumption of independence and increases the chance of inaccuracy with inference.
 
-# Subset it to one year 
+# Trying swrt
 ```{r}
-nascar_2022<- nascar%>%
-  filter(Year == 2022)
-
-
-
+nascar$sqrtDriverRating = sqrt(nascar$DriverRating)
 ```
 
+```{r}
+ggplot(data = nascar, aes(x = sqrtDriverRating, y = AvgFinish))+
+  geom_point()+
+  geom_smooth(se = FALSE)
+```
 
+```{r}
+lm_AvgFinish3 <- lm(AvgFinish ~ sqrtDriverRating, data = nascar)
+summary(lm_AvgFinish3)
+```
+
+```{r}
+plot(lm_AvgFinish3)
+```
 
