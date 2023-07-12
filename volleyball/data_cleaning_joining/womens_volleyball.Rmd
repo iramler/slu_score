@@ -1,0 +1,186 @@
+---
+title: "Womens ACC Volleyball"
+output: html_document
+date: "2023-07-12"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# joining east
+```{r}
+east_aces <- read_csv("ncaa_east.csv", col_select = 1:3, n_max = 74)
+east_assists <- read_csv("ncaa_east.csv", col_select = 4:5, n_max = 74)
+east_blocks <- read_csv("ncaa_east.csv", col_select = 6:7, n_max = 74)
+east_digs <- read_csv("ncaa_east.csv", col_select = 8:9, n_max = 74)
+east_hitting <- read_csv("ncaa_east.csv", col_select = 10:11, n_max = 74)
+east_kills <- read_csv("ncaa_east.csv", col_select = 12:13, n_max = 74)
+east_match <- read_csv("ncaa_east.csv", col_select = 14:15, n_max = 74)
+east_opp <- read_csv("ncaa_east.csv", col_select = 16:17, n_max = 74)
+east_attack <- read_csv("ncaa_east.csv", col_select = 18:19, n_max = 74)
+east_service <- read_csv("ncaa_east.csv", col_select = 20:21, n_max = 74)
+
+semi_join(east_assists, east_aces, by = c("team...4" = "team...1"))
+
+ncaa_east_full <- left_join(east_aces, east_assists, by = c("team...1" = "team...4"))
+ncaa_east_full <- left_join(ncaa_east_full, east_blocks, by = c("team...1" = "team...6"))
+ncaa_east_full <- left_join(ncaa_east_full, east_digs, by = c("team...1" = "team...8"))
+ncaa_east_full <- left_join(ncaa_east_full, east_hitting, by = c("team...1" = "team...10"))
+ncaa_east_full <- left_join(ncaa_east_full, east_kills, by = c("team...1" = "team...12"))
+ncaa_east_full <- left_join(ncaa_east_full, east_match, by = c("team...1" = "team...14"))
+ncaa_east_full <- left_join(ncaa_east_full, east_opp, by = c("team...1" = "team...16"))
+ncaa_east_full <- left_join(ncaa_east_full, east_attack, by = c("team...1" = "team...18"))
+ncaa_east_full <- left_join(ncaa_east_full, east_service, by = c("team...1" = "team...20"))
+
+ncaa_east_full <- ncaa_east_full%>%
+  relocate(region, .before = aces_per_set)%>%
+  rename(team = team...1)
+
+write_csv(x = ncaa_east_full, file = "data/ncaa_east.csv")
+```
+
+# joining midwest
+```{r}
+midwest<- read_csv("ncaa_midwest.csv")
+midwest<-midwest%>%
+  mutate(across(c(1,4,6,8,10,12,14,16,18,20), str_trim))
+write_csv(x = midwest, file = "ncaa_midwest_trim.csv")
+
+mw_aces <- read_csv("ncaa_midwest_trim.csv", col_select = 1:3, n_max = 67)
+mw_assists <- read_csv("ncaa_midwest_trim.csv", col_select = 4:5, n_max = 67)
+mw_blocks <- read_csv("ncaa_midwest_trim.csv", col_select = 6:7, n_max = 67)
+mw_digs <- read_csv("ncaa_midwest_trim.csv", col_select = 8:9, n_max = 67)
+mw_hitting <- read_csv("ncaa_midwest_trim.csv", col_select = 10:11, n_max = 67)
+mw_kills <- read_csv("ncaa_midwest_trim.csv", col_select = 12:13, n_max = 67)
+mw_match <- read_csv("ncaa_midwest_trim.csv", col_select = 14:15, n_max = 67)
+mw_opp <- read_csv("ncaa_midwest_trim.csv", col_select = 16:17, n_max = 67)
+mw_attack <- read_csv("ncaa_midwest_trim.csv", col_select = 18:19, n_max = 67)
+mw_service <- read_csv("ncaa_midwest_trim.csv", col_select = 20:21, n_max = 67)
+
+
+ncaa_midwest <- left_join(mw_aces, mw_assists, by = c("team...1" = "team...4"))
+ncaa_midwest <- left_join(ncaa_midwest, mw_blocks, by = c("team...1" = "team...6"))
+ncaa_midwest <- left_join(ncaa_midwest, mw_digs, by = c("team...1" = "team...8"))
+ncaa_midwest <- left_join(ncaa_midwest, mw_hitting, by = c("team...1" = "team...10"))
+ncaa_midwest <- left_join(ncaa_midwest, mw_kills, by = c("team...1" = "team...12"))
+ncaa_midwest <- left_join(ncaa_midwest, mw_match, by = c("team...1" = "team...14"))
+ncaa_midwest <- left_join(ncaa_midwest, mw_opp, by = c("team...1" = "team...16"))
+ncaa_midwest <- left_join(ncaa_midwest, mw_attack, by = c("team...1" = "team...18"))
+ncaa_midwest <- left_join(ncaa_midwest, mw_service, by = c("team...1" = "team...20"))
+
+ncaa_midwest <- ncaa_midwest%>%
+  relocate(region, .before = aces_per_set)%>%
+  rename(team = team...1)
+
+write_csv(x = ncaa_midwest, file = "data/ncaa_midwest.csv")
+```
+
+# joining southeast
+```{r}
+southeast<- read_csv("ncaa_southeast.csv")
+southeast<-southeast%>%
+  mutate(across(c(1,4,6,8,10,12,14,16,18,20), str_trim))
+write_csv(x = southeast, file = "ncaa_southeast_trim.csv")
+
+s_aces <- read_csv("ncaa_southeast_trim.csv", col_select = 1:3, n_max = 61)
+s_assists <- read_csv("ncaa_southeast_trim.csv", col_select = 4:5, n_max = 61)
+s_blocks <- read_csv("ncaa_southeast_trim.csv", col_select = 6:7, n_max = 61)
+s_digs <- read_csv("ncaa_southeast_trim.csv", col_select = 8:9, n_max = 61)
+s_hitting <- read_csv("ncaa_southeast_trim.csv", col_select = 10:11, n_max = 61)
+s_kills <- read_csv("ncaa_southeast_trim.csv", col_select = 12:13, n_max = 61)
+s_match <- read_csv("ncaa_southeast_trim.csv", col_select = 14:15, n_max = 61)
+s_opp <- read_csv("ncaa_southeast_trim.csv", col_select = 16:17, n_max = 61)
+s_attack <- read_csv("ncaa_southeast_trim.csv", col_select = 18:19, n_max = 61)
+s_service <- read_csv("ncaa_southeast_trim.csv", col_select = 20:21, n_max = 61)
+
+
+ncaa_southeast <- left_join(s_aces, s_assists, by = c("team...1" = "team...4"))
+ncaa_southeast <- left_join(ncaa_southeast, s_blocks, by = c("team...1" = "team...6"))
+ncaa_southeast <- left_join(ncaa_southeast, s_digs, by = c("team...1" = "team...8"))
+ncaa_southeast <- left_join(ncaa_southeast, s_hitting, by = c("team...1" = "team...10"))
+ncaa_southeast <- left_join(ncaa_southeast, s_kills, by = c("team...1" = "team...12"))
+ncaa_southeast <- left_join(ncaa_southeast, s_match, by = c("team...1" = "team...14"))
+ncaa_southeast <- left_join(ncaa_southeast, s_opp, by = c("team...1" = "team...16"))
+ncaa_southeast <- left_join(ncaa_southeast, s_attack, by = c("team...1" = "team...18"))
+ncaa_southeast <- left_join(ncaa_southeast, s_service, by = c("team...1" = "team...20"))
+
+ncaa_southeast <- ncaa_southeast%>%
+  relocate(region, .before = aces_per_set)%>%
+  rename(team = team...1)
+
+write_csv(x = ncaa_southeast, file = "data/ncaa_southeast.csv")
+```
+
+# joining south
+```{r}
+south<- read_csv("ncaa_south.csv")
+south<-south%>%
+  mutate(across(c(1,4,6,8,10,12,14,16,18,20), str_trim))
+write_csv(x = south, file = "ncaa_south_trim.csv")
+
+s_aces <- read_csv("ncaa_south_trim.csv", col_select = 1:3, n_max = 70)
+s_assists <- read_csv("ncaa_south_trim.csv", col_select = 4:5, n_max = 70)
+s_blocks <- read_csv("ncaa_south_trim.csv", col_select = 6:7, n_max = 70)
+s_digs <- read_csv("ncaa_south_trim.csv", col_select = 8:9, n_max = 70)
+s_hitting <- read_csv("ncaa_south_trim.csv", col_select = 10:11, n_max = 70)
+s_kills <- read_csv("ncaa_south_trim.csv", col_select = 12:13, n_max = 70)
+s_match <- read_csv("ncaa_south_trim.csv", col_select = 14:15, n_max = 70)
+s_opp <- read_csv("ncaa_south_trim.csv", col_select = 16:17, n_max = 70)
+s_attack <- read_csv("ncaa_south_trim.csv", col_select = 18:19, n_max = 70)
+s_service <- read_csv("ncaa_south_trim.csv", col_select = 20:21, n_max = 70)
+
+
+ncaa_south <- left_join(s_aces, s_assists, by = c("team...1" = "team...4"))
+ncaa_south <- left_join(ncaa_south, s_blocks, by = c("team...1" = "team...6"))
+ncaa_south <- left_join(ncaa_south, s_digs, by = c("team...1" = "team...8"))
+ncaa_south <- left_join(ncaa_south, s_hitting, by = c("team...1" = "team...10"))
+ncaa_south <- left_join(ncaa_south, s_kills, by = c("team...1" = "team...12"))
+ncaa_south <- left_join(ncaa_south, s_match, by = c("team...1" = "team...14"))
+ncaa_south <- left_join(ncaa_south, s_opp, by = c("team...1" = "team...16"))
+ncaa_south <- left_join(ncaa_south, s_attack, by = c("team...1" = "team...18"))
+ncaa_south <- left_join(ncaa_south, s_service, by = c("team...1" = "team...20"))
+
+ncaa_south <- ncaa_south%>%
+  relocate(region, .before = aces_per_set)%>%
+  rename(team = team...1)
+
+write_csv(x = ncaa_south, file = "data/ncaa_south.csv")
+```
+
+# joining west
+```{r}
+west<- read_csv("ncaa_west.csv")
+west<-west%>%
+  mutate(across(c(1,4,6,8,10,12,14,16,18,20), str_trim))
+write_csv(x = west, file = "ncaa_west_trim.csv")
+
+w_aces <- read_csv("ncaa_west_trim.csv", col_select = 1:3, n_max = 61)
+w_assists <- read_csv("ncaa_west_trim.csv", col_select = 4:5, n_max = 61)
+w_blocks <- read_csv("ncaa_west_trim.csv", col_select = 6:7, n_max = 61)
+w_digs <- read_csv("ncaa_west_trim.csv", col_select = 8:9, n_max = 61)
+w_hitting <- read_csv("ncaa_west_trim.csv", col_select = 10:11, n_max = 61)
+w_kills <- read_csv("ncaa_west_trim.csv", col_select = 12:13, n_max = 61)
+w_match <- read_csv("ncaa_west_trim.csv", col_select = 14:15, n_max = 61)
+w_opp <- read_csv("ncaa_west_trim.csv", col_select = 16:17, n_max = 61)
+w_attack <- read_csv("ncaa_west_trim.csv", col_select = 18:19, n_max = 61)
+w_service <- read_csv("ncaa_west_trim.csv", col_select = 20:21, n_max = 61)
+
+
+ncaa_west <- left_join(w_aces, w_assists, by = c("team...1" = "team...4"))
+ncaa_west <- left_join(ncaa_west, w_blocks, by = c("team...1" = "team...6"))
+ncaa_west <- left_join(ncaa_west, w_digs, by = c("team...1" = "team...8"))
+ncaa_west <- left_join(ncaa_west, w_hitting, by = c("team...1" = "team...10"))
+ncaa_west <- left_join(ncaa_west, w_kills, by = c("team...1" = "team...12"))
+ncaa_west <- left_join(ncaa_west, w_match, by = c("team...1" = "team...14"))
+ncaa_west <- left_join(ncaa_west, w_opp, by = c("team...1" = "team...16"))
+ncaa_west <- left_join(ncaa_west, w_attack, by = c("team...1" = "team...18"))
+ncaa_west <- left_join(ncaa_west, w_service, by = c("team...1" = "team...20"))
+
+ncaa_west <- ncaa_west%>%
+  relocate(region, .before = aces_per_set)%>%
+  rename(team = team...1)
+
+write_csv(x = ncaa_west, file = "data/ncaa_west.csv")
+```
+
