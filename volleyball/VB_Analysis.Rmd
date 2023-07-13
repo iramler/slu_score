@@ -1,0 +1,70 @@
+---
+title: "VB Analysis"
+output: html_document
+date: "2023-07-13"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+vb <- read_csv("data/volleyball_2022_23.csv")
+
+vb_3 <- vb%>%
+  select(4:15)%>%
+  na.omit()
+
+cor(vb_3)
+```
+# What stats are most impactful for determining win percentage 
+## Identify the 3 variables most highly correlated with win_loss_pctg
+```{r}
+cor(vb_3$win_loss_pctg, vb_3$assists_per_set)
+cor(vb_3$win_loss_pctg, vb_3$hitting_pctg)
+cor(vb_3$win_loss_pctg, vb_3$kills_per_set)
+```
+
+# MLR
+## Multicollinearity module
+## Questions
+
+Fit a model with kills_per_set predicting win_loss_pctg. Is there evidence the model is useful? (YES)
+```{r}
+mod1 <-  lm(win_loss_pctg ~ kills_per_set, data = vb)
+summary(mod1)
+```
+Fit a model with assists_per_set predicting win_loss_pctg. Is there evidence the model is useful? (YES)
+```{r}
+mod2 <-  lm(win_loss_pctg ~ assists_per_set, data = vb)
+summary(mod2)
+```
+
+Fit a model with assists_per_set AND kills_per_set predicting win_loss_pctg. Is there evidence the model is useful? Is there an issues with multicollinearity? (YES)
+```{r}
+mod3 <-  lm(win_loss_pctg ~ assists_per_set + kills_per_set, data = vb)
+summary(mod3)
+```
+```{r}
+vif(mod3)
+```
+
+Add hitting percentage. Is there
+```{r}
+mod4 <-  lm(win_loss_pctg ~ assists_per_set+ kills_per_set  + hitting_pctg, data = vb)
+summary(mod4)
+```
+
+```{r}
+vif(mod4)
+```
+
+Looking at the data decription. Explain why we are seeing these issues with multicollinearity. 
+
+## Create a more effective model 
+
+```{r}
+mod5 <- lm(win_loss_pctg ~ hitting_pctg + opp_hitting_pctg, data = vb)
+summary(mod5)
+```
+
