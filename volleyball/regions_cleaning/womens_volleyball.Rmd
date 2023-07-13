@@ -183,4 +183,3 @@ ncaa_west <- ncaa_west%>%
 
 write_csv(x = ncaa_west, file = "data/ncaa_west.csv")
 ```
-
