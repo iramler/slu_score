@@ -17,8 +17,7 @@ The Boston Marathon is an annual road race that takes place in the City of Bosto
 
 The data set contains 26598 rows and 15 columns. Each row represents a runner who completed the Boston Marathon in 2023
 
-\| Variable \| Description \|
-\|\-\-\--\|\-\-\-\-\-\-\-\-\-\-\-\-\-\--\|
+\| Variable \| Description \| \|\-\-\--\|\-\-\-\-\-\-\-\-\-\-\-\-\-\--\|
 
 \| age_group \| age group of the runner \|
 
@@ -49,6 +48,8 @@ The data set contains 26598 rows and 15 columns. Each row represents a runner wh
 \| finish_net_sec \| net finish in seconds \|
 
 \| finish_gun_sec \| gun finish in seconds \|
+
+Data file
 
 :   \[boston_marathon_2023.csv\](../data/boston_marathon_2023.csv)
 
