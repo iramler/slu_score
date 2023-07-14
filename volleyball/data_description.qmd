@@ -11,7 +11,7 @@ In volleyball, a kill is awarded to a player any time their attack is unreturnab
 
 ## Data
 
-The data set contains 334 rows and 15 columns. Each row represents a team at the NCAA Division 1 level from the 2022-2023 season.
+The data set contains 334 rows and 14 columns. Each row represents a team at the NCAA Division 1 level from the 2022-2023 season.
 
 \| Variable \| Description \| \|\-\-\--\|\-\-\-\-\-\-\-\-\-\-\-\-\-\--\|
 
@@ -21,7 +21,7 @@ The data set contains 334 rows and 15 columns. Each row represents a team at the
 
 \| region \| region to which the team belongs \|
 
-\| aces_per_set \| the average amount of balls served that immediately win a point per set \|
+\| aces_per_set \| the average amount of balls served that directly lead to a point not including errors by the opponent per set \|
 
 \| assists_per_set \| the average amount of sets, passes, or digs to a teammate that directly result in a kill per set\|
 
@@ -35,9 +35,7 @@ The data set contains 334 rows and 15 columns. Each row represents a team at the
 
 \| kills_per_set \| average amount of hits that directly result in a point per set \|
 
-\| opp_hitting_pctg \| the average hitting pctg of the teams opponent per set \|
-
-\| service_aces \| amount of serves that directly led to a point not including errors by the opponent \|
+\| opp_hitting_pctg \| the average hitting percentage of the teams opponent per set \|
 
 \| W \| the amount of team wins for the season \|
 

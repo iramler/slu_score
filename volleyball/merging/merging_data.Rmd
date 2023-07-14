@@ -54,7 +54,9 @@ volleyball_2022_23 <- left_join(volleyball_2022_23, region, by = c("Team"="team"
 # separate team names in volleyball_2022_23 and join in region 
 ```{r}
 write_csv(x = volleyball_2022_23, file = "volleyball_2022_23.csv")
-
+vb <- vb%>%
+  select(-service_aces)
+write_csv(x = vb, file = "volleyball_2022_23.csv")
 
 ```
 
