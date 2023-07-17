@@ -1,0 +1,83 @@
+---
+title: "VB Analysis"
+output: html_document
+date: "2023-07-13"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+library(tidyverse)
+library(car)
+```
+
+# MLR
+## Multicollinearity module
+## Questions
+
+```{r}
+vb <- read_csv("data/volleyball_2022_23.csv")
+```
+
+
+### Identify the correlation between kills_per_set win_loss_pctg 
+### Identify the correlation between assists_per_set and win_loss_percentage
+```{r}
+cor(vb$kills_per_set, vb$win_loss_pctg)
+cor(vb$assists_per_set, vb$win_loss_pctg)
+```
+
+Fit a model with kills_per_set predicting win_loss_pctg. Is there evidence the model is useful? (YES)
+```{r}
+mod1 <-  lm(win_loss_pctg ~ kills_per_set, data = vb)
+summary(mod1)
+```
+Fit a model with assists_per_set predicting win_loss_pctg. Is there evidence the model is useful? (YES)
+```{r}
+mod2 <-  lm(win_loss_pctg ~ assists_per_set, data = vb)
+summary(mod2)
+```
+
+Fit a model with assists_per_set AND kills_per_set predicting win_loss_pctg. Are both predictors still significant? What changes do you see to the signs and values of the coefficients? (sign flipped) Did the p-values change?
+```{r}
+mod3 <-  lm(win_loss_pctg ~ kills_per_set + assists_per_set, data = vb)
+summary(mod3)
+```
+
+Create a scatterplot of kills_per_set vs. assists_per set. What do you notice? What is the correlation between the two variables?
+```{r}
+ggplot(data = vb,
+        aes(x = assists_per_set, y = kills_per_set))+
+  geom_point()
+```
+
+```{r}
+cor(vb$assists_per_set, vb$kills_per_set)
+```
+
+In volleyball, a kill is awarded to a player any time their attack is unreturnable by the opposition because it is the direct cause of the opponent not returning the ball. An assist is awarded when a set, pass, or dig to a teammate results in that teammate attacking the ball for a kill.
+
+Given these definitions, why do you think we lose significance when we use both kills and assists to predict win_loss_pctg? Does the addition of assists_per_set improve our model?
+
+
+Which of the three models do you think is most effective?
+
+
+
+Using the model you chose provide an interpretation of the slope coefficient in context.
+
+
+
+
+Using the model you chose provide an interpretation of the intercept coefficient in context.
+
+
+
+Multicollinearity in multiple linear regression occurs when explanatory variables are highly correlated. It can result in unstable coefficient estimates and hinder interpretations of predictor significance. Removing these variables can address multicollinearity and improve the model's stability and interpretability. 
+
+
+One method of identifying multicollinearity is through calculating VIF. The calculation determines the strength of the correlation between each pairing of explanatory variables. VIF values greater than 5 are generally considered to imply an issue with multicollinearity
+VIFi =  1/1-R^2 
+
+Calculate the VIF of assists_per_set and kills_per_set below. Does the result indicate multicollinearity in the model?
+
