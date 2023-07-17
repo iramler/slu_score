@@ -12,7 +12,7 @@ knitr::opts_chunk$set(echo = TRUE)
 assists<- read_csv("assists_l.csv", col_select = 1:2)
 caused_turnovers<- read_csv("caused_turnovers_l.csv", col_select = 1:2)
 clearing<- read_csv("clearing_pctg_l.csv", col_select = 1:2)
-fo <- read_csv("fo_win_pctg_l.csv", col_select = 1:2)
+fo <- read_csv("fo_win_pctg.csv", col_select = 1:4)
 goals_against<- read_csv("goals_against.csv", col_select = 1:2)
 goals<- read_csv("goals_l.csv", col_select = 1:2)
 groundballs<- read_csv("ground_balls_l.csv", col_select = 1:2)
@@ -47,8 +47,6 @@ lax_2022_2023 <- left_join(lax_2022_2023, win_loss, by = "Team")
 
 # cleaning
 ```{r}
-#write_csv(x = lax_2022_2023, file = "lax_2022_2023.csv")
-
 lax_2022_2023 <- lax_2022_2023%>%
   separate(Team, into = c("Team","Conference"), sep = "\\(", extra = "merge")%>%
   mutate(Conference = str_remove_all(Conference,"\\)"),
