@@ -1,0 +1,53 @@
+---
+title: "Cleaning"
+output: html_document
+date: "2023-07-17"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# There is a significantly higher correlation between faceoff win percentage and overall win percentage for women than there is for men
+
+# Shot percetage on goal also has a strong correlation with win percentage 
+
+
+
+```{r}
+draw <- read_csv("draw_pctg.csv")
+wins <- read_csv("win_pctg.csv", col_select = 1:2)
+turnovers <- read_csv("turnovers.csv", col_select = 1:2)
+sog <- read_csv("sog.csv", col_select = 1:2)
+
+
+w_lax <- left_join(draw, wins, by = "Team")
+w_lax <- left_join(w_lax, turnovers, by = "Team")
+
+w_lax <- left_join(w_lax, sog, by = "Team")
+
+
+cor(w_lax$draw_pctg, w_lax$win_pctg)
+
+cor(w_lax$sog_per_game, w_lax$win_pctg)
+
+```
+
+
+```{r}
+ggplot(lax,
+       aes(x = faceoff_win_pct, y = win_loss_pctg))+
+  geom_point()
+
+
+ggplot(w_lax,
+       aes(x = draw_pctg, y = win_pctg))+
+  geom_point()
+```
+
+```{r}
+mod <- lm(win_pctg ~ sog_per_game + draw_pctg, data = w_lax)
+summary(mod)
+```
+
+

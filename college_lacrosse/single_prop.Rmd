@@ -60,3 +60,7 @@ percentage than what is normal for all of Division 1 lacrosse in the 2022-2023 s
 Provide all necessary details and a conclusion in context.
 
 
+```{r}
+cor(lax$faceoff_win_pct, lax$win_loss_pctg)
+```
+
