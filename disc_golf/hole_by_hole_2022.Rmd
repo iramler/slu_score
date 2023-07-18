@@ -22,3 +22,20 @@ write_csv(x =  disc, file = "disc_golf_holes22.csv")
 
 # do same thing as done for 2023 but with full season of data for 2022
 # after format is established 
+
+
+
+```{r}
+disc <- read_csv("disc_golf_holes.csv")
+
+disc <- disc%>%
+  filter(`Hole Par` == 3)%>%
+  mutate(underParIND = ifelse(Avg < 3, 1, 0))
+
+ggplot(data = disc, aes(x = Length, y = underParIND) ) + 
+  geom_point() + 
+  geom_smooth(method="glm", 
+              method.args=list(family="binomial"), 
+              se=FALSE)
+```
+
