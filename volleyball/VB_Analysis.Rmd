@@ -81,3 +81,7 @@ VIFi =  1/1-R^2
 
 Calculate the VIF of assists_per_set and kills_per_set below. Does the result indicate multicollinearity in the model?
 
+```{r}
+vif(mod3)
+```
+
