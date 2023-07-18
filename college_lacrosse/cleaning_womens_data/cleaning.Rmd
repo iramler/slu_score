@@ -8,11 +8,14 @@ date: "2023-07-17"
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
+```{r}
+library(tidyverse)
+```
+
+
 # There is a significantly higher correlation between faceoff win percentage and overall win percentage for women than there is for men
 
 # Shot percetage on goal also has a strong correlation with win percentage 
-
-
 
 ```{r}
 draw <- read_csv("draw_pctg.csv")
@@ -23,26 +26,11 @@ sog <- read_csv("sog.csv", col_select = 1:2)
 
 w_lax <- left_join(draw, wins, by = "Team")
 w_lax <- left_join(w_lax, turnovers, by = "Team")
-
 w_lax <- left_join(w_lax, sog, by = "Team")
 
 
 cor(w_lax$draw_pctg, w_lax$win_pctg)
-
 cor(w_lax$sog_per_game, w_lax$win_pctg)
-
-```
-
-
-```{r}
-ggplot(lax,
-       aes(x = faceoff_win_pct, y = win_loss_pctg))+
-  geom_point()
-
-
-ggplot(w_lax,
-       aes(x = draw_pctg, y = win_pctg))+
-  geom_point()
 ```
 
 ```{r}
@@ -50,4 +38,32 @@ mod <- lm(win_pctg ~ sog_per_game + draw_pctg, data = w_lax)
 summary(mod)
 ```
 
+
+# Idea: Have students compare the correlation of of faceoff_win_pctg to win_pctg for men and women
+# Its higher for women being the faceoffs are more meaningful.
+
+# Then, why could this be?
+# look at histograms of turnovers per game for men and women 
+
+```{r}
+write_csv(w_lax, file = "womens_lax_2022-2023.csv")
+
+w_lax <- read_csv("womens_lax_2022-2023.csv")
+
+
+# Correlation is higher for women than men 
+cor(w_lax$draw_pctg, w_lax$win_pctg)
+cor(lax$faceoff_win_pct, lax$win_loss_pctg)
+```
+```{r}
+# 
+hist(lax$avg_turnovers)
+hist(w_lax$turnovers_per_game)
+```
+```{r}
+mean(lax$avg_turnovers)
+mean(w_lax$turnovers_per_game)
+
+# not crazy
+```
 

@@ -9,7 +9,7 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 
 ```{r}
-lax <- read_csv("data/lax_2022_2023.csv")
+lax <- read_csv("mens_data/lax_2022_2023.csv")
 
 ggcorr(lax, # update data here
        
