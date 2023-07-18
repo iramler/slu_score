@@ -24,7 +24,12 @@ womens_lax <- womens_lax%>%
 
 men_women_lax <- rbind(mens_lax, womens_lax)
 ```
+# visualize faceoffs vs win percentage
 
+
+# fit a model with faceoffs predicting win percentage 
+
+well lets see if men and women have a difference in faceoffs 
 # Visual 
 ```{r}
 ggplot(data = men_women_lax,
@@ -40,4 +45,11 @@ men_women_lax <- men_women_lax%>%
 modIND <- lm(win_loss_pctg ~ genderIND + faceoff_win_pct*genderIND, data = men_women_lax)
 summary(modIND)
 ```
+# which intercept is higher 
+
+
+# which slope is steeper 
+
+
+# why do they meet at .500
 
