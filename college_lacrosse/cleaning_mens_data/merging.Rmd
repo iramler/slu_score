@@ -24,6 +24,7 @@ points <- read_csv("points_l.csv", col_select = 1:2)
 saves <- read_csv("saves_l.csv", col_select = 1:2)
 shot <- read_csv("shot_pctg_l.csv", col_select = 1:2)
 turnovers<- read_csv("turnovers_l.csv", col_select = 1:2)
+shots_per_game <- read_csv("shots_per_game.csv", col_select = 1:3)
 win_loss <- read_csv("win_loss_l.csv")
 ```
 # joining
@@ -42,7 +43,9 @@ lax_2022_2023 <- left_join(lax_2022_2023, points, by = "Team")
 lax_2022_2023 <- left_join(lax_2022_2023, saves, by = "Team")
 lax_2022_2023 <- left_join(lax_2022_2023, shot, by = "Team")
 lax_2022_2023 <- left_join(lax_2022_2023, turnovers, by = "Team")
+lax_2022_2023 <- left_join(lax_2022_2023, shots_per_game, by = "Team")
 lax_2022_2023 <- left_join(lax_2022_2023, win_loss, by = "Team")
+
 ```
 
 # cleaning
@@ -50,7 +53,9 @@ lax_2022_2023 <- left_join(lax_2022_2023, win_loss, by = "Team")
 lax_2022_2023 <- lax_2022_2023%>%
   separate(Team, into = c("Team","Conference"), sep = "\\(", extra = "merge")%>%
   mutate(Conference = str_remove_all(Conference,"\\)"),
-         Team = str_trim(Team))
+         Team = str_trim(Team))%>%
+  mutate(shots_per_game = Shots/Games)%>%
+  select(-20, -21)
 
 write_csv(x = lax_2022_2023, file = "lax_2022_2023.csv")
 ```

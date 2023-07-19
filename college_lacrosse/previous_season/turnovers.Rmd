@@ -1,0 +1,19 @@
+---
+title: "turnovers"
+output: html_document
+date: "2023-07-19"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+w_turnovers <- read_csv("w_turnovers.csv")
+
+m_turnovers <- read_csv("m_turnovers.csv")
+
+mean(w_turnovers$turnovers_per_game)
+mean(m_turnovers$turnovers_per_game)
+```
+
