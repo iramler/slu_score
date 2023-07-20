@@ -3,7 +3,7 @@ title: "Data Description"
 editor: visual
 ---
 
-## Motivation 
+## Motivation
 
 Division 1 NCAA women's volleyball is the highest level of collegiate competition for women's volleyball in the United States. With well over 300 teams compete at the Division 1 level, there is fierce competition each year as only 64 teams make the post-season Volleyball Championship. The division demands high-level athletic performances, teamwork, and strategic game play from a varity of aspects. With each team having their own strengths and weaknesses, there is no exception of exciting matchups and and shocking results.
 
@@ -51,7 +51,7 @@ How are assists and kills related?
 
 What model is best for predicting win/loss percentage?
 
-## References 
+## References
 
 NCAA - Women's Volleyball
 
