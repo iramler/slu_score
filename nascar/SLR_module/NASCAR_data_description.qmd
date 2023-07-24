@@ -7,6 +7,8 @@ description: NASCAR dataset from 2007-2022
 
 ## Motivation
 
+NASCAR, the National Association for Stock Car Auto Racing, has emerged as one of the world's most beloved motorsport organizations since its establishment in 1948. This dataset, gathered from the NASCAR website, presents an extensive collection of season statistics spanning from 2007 to 2022. It encompasses vital details on driver performances, race results, championship standings, and other key metrics that shed light on NASCAR's captivating evolution throughout these years. From record-breaking moments to championship battles and the impact of rule changes, this dataset offers a fascinating exploration of the dynamic world of NASCAR over the past fifteen years.
+
 ## Data
 
 The data comes from the NASCAR website and shows the season statistics from 2007-2022. Each row displays the metrics of a racer for that specific year. The data frame contains 1111 rows of ovservations and 20 variables.
