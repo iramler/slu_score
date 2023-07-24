@@ -53,7 +53,7 @@ The data comes from the NASCAR website and shows the season statistics from 2007
 
 ## Questions
 
-What is the best way to model the relationship between average finish and driver rating? How effective is this model? How can this data be used best?
+What is the relationship between average start and driver rating?
 
 ## References
 
