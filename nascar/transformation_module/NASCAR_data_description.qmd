@@ -7,8 +7,6 @@ description: NASCAR dataset from 2007-2022
 
 ## Motivation
 
-It is widely thought that Scandinavian athletes are dominant in the sport of cross-country skiing. The motivation for this data analysis is to assess cross-country ski results (in minutes) in a variety of ways to compare the difference in performance of Scandinavian athletes in relation to the rest of the field. By choosing the correct response variable(s), we can better examine the true disparity in results among the athletes over the course of the last four Olympics.
-
 ## Data
 
 The data comes from the NASCAR website and shows the season statistics from 2007-2022. Each row displays the metrics of a racer for that specific year. The data frame contains 1111 rows of ovservations and 20 variables.
