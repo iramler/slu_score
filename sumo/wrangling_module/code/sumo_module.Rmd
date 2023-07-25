@@ -85,7 +85,8 @@ sumo%>%
 # calculate the mean weight for each wrestler 
 sumo%>%
   group_by(Rikishi)%>%
-  summarise("mean weight" = mean(weight_kg))
+  summarise("mean weight" = mean(weight_kg),
+            "sd weight" = sd(weight_kg))
 ```
 
 ```{r}
@@ -114,13 +115,7 @@ sumo%>%
   summarise(total_win_percentage = mean(wins)/(mean(wins+losses+ties)))%>%
   arrange(desc(total_win_percentage))
 
-# or 
 
-sumo%>%
-  mutate(win_percentage = (wins/(wins+losses+ties))*100)%>%
-  group_by(Rikishi)%>%
-  summarise(total_win_percentage = mean(win_percentage))%>%
-  arrange(desc(total_win_percentage))
 ```
 
 
