@@ -103,12 +103,16 @@ sumo%>%
   arrange(desc(total_wins))
 ```
 ```{r}
-# calculate the overall win percentage of each wrestler and arrange from highest to lowest
+# calculate the overall proportion of wins for each wrestler and arrange from highest to lowest
 sumo%>%
   group_by(Rikishi)%>%
-  summarise(total_win_percentage = mean(wins/(wins+losses+ties))*100)%>%
+  summarise(total_win_percentage = sum(wins)/(sum(wins+losses+ties)))%>%
   arrange(desc(total_win_percentage))
 
+sumo%>%
+  group_by(Rikishi)%>%
+  summarise(total_win_percentage = mean(wins)/(mean(wins+losses+ties)))%>%
+  arrange(desc(total_win_percentage))
 
 # or 
 
