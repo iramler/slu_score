@@ -10,7 +10,7 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 
 ```{r}
-sumo <- read_csv("data/sumo_since_1957.csv")
+sumo <- read_csv("sumo_since_1957.csv")
 
 # Data contains sumo wrestling results from all bashos from 1957 to 2023
 # It shows the resulting record of all competitors in the top division (Makuuchi Banzuke)
@@ -106,7 +106,7 @@ sumo%>%
 # calculate the overall win percentage of each wrestler and arrange from highest to lowest
 sumo%>%
   group_by(Rikishi)%>%
-  summarise(total_win_percetage = mean(wins/(wins+losses+ties))*100)%>%
+  summarise(total_win_percentage = mean(wins/(wins+losses+ties))*100)%>%
   arrange(desc(total_win_percentage))
 
 
