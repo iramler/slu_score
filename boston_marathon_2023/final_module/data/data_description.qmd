@@ -49,6 +49,8 @@ The data set contains 26598 rows and 15 columns. Each row represents a runner wh
 
 \| finish_gun_sec \| gun finish in seconds \|
 
+\| finish_net_minutes \| net finish in minutes \|
+
 Data file
 
 :   \[boston_marathon_2023.csv\](../data/boston_marathon_2023.csv)
