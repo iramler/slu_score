@@ -3,7 +3,7 @@ title: "data_description"
 editor: visual
 ---
 
-## Motivation 
+## Motivation
 
 \
 In lacrosse, faceoffs are a key aspect to the offense as they provide opportunities to strike quickly, or at the very least to maintain possession. Faceoffs differ in format in men's to women's lacrosse yet nonetheless they both require high levels of skill and expertise. As important as they are in men's lacrosse, they are even more important in women's lacrosse as they lead more directly to goal scoring. At the highly level of NCAA Division I Lacrosse, all teams must fight to be above the average to win games.
