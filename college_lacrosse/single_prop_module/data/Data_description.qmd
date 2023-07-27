@@ -3,7 +3,7 @@ title: "Data Description"
 editor: visual
 ---
 
-## Motivation 
+## Motivation
 
 \
 Over the years, lacrosse has experienced remarkable growth, with increased popularity and participation propelling the sport to new heights. This surge has led to a rise in skilled athletes competing in high-level leagues, notably NCAA Division I Men's Lacrosse. Within this heightened competition, faceoffs are known to be a vital aspect of the game. Due to their important impact, players train to specifically specialize in them, as winning a faceoff often grants their teams crucial opportunities for offensive possession which can profoundly impact the course of the game.

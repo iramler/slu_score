@@ -102,7 +102,7 @@ Avg_finish_prediction
 # Do you think there is any issues with the prediction we just made?
 Because the data is from multiple consecutive seasons, many drivers appear more than once. This violates the model assumption of independence and increases the chance of inaccuracy with inference.
 
-# Trying swrt
+# Trying sqrt
 ```{r}
 nascar$sqrtDriverRating = sqrt(nascar$DriverRating)
 ```
@@ -119,5 +119,131 @@ summary(lm_AvgFinish3)
 
 ```{r}
 plot(lm_AvgFinish3)
+```
+
+# Worksheet answers
+
+```{r}
+nascar <- read_csv("bignessalyssa_LATE_1937_225990_nascar_df-1.csv")
+```
+
+1. 
+```{r}
+ggplot(data = nascar, 
+       aes(x = AvgPos, y = DriverRating))+
+  geom_point()+
+  geom_smooth(se = FALSE)
+```
+
+```{r}
+mod1 <- lm(DriverRating ~ AvgPos, data = nascar)
+summary(mod1)
+```
+```{r}
+plot(mod1)
+```
+# NATURAL LOGS
+```{r}
+ggplot(data = nascar, 
+       aes(x = log(AvgPos), y = DriverRating))+
+  geom_point()+
+  geom_smooth(se = FALSE)
+```
+
+
+```{r}
+ggplot(data = nascar, 
+       aes(x = AvgPos, y = log(DriverRating)))+
+  geom_point()+
+  geom_smooth(se = FALSE)
+```
+
+```{r}
+ggplot(data = nascar, 
+       aes(x = log(AvgPos), y = log(DriverRating)))+
+  geom_point()+
+  geom_smooth(se = FALSE)
+```
+
+
+```{r}
+logmod1 <- lm(DriverRating ~ log(AvgPos), data = nascar)
+summary(logmod1)
+```
+
+
+```{r}
+logmod2 <- lm(log(DriverRating) ~ AvgPos, data = nascar)
+summary(logmod2)
+```
+
+```{r}
+logmod3 <- lm(log(DriverRating) ~ log(AvgPos), data = nascar)
+summary(logmod3)
+```
+
+```{r}
+plot(logmod1)
+plot(logmod2)
+plot(logmod3)
+```
+
+# SQUARE ROOT
+```{r}
+ggplot(data = nascar, 
+       aes(x = sqrt(AvgPos), y = DriverRating))+
+  geom_point()+
+  geom_smooth(se = FALSE)
+```
+
+
+```{r}
+ggplot(data = nascar, 
+       aes(x = AvgPos, y = sqrt(DriverRating)))+
+  geom_point()+
+  geom_smooth(se = FALSE)
+```
+
+```{r}
+ggplot(data = nascar, 
+       aes(x = sqrt(AvgPos), y = sqrt(DriverRating)))+
+  geom_point()+
+  geom_smooth(se = FALSE)
+```
+
+
+```{r}
+sqrtmod1 <- lm(DriverRating ~ sqrt(AvgPos), data = nascar)
+summary(sqrtmod1)
+```
+
+
+```{r}
+sqrtmod2 <- lm(sqrt(DriverRating) ~ AvgPos, data = nascar)
+summary(sqrtmod2)
+```
+
+```{r}
+sqrtmod3 <- lm(sqrt(DriverRating) ~ sqrt(AvgPos), data = nascar)
+summary(sqrtmod3)
+```
+```{r}
+plot(sqrtmod1)
+plot(sqrtmod2)
+plot(sqrtmod3)
+```
+
+# POLYNOMIAL 
+
+```{r}
+polymod1 <- lm(DriverRating ~ AvgPos + I(AvgPos^2), data = nascar)
+summary(polymod1)
+
+
+polymod2 <- lm(DriverRating ~ AvgPos + I(AvgPos^2) + I(AvgPos^3), data = nascar)
+summary(polymod2)
+```
+```{r}
+plot(polymod1)
 ```
 
