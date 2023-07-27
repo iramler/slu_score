@@ -25,7 +25,7 @@ ggplot(data = nascar_2022,
        aes(x = AvgStart, y = DriverRating ))+
   geom_point()+
   geom_smooth(se = FALSE)+
-  labs(x = "Average Start", y = "Driver Rating")
+  labs(x = "Average Start", y = "Driver Rating", title = "2022 NASCAR Season")
 ```
 
 Above is scatterplot displaying the relationship between Average Start and Driver Rating. 
