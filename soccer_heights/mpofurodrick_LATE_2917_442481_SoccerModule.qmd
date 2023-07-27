@@ -60,6 +60,10 @@ set.seed(10294119)
 height_sample_df <- players_df_height |> group_by(position) |>
   slice_sample(n = 20)
 
+#height_sample_df |>
+#  select(name, position, foot, height_in_cm) |>
+#  write_csv(file = "soccer_heights_sample.csv")
+
 ```
 
 
