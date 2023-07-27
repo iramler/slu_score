@@ -18,7 +18,7 @@ This dataset shows information for all 32 National Hockey League (NHL) teams bas
 Each row of data gives power play statistics for one of the 32 National Hockey League teams from the 2022-2023 regular season.
 
 | Variable            | Description                                                |
-|--------------------|----------------------------------------------------|
+|---------------------|---------------------------------------------------|
 | `team`              | Name of the team                                           |
 | `goals_per_2_min`   | How many goals scored in 2 minute increments               |
 | `SOG_per_2_min`     | How many shots on goal were taken in a 2 minute increments |
@@ -31,13 +31,13 @@ Each row of data gives power play statistics for one of the 32 National Hockey L
 
 ## Questions
 
-1.  Are driving or putting statistics generally more effective for predicting success in a PGA tournament?
+1.  Describe the distribution of `goals-per-2min`. Does any team appear to have unusually hihg or low values for this variable?
 
-2.  Which measure of success (`avgScore`, `Money`, or `Points`) appears to be easiest to predict with either driving or putting information?
+2.  Create plot to look at the relationship between `goals_per_2min` and `SOG_per_2min`. Does it look like more shots tend to lead to more goals?
 
-3.  For each measure of success, generate a scatterplot with one the putting or driving variables. Which of these plots suggest we might want to use a transformation of one of the variables to improve linearity?
+3.  Create plot to look at the relationship between `goals_per_2min` and `hits_per_2min`. Does it look like more hits tend to lead to more goals?
 
-4.  Can you find a transformation that improves the linearity of the relationship for one of the problematic cases in question #3?
+4.  Create a plot to compare the distribution of goal scoring rates while on the power play between the two conferences. Does there appear to be much difference between the two conferences?
 
 ## References
 
