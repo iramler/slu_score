@@ -14,7 +14,7 @@ categories:
 ---
 
 ## Motivation
-
+In NASCAR, driver rating is a metric used to evaluate the performance of drivers in races. It provides a comprehensive assessment of a driver's overall competitiveness, efficiency, and consistency during a race. The driver rating is based on several key performance factors and is designed to offer a more objective view of a driver's abilities.The driver rating is calculated using a formula that combines these aspects such as wins, finish position, average running position, and multiple other components into a single numerical value. In this dataset, there are many trends and insights to be drawn for what variables lead to the best performing drivers.
 ## Data
 
 The data comes from the NASCAR website and shows the season statistics from 2007-2022. Each row displays the metrics of a racer for that specific year. The data frame contains 1111 rows of observations and 20 variables.
