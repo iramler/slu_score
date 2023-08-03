@@ -1,6 +1,6 @@
 ---
 title: NFL Draft Combine
-author: Shane Hauk, Robin Lock, Michael Schuckers
+author: Shane Hauk, Michael Schuckers, Robin Lock
 date: August 03, 2023
 description: NFL Scouting Combine Event scores from 2004 - 2023
 categories:
@@ -10,7 +10,7 @@ categories:
 
 ## Motivation
 
-The data set has statistics with variables for player draft information and how they performed in events at the NFL Scouting Combine. The variables for draft information are `position` and `Round`. The variables for the NFL Scouting Combine events are `forty`, `vertical`, `bench_reps`, `broad_jump`, and `shuttle`.
+The data set has statistics with variables for player draft information and how they performed in events at the NFL Scouting Combine. The variables for draft information are `position` and `Round`. The variables for the NFL Scouting Combine events are `forty`, `vertical`, `bench_reps`, `broad_jump`, and `shuttle`. Some entries are NA if a player was not drafted or did not prticipate in some events.
 
 ## Data
 
@@ -26,7 +26,7 @@ Each row of data gives gives information on position, draft round, and event sco
 | `broad_jump` | Broad jump distances (inches)  |
 | `shuttle`    | 20-yard shuttle time           |
 
-: [nfl_draft_combine.csv](../data/nfl_draft_combine.csv)
+[nfl_combine.csv](../data/nfl_combine.csv)
 
 ## Questions
 
