@@ -2,7 +2,7 @@
 title: Soccer Heights
 author: Roderick Mpofu, Robin Lock
 date: August 03, 2023
-description: Heigths for a sample of 100 soccer players by position 
+description: Heights for a sample of 100 soccer players by position 
 categories:
   - ANOVA for means
   - Pairwise comparisons
@@ -10,11 +10,11 @@ categories:
 
 ## Motivation
 
-A researcher wants to investigate whether there are differences among the mean height for different positions (Goalkeeper, Defender, Midfield, or Attack) of soccer players. Goalkeepers are typically thought to be taller than other positions to make up in wingspan to cover the goal better. The dataset contains information on each player including their name, position, preferred foot, and height. For this analysis, only the position and height of the player will be used. A sample of 20 players was taken from each position for this analysis.
+A researcher wants to investigate whether there are differences among the mean height for different positions (Goalkeeper, Defender, Midfield, Attack, or Missing) of soccer players. Goalkeepers are typically thought to be taller than other positions to make up in wingspan to cover the goal better. The dataset contains information on each player including their name, position, preferred foot, and height. For this analysis, only the position and height of the player will be used. A sample of 20 players was taken from each position for this analysis.
 
 ## Data
 
-Each row of data gives gives information for on of 100 soccer players in the sample with 20 players at each of five positions for a total sample size of 100.
+Each row of data gives gives information for one of 100 soccer players in the sample with 20 players at each of five positions for a total sample size of 100.
 
 | Variable       | Description               |
 |----------------|---------------------------|
@@ -23,7 +23,7 @@ Each row of data gives gives information for on of 100 soccer players in the sam
 | `foot`         | Player's preferred foot   |
 | `height_in_cm` | Player's height (in cm)   |
 
-: [soccer_heights_sample.csv](../data/soccer_heights_sample.csv)
+[soccer_heights_sample.csv](../data/soccer_heights_sample.csv)
 
 ## Questions
 
