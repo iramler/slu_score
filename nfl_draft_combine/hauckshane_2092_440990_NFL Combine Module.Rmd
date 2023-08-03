@@ -28,6 +28,12 @@ fbref_comb <- fbref_comb %>% separate(height, into = c("feet", "inch"), sep = "-
   select(position, Round, forty, vertical, bench_reps, broad_jump, three_cone, shuttle)
 ```
 
+```{r}
+write.csv(fbref_comb,"nfl_combine.csv",row.names = FALSE)
+```
+
+
+
 This code creates a scatter plot using ggplot. The x-axis represents shuttle times and the y-axis represents forty times. The geom_point() function adds the individual data points to the plot.
 ```{r}
 ggplot(fbref_comb, aes(x = shuttle, y = forty)) +
