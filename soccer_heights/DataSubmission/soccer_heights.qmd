@@ -31,7 +31,7 @@ Each row of data gives gives information for one of 100 soccer players in the sa
 
 2.  Test to see if there is evidence of a discernible difference in mean height among the five positions.
 
-3.  Which pairs of positions appear to have a discernible difference in mean hight?
+3.  Which pairs of positions appear to have a discernible difference in mean height?
 
 ## References
 
