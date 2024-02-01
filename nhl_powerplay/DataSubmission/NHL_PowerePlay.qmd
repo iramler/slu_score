@@ -31,7 +31,7 @@ Each row of data gives power play statistics for one of the 32 National Hockey L
 
 ## Questions
 
-1.  Describe the distribution of `goals-per-2min`. Does any team appear to have unusually hihg or low values for this variable?
+1.  Describe the distribution of `goals-per-2min`. Does any team appear to have unusually high or low values for this variable?
 
 2.  Create plot to look at the relationship between `goals_per_2min` and `SOG_per_2min`. Does it look like more shots tend to lead to more goals?
 

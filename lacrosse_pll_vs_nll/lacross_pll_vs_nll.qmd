@@ -10,7 +10,7 @@ categories:
 
 ## Motivation
 
-This data set examines the goals and shots in two prominent lacrosse leagues: the Premier Lacrosse League (PLL) and the National Lacrosse League (NLL). The PLL and NLL are highly regarded professional lacrosse leagues that feature top-tier athletes from around the world. The PLL is played in an indoor, smaller field while the NLL plays on an outdoor field with traditional dimensions. This data set allows for an analysis of goal-scoring within these leagues.
+This data set examines the goals and shots in two prominent lacrosse leagues: the Premier Lacrosse League (PLL) and the National Lacrosse League (NLL). The PLL and NLL are highly regarded professional lacrosse leagues that feature top-tier athletes from around the world. The NLL is played in an indoor, smaller field while the PLL plays on an outdoor field with traditional dimensions. This data set allows for an analysis of goal-scoring within these leagues.
 
 ## Data
 
